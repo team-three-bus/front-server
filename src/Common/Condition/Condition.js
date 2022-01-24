@@ -1,5 +1,8 @@
 import React from 'react';
+import Slider from 'react-slick';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import * as S from './Condition.styles';
 
 const Container = ({ children }) => {
@@ -15,7 +18,23 @@ export const Title = ({ children }) => {
 };
 
 export const Contents = ({ children }) => {
-  return <S.Contents>{children}</S.Contents>;
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: false,
+    variableWidth: true,
+  };
+
+  return (
+    <S.Contents>
+      <div>
+        <Slider {...settings}>{children}</Slider>
+      </div>
+    </S.Contents>
+  );
 };
 
 export const Content = ({ children, on }) => {

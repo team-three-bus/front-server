@@ -31,14 +31,9 @@ export const Title = styled.div`
 `;
 export const Contents = styled.div`
   flex: 1;
+  width: -webkit-calc(100% - 80px);
+
   height: 63px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  white-space: nowrap;
 `;
 
 export const Content = styled.div`
@@ -50,12 +45,6 @@ export const Content = styled.div`
   text-align: center;
   color: rgba(196, 196, 196, 1);
   line-height: 46px;
-  white-space: nowrap;
-
-  &:last-child {
-    margin-right: 0;
-    height: 46px;
-  }
 
   ${({ on }) => {
     return on ? 'color: rgba(0, 0, 0, 1)' : null;
