@@ -24,6 +24,7 @@ export const MarkBtn = styled.button`
   height: 12px;
   background: none;
   border: none;
+  cursor: pointer;
 
   &:before,
   &:after {
@@ -58,7 +59,7 @@ export const MarkBox = styled.div`
   padding-top: 17px;
   padding-left: 20px;
   padding-right: 20px;
-  gap: 18px;
+  gap: 0 18px;
 
   ${Mark} {
     width: -webkit-calc(50% - 9px);

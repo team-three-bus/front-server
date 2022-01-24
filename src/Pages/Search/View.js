@@ -8,17 +8,23 @@ import { Mark, MarkBox } from 'Common/Mark';
 import { Feature, FeatureBox } from 'Common/Feature';
 
 const View = () => {
+  const [list, setList] = React.useState([
+    { name: '삼각김밥', id: 0 },
+    { name: '유제품/커피', id: 1 },
+    { name: '음료수', id: 2 },
+    { name: '슈퍼콘 민트 초크 아이스크림', id: 3 },
+    { name: 'GS25', id: 4 },
+    { name: '천하장사 소세지', id: 5 },
+  ]);
   return (
     <>
       <Title title={`최근 검색어`} right={<TextBtn>모두 지우기</TextBtn>} />
-      <MarkBox>
-        <Mark>삼각김밥</Mark>
-        <Mark>유제품/커피</Mark>
-        <Mark>음료수</Mark>
-        <Mark>슈퍼콘 민트 초크 아이스크림</Mark>
-        <Mark>GS25</Mark>
-        <Mark>천하장사 소세지</Mark>
-      </MarkBox>
+      <MarkBox
+        list={list}
+        onChange={(list) => {
+          setList(list);
+        }}
+      />
       <Title title={`이런 검색어는 어떠세요?`} />
       <FeatureBox>
         <Feature>숙취해소</Feature>

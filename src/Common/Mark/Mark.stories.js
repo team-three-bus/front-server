@@ -1,3 +1,5 @@
+import { useArgs } from '@storybook/client-api';
+
 import { Mark } from 'Common/Mark';
 
 export default {
@@ -5,9 +7,16 @@ export default {
   components: Mark,
 };
 
-const Template = (args) => <Mark {...args} />;
+const Template = (args) => {
+  const [_, updateArgs] = useArgs();
+  const deleteMark = (id) => {
+    console.log(id);
+  };
+  return <Mark deleteMark={deleteMark} {...args} />;
+};
 
 export const Example = Template.bind({});
 Example.args = {
+  id: 0,
   children: '샐러드',
 };

@@ -1,10 +1,14 @@
 import * as S from './Mark.styles';
 
-const Mark = ({ children }) => {
+const Mark = ({ children, id, deleteMark }) => {
   return (
     <S.Mark>
       {children}
-      <S.MarkBtn />
+      <S.MarkBtn
+        onClick={() => {
+          deleteMark(id);
+        }}
+      />
     </S.Mark>
   );
 };
