@@ -5,19 +5,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import * as S from './Condition.styles';
 
-const Container = ({ children }) => {
+export const Container = ({ children }) => {
   return <S.Container>{children}</S.Container>;
 };
 
-export const Box = ({ children }) => {
-  return <S.Box>{children}</S.Box>;
-};
-
-export const Title = ({ children }) => {
-  return <S.Title>{children}</S.Title>;
-};
-
-export const Contents = ({ children }) => {
+const Box = ({ title = '', condition = {}, setCondition }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -29,16 +21,33 @@ export const Contents = ({ children }) => {
   };
 
   return (
-    <S.Contents>
-      <div>
-        <Slider {...settings}>{children}</Slider>
-      </div>
-    </S.Contents>
+    <S.Box>
+      <S.Title>{title}</S.Title>
+      <S.Contents>
+        <Slider {...settings}>
+          {Object.entries(condition).map(([key, value]) => {
+            return (
+              <S.Content
+                key={key}
+                on={value.selected}
+                onClick={() => {
+                  setCondition({
+                    ...condition,
+                    [key]: {
+                      ...condition[key],
+                      selected: !value.selected,
+                    },
+                  });
+                }}
+              >
+                {value.name}
+              </S.Content>
+            );
+          })}
+        </Slider>
+      </S.Contents>
+    </S.Box>
   );
 };
 
-export const Content = ({ children, on }) => {
-  return <S.Content on={on}>{children}</S.Content>;
-};
-
-export default Container;
+export default Box;

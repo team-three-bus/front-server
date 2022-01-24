@@ -1,3 +1,3 @@
-import Container, { Box, Title, Contents, Content } from './Condition';
+import Box, { Container } from './Condition';
 
-export { Container, Box, Title, Contents, Content };
+export { Container, Box };
