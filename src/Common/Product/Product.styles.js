@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
 import IconPlus from './img/iconPlus.svg';
+import IconPlusOneOne from './img/iconPlusOneOne.svg';
+import IconPlusTwoOne from './img/iconPlusTwoOne.svg';
 import IconLike from './img/iconLike.svg';
+import IconLikeOn from './img/iconLikeOn.svg';
+import ImgSaleEnd from './img/sale-end.svg';
 
 export const Product = styled.div`
   display: inline-block;
   width: 100%;
+
+  ${({ saleend }) => {
+    return saleend ? 'cursor: not-allowed' : '';
+  }}
 `;
 
 export const ImgBox = styled.div`
@@ -54,6 +62,24 @@ export const Plus = styled.div`
   color: #ffffff;
   text-align: center;
   background: url(${IconPlus}) center no-repeat;
+  text-indent: -9999px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    ${({ plus }) => {
+      switch (plus) {
+        case 'oneone':
+          return `background: url(${IconPlusOneOne}) center no-repeat;`;
+        case 'twoone':
+          return `background: url(${IconPlusTwoOne}) center no-repeat;`;
+      }
+    }}
+  }
 `;
 export const Like = styled.div`
   width: 40px;
@@ -62,9 +88,19 @@ export const Like = styled.div`
   bottom: 0;
   right: 0;
   background: url(${IconLike}) center no-repeat;
+
+  ${({ on }) => {
+    if (on) {
+      return `background: url(${IconLikeOn}) center no-repeat;`;
+    }
+  }}
 `;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  ${({ saleend }) => {
+    return saleend ? 'opacity: 0.5;' : '';
+  }}
+`;
 
 export const StoreType = styled.span`
   display: inline-block;
@@ -96,7 +132,10 @@ export const StoreType = styled.span`
           border-color: #007BFF;
         `;
       case 'seven11':
-        return ``;
+        return `
+          color: #008061;
+          border-color: #008061; 
+        `;
       default:
         return `
           color: #121212;
@@ -128,4 +167,13 @@ export const Price = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+`;
+
+export const SaleEnd = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.18) url(${ImgSaleEnd}) center center no-repeat;
 `;
