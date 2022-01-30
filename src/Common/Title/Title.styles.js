@@ -17,6 +17,19 @@ export const Title = styled.h1`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+
+  ${({ sort }) => {
+    switch (sort) {
+      case 'result':
+        return `
+          font-size: 15px;
+          font-weight: 400;
+          color: rgba(159, 159, 159, 1);
+          line-height :17.02px;
+        `;
+    }
+    return ``;
+  }}
 `;
 
 export const Right = styled.div``;
