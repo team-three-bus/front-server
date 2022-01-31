@@ -2,13 +2,23 @@ import React from 'react';
 
 import * as S from './MyLike.styles';
 
+import { Checkbox } from 'Common/Form';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
 
-const View = () => {
+const View = ({ isEvent, setIsEvent }) => {
   return (
     <>
+      <Checkbox
+        id='isEvent'
+        name='isEvent'
+        label={`행사 중 상품만 보기`}
+        checked={isEvent}
+        onChange={(checked) => {
+          setIsEvent(checked);
+        }}
+      />
       {
         <ItemList>
           <Item>
