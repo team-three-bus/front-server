@@ -21,6 +21,7 @@ const Search = ({
         onKeyDown={(e) => {
           if (e.keyCode !== 13) return;
           onKeyDown(e.target.value);
+          onChange('');
         }}
       />
     </S.Search>

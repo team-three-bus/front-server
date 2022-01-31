@@ -4,11 +4,24 @@ import View from './View';
 
 const Container = () => {
   const [searchValue, onSearchChange] = React.useState('');
-  const [searchList, setSearchList] = React.useState([]);
+
+  const [searchList, setSearchList] = React.useState(
+    JSON.parse(localStorage.getItem('searchList')) || []
+  );
   const onSearch = (value) => {
     setSearchList((searchList) => {
-      return [...searchList, { name: value, id: searchList.length }];
+      const newSearchList = [
+        ...searchList,
+        { name: value, id: searchList.length },
+      ];
+      localStorage.setItem('searchList', JSON.stringify(newSearchList));
+      return newSearchList;
     });
+  };
+
+  const customSetSearchList = (value) => {
+    localStorage.setItem('searchList', JSON.stringify(value));
+    setSearchList(value);
   };
 
   return (
@@ -16,7 +29,7 @@ const Container = () => {
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       searchList={searchList}
-      setSearchList={setSearchList}
+      setSearchList={customSetSearchList}
       onSearch={onSearch}
     />
   );
