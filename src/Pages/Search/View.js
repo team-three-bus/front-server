@@ -2,29 +2,51 @@ import React from 'react';
 
 import * as S from './Search.styles';
 
+import { Layout } from 'Common/Layout';
 import { Title } from 'Common/Title';
 import { TextBtn } from 'Common/TextBtn';
 import { Mark, MarkBox } from 'Common/Mark';
 import { Feature, FeatureBox } from 'Common/Feature';
+import { Empty } from 'Common/Empty';
 
-const View = () => {
-  const [list, setList] = React.useState([
-    { name: '삼각김밥', id: 0 },
-    { name: '유제품/커피', id: 1 },
-    { name: '음료수', id: 2 },
-    { name: '슈퍼콘 민트 초크 아이스크림', id: 3 },
-    { name: 'GS25', id: 4 },
-    { name: '천하장사 소세지', id: 5 },
-  ]);
+const View = ({
+  searchValue,
+  onSearchChange,
+  searchList,
+  setSearchList,
+  onSearch,
+}) => {
   return (
-    <>
-      <Title title={`최근 검색어`} right={<TextBtn>모두 지우기</TextBtn>} />
-      <MarkBox
-        list={list}
-        onChange={(list) => {
-          setList(list);
-        }}
+    <Layout
+      searchValue={searchValue}
+      onSearchChange={onSearchChange}
+      onSearch={onSearch}
+    >
+      <Title
+        title={`최근 검색어`}
+        right={
+          searchList.length > 0 && (
+            <TextBtn
+              onClick={() => {
+                setSearchList([]);
+              }}
+            >
+              모두 지우기
+            </TextBtn>
+          )
+        }
       />
+      {searchList.length ? (
+        <MarkBox
+          list={searchList}
+          onChange={(searchList) => {
+            setSearchList(searchList);
+          }}
+        />
+      ) : (
+        <Empty />
+      )}
+
       <Title title={`이런 검색어는 어떠세요?`} />
       <FeatureBox>
         <Feature>숙취해소</Feature>
@@ -34,7 +56,7 @@ const View = () => {
         <Feature>붉닭볶음면</Feature>
         <Feature>탄산수</Feature>
       </FeatureBox>
-    </>
+    </Layout>
   );
 };
 
