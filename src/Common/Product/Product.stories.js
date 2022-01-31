@@ -61,3 +61,18 @@ SmallSize.args = {
   ...productData,
   size: 'sm',
 };
+
+export const LikeOn = Template.bind({});
+LikeOn.args = {
+  ...productData,
+  plus: 'oneone',
+  like: true,
+};
+
+export const SaleEnd = Template.bind({});
+SaleEnd.args = {
+  ...productData,
+  plus: 'oneone',
+  like: true,
+  saleend: true,
+};
