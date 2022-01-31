@@ -8,4 +8,6 @@ export default {
 const Template = (args) => <FilterPopup {...args} />;
 
 export const Example = Template.bind({});
-Example.args = {};
+Example.args = {
+  open: true,
+};
