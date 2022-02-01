@@ -18,6 +18,7 @@ const View = ({
 }) => {
   return (
     <Layout
+      header='search'
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       onSearch={onSearch}
