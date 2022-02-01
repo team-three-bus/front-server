@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const UIRadio = styled.div`
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
   padding-top: 9px;
   padding-bottom: 9px;
+  align-items: center;
 `;
 
 export const Radio = styled.input`
@@ -12,6 +13,7 @@ export const Radio = styled.input`
   display: inline-block;
   width: 18px;
   height: 18px;
+  margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   box-sizing: border-box;
@@ -29,7 +31,7 @@ export const Radio = styled.input`
           margin-top: -6px;
           margin-left: -6px;
           width: 12px;
-          height: 13px;
+          height: 12px;
           border-radius: 50%;
           background: #EF586A;
         }
