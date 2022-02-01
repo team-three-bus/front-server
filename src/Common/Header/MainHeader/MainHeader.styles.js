@@ -6,7 +6,7 @@ import LoginImg from './img/icon-login.svg';
 
 import { Search } from 'Common/Search/Search.styles';
 
-export const Header = styled.header`
+export const MainHeader = styled.header`
   display: flex;
   height: 64px;
   padding: 8px 20px;
@@ -14,7 +14,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  & > ${Search} {
+  & ${Search} {
     flex: 1;
   }
 `;

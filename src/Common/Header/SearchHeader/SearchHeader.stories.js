@@ -1,10 +1,10 @@
 import { useArgs } from '@storybook/client-api';
 
-import { Header } from 'Common/Header';
+import { SearchHeader } from 'Common/Header';
 
 export default {
   title: 'Frame/Header',
-  components: Header,
+  components: SearchHeader,
 };
 
 const Template = (args) => {
@@ -12,18 +12,20 @@ const Template = (args) => {
   const onSearchChange = (searchValue) => {
     updateArgs({ searchValue });
   };
+  const onKeyDown = () => {};
   const onSearch = () => {};
 
   return (
-    <Header {...args} onSearchChange={onSearchChange} onSearch={onSearch} />
+    <SearchHeader
+      {...args}
+      onSearchChange={onSearchChange}
+      onSearch={onSearch}
+      onKeyDown={onKeyDown}
+    />
   );
 };
 
-export const Example = Template.bind({});
-Example.args = {};
-
-export const Search = Template.bind({});
-Search.args = {
-  search: true,
+export const SearchExample = Template.bind({});
+SearchExample.args = {
   searchValue: '',
 };
