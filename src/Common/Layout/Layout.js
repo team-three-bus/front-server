@@ -2,12 +2,13 @@ import React from 'react';
 
 import * as S from './Layout.styles';
 
-import { Header } from 'Common/Header';
-import { SubHeader } from 'Common/SubHeader';
+import { MainHeader, SubHeader, SearchHeader } from 'Common/Header';
 
 const Layout = ({
   children,
+  title = '',
   header = 'main',
+  line,
   searchValue,
   onSearchChange,
   onSearch,
@@ -16,9 +17,16 @@ const Layout = ({
     <>
       <S.Layout>
         {header === 'sub' ? (
-          <SubHeader title='제목' />
+          <SubHeader title={title} />
+        ) : header === 'search' ? (
+          <SearchHeader
+            line={line}
+            searchValue={searchValue}
+            onSearchChange={onSearchChange}
+            onSearch={onSearch}
+          />
         ) : (
-          <Header
+          <MainHeader
             search={true}
             searchValue={searchValue}
             onSearchChange={onSearchChange}

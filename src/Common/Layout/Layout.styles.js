@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
-import { Header } from 'Common/Header/Header.styles';
-
 export const Layout = styled.div`
   height: 100%;
-
   background: #fff;
 `;
 
