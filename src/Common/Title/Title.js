@@ -7,7 +7,7 @@ const Title = ({ title, subTitle, icon, right, sort }) => {
     <S.Wrap sort={sort}>
       <S.TitleBox>
         <S.Title sort={sort}>
-          {title} {icon && <S.Icon icon={icon} />}
+          {title}{icon && <S.Icon icon={icon} />}
         </S.Title>
         {subTitle && <S.SubTitle sort={sort}>{subTitle}</S.SubTitle>}
       </S.TitleBox>
