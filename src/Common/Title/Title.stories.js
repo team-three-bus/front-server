@@ -30,3 +30,18 @@ Result.args = {
   sort: 'result',
   right: null,
 };
+
+export const Main = Template.bind({});
+Main.args = {
+  title: '제목',
+  subTitle: '보조 제목',
+  sort: 'main',
+};
+
+export const MainLike = Template.bind({});
+MainLike.args = {
+  title: '완전 내 스타일!',
+  subTitle: '찜한 상품을 모아서 볼 수 있어요.',
+  icon: 'like',
+  sort: 'main',
+};

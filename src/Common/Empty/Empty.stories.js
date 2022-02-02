@@ -9,3 +9,8 @@ const Template = (args) => <Empty {...args} />;
 
 export const Example = Template.bind({});
 Example.args = {};
+
+export const Full = Template.bind({});
+Full.args = {
+  full: true,
+};

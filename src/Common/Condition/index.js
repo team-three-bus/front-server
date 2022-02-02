@@ -1,3 +1,3 @@
-import Box, { Container } from './Condition';
+import Condition from './Condition';
 
-export { Container, Box };
+export { Condition };

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import * as S from './Header.styles';
+import * as S from './MainHeader.styles';
 
 import { Search } from 'Common/Search';
 
-const Header = ({
+const MainHeader = ({
   title,
   search = false,
   searchValue,
@@ -12,7 +12,7 @@ const Header = ({
   onSearch,
 }) => {
   return (
-    <S.Header>
+    <S.MainHeader>
       <S.LogoBtn />
       {search && (
         <Search
@@ -22,8 +22,8 @@ const Header = ({
         />
       )}
       <S.LoginBtn />
-    </S.Header>
+    </S.MainHeader>
   );
 };
 
-export { Header };
+export { MainHeader };

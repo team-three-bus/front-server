@@ -1,3 +1,5 @@
-import { Header } from './Header';
+import { MainHeader } from './MainHeader';
+import { SubHeader } from './SubHeader';
+import { SearchHeader } from './SearchHeader';
 
-export { Header };
+export { MainHeader, SubHeader, SearchHeader };

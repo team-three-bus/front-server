@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
 import MyLike from 'Pages/MyLike';
+import Category from 'Pages/Category';
 import Search from 'Pages/Search';
 import SearchResult from 'Pages/SearchResult';
 
@@ -15,6 +15,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path='/mylike' element={<MyLike />} />
+          <Route path='/category' element={<Category />} />
           <Route path='/search' element={<Search />} />
           <Route path='/searchresult' element={<SearchResult />} />
           <Route path='/login' element={<Login />} />

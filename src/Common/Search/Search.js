@@ -5,26 +5,37 @@ import * as S from './Search.styles';
 const Search = ({
   placeholder = `상품을 검색보세요`,
   value = '',
+  sort = 'default',
   type = 'search',
   onChange = () => {},
-  onKeyDown = () => {},
+  onSearch = () => {},
 }) => {
+  const deleteValue = React.useCallback(() => {
+    onChange('');
+  }, [value]);
   return (
-    <S.Search>
-      <S.Input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => {
-          onChange(e.target.value);
-        }}
-        onKeyDown={(e) => {
-          if (e.keyCode !== 13) return;
-          onKeyDown(e.target.value);
-          onChange('');
-        }}
-      />
-    </S.Search>
+    <>
+      <S.Search sort={sort}>
+        <S.Input
+          sort={sort}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.keyCode !== 13) return;
+            onSearch(e.target.value);
+            onChange('');
+          }}
+        />
+        {sort === 'basic' && (
+          <S.BtnDelete type='button' onClick={deleteValue} />
+        )}
+      </S.Search>
+      {sort === 'basic' && <S.BtnSearch type='button' onClick={onSearch} />}
+    </>
   );
 };
 

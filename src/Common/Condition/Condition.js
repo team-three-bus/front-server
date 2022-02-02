@@ -5,11 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import * as S from './Condition.styles';
 
-export const Container = ({ children }) => {
-  return <S.Container>{children}</S.Container>;
-};
-
-const Box = ({ title = '', condition = {}, setCondition }) => {
+const Condition = ({ title = '', condition = {}, setCondition }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -21,9 +17,8 @@ const Box = ({ title = '', condition = {}, setCondition }) => {
   };
 
   return (
-    <S.Box>
-      <S.Title>{title}</S.Title>
-      <S.Contents>
+    <S.Container>
+      <S.Contents title={title}>
         <Slider {...settings}>
           {Object.entries(condition).map(([key, value]) => {
             return (
@@ -46,8 +41,8 @@ const Box = ({ title = '', condition = {}, setCondition }) => {
           })}
         </Slider>
       </S.Contents>
-    </S.Box>
+    </S.Container>
   );
 };
 
-export default Box;
+export default Condition;

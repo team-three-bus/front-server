@@ -1,0 +1,101 @@
+import React from 'react';
+
+import * as S from './Category.styles';
+import * as H from 'Common/Helper';
+
+import { Layout } from 'Common/Layout';
+import { Condition } from 'Common/Condition';
+import { Decide, DecideList } from 'Common/Decide';
+import { Title } from 'Common/Title';
+import { Choice } from 'Common/Choice';
+import { Product } from 'Common/Product';
+import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
+import { ItemList, Item } from 'Common/ItemList';
+
+const View = ({ condition, setCondition }) => {
+  return (
+    <Layout header='sub' title='카테고리'>
+      <Condition condition={condition} setCondition={setCondition} />
+      <S.FilterBox>
+        <DecideList>
+          <Decide>GS25</Decide>
+          <Decide>CU</Decide>
+          <Decide>7-ELEVEN</Decide>
+          <Decide>emart24</Decide>
+        </DecideList>
+      </S.FilterBox>
+      <Title
+        right={
+          <>
+            <Choice onClick={() => {}} isChoosed={false}>
+              낮은 가격순
+            </Choice>
+            <Choice onClick={() => {}} isChoosed='filter'>
+              필터
+            </Choice>
+          </>
+        }
+        sort='result'
+        title={
+          <>
+            <strong>
+              총 <H.PrimaryColor>23</H.PrimaryColor>개
+            </strong>
+            의 상품이 있습니다
+          </>
+        }
+      />
+      {
+        <ItemList>
+          <Item>
+            <Product
+              img={tempProductImg}
+              title={`서울) 비요뜨`}
+              store={`emart24`}
+              plus={`oneone`}
+              price={1500}
+            />
+          </Item>
+          <Item>
+            <Product
+              img={tempProductImg}
+              title={`서울) 비요뜨`}
+              store={`emart24`}
+              plus={`oneone`}
+              price={1500}
+            />
+          </Item>
+          <Item>
+            <Product
+              img={tempProductImg}
+              title={`서울) 비요뜨`}
+              store={`emart24`}
+              plus={`oneone`}
+              price={1500}
+            />
+          </Item>
+          <Item>
+            <Product
+              img={tempProductImg}
+              title={`서울) 비요뜨`}
+              store={`emart24`}
+              plus={`oneone`}
+              price={1500}
+            />
+          </Item>
+          <Item>
+            <Product
+              img={tempProductImg}
+              title={`서울) 비요뜨`}
+              store={`emart24`}
+              plus={`oneone`}
+              price={1500}
+            />
+          </Item>
+        </ItemList>
+      }
+    </Layout>
+  );
+};
+
+export default View;

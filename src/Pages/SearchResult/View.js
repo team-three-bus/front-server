@@ -1,9 +1,11 @@
 import React from 'react';
 
 import * as S from './SearchResult.styles';
+import * as H from 'Common/Helper';
 
 import { Layout } from 'Common/Layout';
-import * as Condition from 'Common/Condition';
+import { Decide, DecideList } from 'Common/Decide';
+import { Choice } from 'Common/Choice';
 import { Title } from 'Common/Title';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
@@ -12,87 +14,36 @@ import { ItemList, Item } from 'Common/ItemList';
 const View = ({ searchValue, onSearchChange, onSearch }) => {
   return (
     <Layout
+      header='search'
+      line={true}
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       onSearch={onSearch}
     >
-      <Condition.Container>
-        <Condition.Box
-          title='편의점'
-          condition={{
-            cu: { name: 'CU', key: 'cu', selected: false },
-            gs25: { name: 'GS25', key: 'gs25', selected: false },
-            seven11: { name: '세븐일레븐', key: 'seven11', selected: false },
-            emart24: { name: 'Emart 24', key: 'emart24', selected: false },
-          }}
-        />
-        <Condition.Box
-          title='카테고리'
-          condition={{
-            0: {
-              key: 0,
-              name: '간편식사',
-              selected: true,
-            },
-            1: {
-              key: 1,
-              name: '빵/과자류',
-              selected: false,
-            },
-            2: {
-              key: 2,
-              name: '생수/과채/기타음료',
-              selected: false,
-            },
-            3: {
-              key: 3,
-              name: '생활용품',
-              selected: false,
-            },
-            4: {
-              key: 4,
-              name: '아이스크림',
-              selected: false,
-            },
-            5: {
-              key: 5,
-              name: '유제품/커피 음료',
-              selected: false,
-            },
-            6: {
-              key: 6,
-              name: '탄산음료',
-              selected: false,
-            },
-            7: {
-              key: 7,
-              name: '기타',
-              selected: false,
-            },
-          }}
-        />
-        <Condition.Box
-          title='할인'
-          condition={{
-            oneone: {
-              key: 'oneone',
-              name: '1+1',
-              selected: true,
-            },
-            onetwo: {
-              key: 'onetwo',
-              name: '2+1',
-              selected: false,
-            },
-          }}
-        />
-      </Condition.Container>
+      <DecideList line='bottom'>
+        <Decide>GS25</Decide>
+        <Decide>CU</Decide>
+        <Decide>7-ELEVEN</Decide>
+        <Decide>emart24</Decide>
+      </DecideList>
+      <S.DecideChoice>
+        <DecideList>
+          <Decide>1+1</Decide>
+          <Decide>2+1</Decide>
+        </DecideList>
+        <Choice size='lg' isChoosed={false}>
+          카테고리
+        </Choice>
+      </S.DecideChoice>
       <Title
-        right={null}
+        right={<Choice isChoosed={false}>연관순</Choice>}
         sort='result'
         title={
           <>
-            <strong>총 23</strong>개의 상품이 있습니다
+            <strong>
+              총 <H.PrimaryColor>23</H.PrimaryColor>개
+            </strong>
+            의 상품이 있습니다
           </>
         }
       />

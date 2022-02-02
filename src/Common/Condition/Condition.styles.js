@@ -1,52 +1,46 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   padding-left: 20px;
   padding-right: 20px;
-`;
-
-export const Box = styled.div`
   display: flex;
-  height: 46px;
+  height: 34px;
   overflow: hidden;
-  align-items: center;
-  margin-top: 6px;
-  border-bottom: 1px solid rgba(181, 181, 181, 0.2);
   align-items: flex-start;
 
-  &:first-child {
-    margin-top: 0;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid #e9ecef;
   }
-`;
-
-export const Title = styled.div`
-  width: 80px;
-  font-family: NanumSquare;
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 16px;
-  text-align: left;
-  align-self: center;
-  color: rgba(120, 121, 241, 1);
 `;
 export const Contents = styled.div`
   flex: 1;
-  width: -webkit-calc(100% - 80px);
-
-  height: 63px;
 `;
 
 export const Content = styled.div`
+  position: relative;
   display: inline-block;
-  margin-right: 24px;
+  width: auto !important;
+  padding-left: 16px;
+  padding-right: 16px;
   font-family: NanumSquare;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
   text-align: center;
   color: rgba(196, 196, 196, 1);
-  line-height: 46px;
+  line-height: 32px;
 
   ${({ on }) => {
-    return on ? 'color: rgba(0, 0, 0, 1)' : null;
+    return on
+      ? `
+        color: #EF586A;
+        border-bottom: 2px solid #EF586A;
+      `
+      : null;
   }}
 `;

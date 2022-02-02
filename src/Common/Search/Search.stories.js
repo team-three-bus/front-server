@@ -13,10 +13,26 @@ const Template = (args) => {
     updateArgs({ value });
   };
   const onKeyDown = (keyCode) => {};
-  return <Search {...args} onChange={onChange} onKeyDown={onKeyDown} />;
+  const onSearch = () => {};
+
+  return (
+    <Search
+      {...args}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      onSearch={onSearch}
+    />
+  );
 };
 
-export const Example = Template.bind({});
-Example.args = {
+export const Default = Template.bind({});
+Default.args = {
+  sort: 'default',
+  value: '',
+};
+
+export const Basic = Template.bind({});
+Basic.args = {
+  sort: 'basic',
   value: '',
 };
