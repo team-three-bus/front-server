@@ -7,18 +7,17 @@ import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 const RecommendProductBox = styled.div`
   box-sizing: border-box;
   margin-top: 10px;
-  padding-top: 7px;
-  width: 100%;
-  height: calc(346 / 384 * 100vw);
+  padding: 7px 0 3px;
   background: #ffffff;
 `
 
 const RecommendItemList = styled.div`
   display: flex;
   overflow-x: auto;
-  margin-top: 21px;
-  > div:first-child {
-    margin-left: 20px;
+  margin: 21px 0 8px;
+  padding: 0 20px;
+  > div {
+    min-width: 135px;
   }
   > div + div {
     margin-left: 16px
@@ -54,7 +53,6 @@ const index = () => {
             img={tempProductImg}
             price={1500}
             plus="oneone"
-            size="sm"
             title="서울) 비요뜨"
             store="emart24"
           />
