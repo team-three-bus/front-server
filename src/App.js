@@ -1,5 +1,7 @@
+import Login from "./Pages/Login";
+
 const App = () => {
-  return <div className='App'>Hello react</div>;
+  return <Login />;
 };
 
 export default App;
