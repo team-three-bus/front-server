@@ -14,7 +14,7 @@ const Oauth = () => {
       code: code,
       client_id: REST_API_KEY,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://20d4-211-193-55-85.ngrok.io/oauth',
+      redirect_uri: 'http://localhost:3000/oauth',
       client_secret: '82g8ZwhdZphpEE41gbnqjZtilv0jtnMS',
     };
 
