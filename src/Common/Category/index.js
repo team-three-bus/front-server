@@ -4,31 +4,21 @@ import { CATEGORY_LIST } from '../Util/Constant';
 
 const CategoryBox = styled.div`
   box-sizing: border-box;
-  flex-wrap: wrap;
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  gap: 7%;
   height: calc(229 / 384 * 100vw);
-  margin-top: 8px;
-  padding: calc(22 / 384 * 100vw) calc(20 / 384 * 100vw) calc(24 / 384 * 100vw) calc(19 / 384 * 100vw);
+  margin: 8px auto 0;
+  padding: 22px 20px;
   background: #FFFFFF;
 `
 
 const CategoryItem = styled.div`
-  width: calc(64 / 384 * 100vw);
-  height: calc(81 / 384 * 100vw);
-  margin-right: calc(29 / 384 * 100vw);
-  cursor: pointer;
-  
-  &:nth-child(4n) {
-    margin-right: 0;
-  }
-  &:nth-child(n + 5) {
-    margin-top: calc(17 / 384 * 100vw);
-  }
 `
 
 const CategoryItemImg = styled.img`
-  width: calc(64 / 384 * 100vw);
+  box-sizing: border-box;
+  width: 100%;
   height: 0;
   padding-bottom: 100%;
   background: url(${props => props.img}) no-repeat center/cover;
@@ -38,8 +28,8 @@ const CategoryItemImg = styled.img`
 `
 
 const CategoryItemName = styled.p`
-  margin: calc(1 / 384 * 100vw) 0;
-  font-size: calc(12 / 384 * 100vw);
+  margin: 0;
+  font-size: 12px;
   text-align: center;
   font-weight: bold;
   color: #212529;
