@@ -26,13 +26,15 @@ const Condition = ({ title = '', condition = {}, setCondition }) => {
                 key={key}
                 on={value.selected}
                 onClick={() => {
-                  setCondition({
-                    ...condition,
-                    [key]: {
-                      ...condition[key],
-                      selected: !value.selected,
-                    },
+                  const newCondition = JSON.parse(JSON.stringify(condition));
+                  Object.entries(newCondition).forEach(([k, v]) => {
+                    if (v.key == key) {
+                      v.selected = true;
+                    } else {
+                      v.selected = false;
+                    }
                   });
+                  setCondition(newCondition);
                 }}
               >
                 {value.name}
