@@ -33,13 +33,18 @@ const RecommendItemList = styled.div`
 
 const index = () => {
   const username = 'test';
-  const data = [1, 2, 3];
+  const data = [1, 2, 3]; // TODO: 실제 데이터 가져오기, 최대 10개
+  const isLogin = true; // TODO: 로그인 여부 확인
   return (
     <RecommendProductBox>
       <Title
         sort="main"
         icon="recommend"
-        subTitle={`${username}님을 위해 편하가 준비한 추천 상품!`}
+        subTitle={
+          isLogin ? 
+            `${username}님을 위해 편하가 준비한 추천 상품!` : 
+            "가입/로그인 하시면 더 정확한 추천을 받으실 수 있어요!"
+        }
         title="추천상품"
       />
       <RecommendItemList>
