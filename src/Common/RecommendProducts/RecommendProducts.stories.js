@@ -5,6 +5,6 @@ export default {
   components: RecommendProducts,
 };
 
-const Template = (args) => <Category {...args} />;
+const Template = (args) => <RecommendProducts {...args} />;
 
 export const Default = Template.bind({});
