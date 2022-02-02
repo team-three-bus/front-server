@@ -14,29 +14,27 @@ const Layout = ({
   onSearch,
 }) => {
   return (
-    <>
-      <S.Layout>
-        {header === 'sub' ? (
-          <SubHeader title={title} />
-        ) : header === 'search' ? (
-          <SearchHeader
-            line={line}
-            searchValue={searchValue}
-            onSearchChange={onSearchChange}
-            onSearch={onSearch}
-          />
-        ) : (
-          <MainHeader
-            search={true}
-            searchValue={searchValue}
-            onSearchChange={onSearchChange}
-            onSearch={onSearch}
-          />
-        )}
+    <S.Layout>
+      {header === 'sub' ? (
+        <SubHeader title={title} />
+      ) : header === 'search' ? (
+        <SearchHeader
+          line={line}
+          searchValue={searchValue}
+          onSearchChange={onSearchChange}
+          onSearch={onSearch}
+        />
+      ) : (
+        <MainHeader
+          search={true}
+          searchValue={searchValue}
+          onSearchChange={onSearchChange}
+          onSearch={onSearch}
+        />
+      )}
 
-        <S.Wrap>{children}</S.Wrap>
-      </S.Layout>
-    </>
+      <S.Wrap>{children}</S.Wrap>
+    </S.Layout>
   );
 };
 
