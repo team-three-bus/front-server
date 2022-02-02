@@ -24,7 +24,7 @@ const Product = ({ size, img, store, plus, title, price, like, saleend }) => {
             : null}
         </S.StoreType>
         <S.Title>{title}</S.Title>
-        <S.Price>{price}원</S.Price>
+        <S.Price>{price.toLocaleString()}원</S.Price>
       </S.Info>
     </S.Product>
   );
