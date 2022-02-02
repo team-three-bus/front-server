@@ -9,7 +9,8 @@ import { IconTextBtn } from 'Common/IconTextBtn';
 
 const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
   const getFilterBool = React.useCallback(({ type, id }) => {
-    if (filter[type]) filter[type].find((item) => item === id);
+    if (filter[type])
+      return filter[type].find((item) => item === id) ? true : false;
     return false;
   }, []);
   const [order, setOrder] = React.useState([
