@@ -40,7 +40,7 @@ const index = () => {
         sort="main"
         icon="popular"
         subTitle="다른 편족님에게 사랑받는 상품을 모았어요!"
-        title="추천상품"
+        title="인기상품"
       />
       <PickList>
         {
