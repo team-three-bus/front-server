@@ -33,6 +33,7 @@ const CategoryItemName = styled.p`
   text-align: center;
   font-weight: bold;
   color: #212529;
+  white-space: nowrap;
 `
 
 const Category = () => {
