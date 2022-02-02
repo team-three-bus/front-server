@@ -4,8 +4,20 @@ import * as S from './Choice.styles';
 
 const Choice = ({ children, isChoosed, deleteChoice, size, onClick }) => {
   return (
-    <S.Choice isChoosed={isChoosed} size={size} onClick={onClick}>
-      <S.Text>{children}</S.Text>
+    <S.Choice
+      isChoosed={isChoosed}
+      size={size}
+      onClick={() => {
+        if (isChoosed !== true) onClick();
+      }}
+    >
+      <S.Text
+        onClick={() => {
+          if (isChoosed === true) onClick();
+        }}
+      >
+        {children}
+      </S.Text>
       {isChoosed === true ? (
         <S.BtnDelete type='button' onClick={deleteChoice} />
       ) : isChoosed === 'filter' ? (
