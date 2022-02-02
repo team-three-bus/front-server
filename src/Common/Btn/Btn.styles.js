@@ -15,6 +15,16 @@ export const Btn = styled.button`
   letter-spacing: 0em;
   color: #fff;
   cursor: pointer;
+  
+  ${({ option }) => {
+    switch (option) {
+      case "add":
+        return `
+          width: calc(100% - 40px);
+          margin: 24px 0 0 20px;
+        `
+    }
+  }}
 
   ${({ disabled }) => {
     switch (disabled) {

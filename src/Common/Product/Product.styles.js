@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import IconPlus from './img/iconPlus.svg';
-import IconPlusOneOne from './img/iconPlusOneOne.svg';
-import IconPlusTwoOne from './img/iconPlusTwoOne.svg';
+import IconPlusOneOne from './img/iconPlusOneOne.png';
+import IconPlusTwoOne from './img/iconPlusTwoOne.png';
 import IconLike from './img/iconLike.svg';
 import IconLikeOn from './img/iconLikeOn.svg';
 import ImgSaleEnd from './img/sale-end.svg';
@@ -74,9 +74,9 @@ export const Plus = styled.div`
     ${({ plus }) => {
       switch (plus) {
         case 'oneone':
-          return `background: url(${IconPlusOneOne}) center no-repeat;`;
+          return `background: url(${IconPlusOneOne}) center/cover no-repeat;`;
         case 'twoone':
-          return `background: url(${IconPlusTwoOne}) center no-repeat;`;
+          return `background: url(${IconPlusTwoOne}) center/cover no-repeat;`;
       }
     }}
   }
