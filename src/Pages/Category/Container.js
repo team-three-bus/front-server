@@ -15,7 +15,34 @@ const Container = () => {
     8: { key: 8, name: '기타', selected: false },
   });
 
-  return <View condition={condition} setCondition={setCondition} />;
+  const [filterOpen, setFilterOpen] = React.useState(false);
+  const [filter, setFilter] = React.useState({
+    order: ['lowPrice'],
+    event: [],
+  });
+  const orderClick = React.useCallback(() => {
+    setFilterOpen(true);
+  }, []);
+  const filterClick = React.useCallback(() => {
+    setFilterOpen(true);
+  }, []);
+
+  const customSetFilter = React.useCallback((filter) => {
+    setFilter(filter);
+  }, []);
+
+  return (
+    <View
+      condition={condition}
+      setCondition={setCondition}
+      filterOpen={filterOpen}
+      setFilterOpen={setFilterOpen}
+      filter={filter}
+      setFilter={customSetFilter}
+      orderClick={orderClick}
+      filterClick={filterClick}
+    />
+  );
 };
 
 export default Container;

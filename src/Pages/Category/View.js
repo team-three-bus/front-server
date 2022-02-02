@@ -11,8 +11,18 @@ import { Choice } from 'Common/Choice';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
+import { FilterPopup } from 'Common/FilterPopup';
 
-const View = ({ condition, setCondition }) => {
+const View = ({
+  condition,
+  setCondition,
+  filterOpen,
+  setFilterOpen,
+  filter,
+  setFilter,
+  orderClick,
+  filterClick,
+}) => {
   return (
     <Layout header='sub' title='카테고리'>
       <Condition condition={condition} setCondition={setCondition} />
@@ -27,10 +37,18 @@ const View = ({ condition, setCondition }) => {
       <Title
         right={
           <>
-            <Choice onClick={() => {}} isChoosed={false}>
-              낮은 가격순
+            <Choice onClick={orderClick} isChoosed={false}>
+              {filter.order[0] === 'lowPrice'
+                ? '낮은 가격순'
+                : filter.order[0] === 'highPrice'
+                ? '높은 가격순'
+                : filter.order[0] === 'popularity'
+                ? '인기순'
+                : filter.order[0] === 'view'
+                ? '조회순'
+                : null}
             </Choice>
-            <Choice onClick={() => {}} isChoosed='filter'>
+            <Choice onClick={filterClick} isChoosed='filter'>
               필터
             </Choice>
           </>
@@ -94,6 +112,12 @@ const View = ({ condition, setCondition }) => {
           </Item>
         </ItemList>
       }
+      <FilterPopup
+        open={filterOpen}
+        setOpen={setFilterOpen}
+        setFilter={setFilter}
+        filter={filter}
+      />
     </Layout>
   );
 };
