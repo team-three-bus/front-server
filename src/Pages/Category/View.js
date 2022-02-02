@@ -12,10 +12,14 @@ import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
 import { FilterPopup } from 'Common/FilterPopup';
+import { Pick } from 'Common/Pick';
 
 const View = ({
   condition,
   setCondition,
+  brand,
+  setBrand,
+  changeBrand,
   filterOpen,
   setFilterOpen,
   filter,
@@ -28,10 +32,17 @@ const View = ({
       <Condition condition={condition} setCondition={setCondition} />
       <S.FilterBox>
         <DecideList>
-          <Decide>GS25</Decide>
-          <Decide>CU</Decide>
-          <Decide>7-ELEVEN</Decide>
-          <Decide>emart24</Decide>
+          {brand.map((item, i) => (
+            <Decide
+              key={i}
+              on={item.selected}
+              onClick={() => {
+                changeBrand(item.id);
+              }}
+            >
+              {item.name}
+            </Decide>
+          ))}
         </DecideList>
       </S.FilterBox>
       <Title

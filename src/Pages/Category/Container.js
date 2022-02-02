@@ -15,6 +15,22 @@ const Container = () => {
     8: { key: 8, name: '기타', selected: false },
   });
 
+  const [brand, setBrand] = React.useState([
+    { id: 'gs', name: 'GS', selected: false },
+    { id: 'cu', name: 'CU', selected: false },
+    { id: 'emart24', name: 'emart24', selected: false },
+    { id: 'seven11', name: '7-ELEVEN', selected: false },
+  ]);
+
+  const changeBrand = React.useCallback((id) => {
+    setBrand((brand) => {
+      return brand.map((b) => {
+        if (b.id == id) return { ...b, selected: !b.selected };
+        return b;
+      });
+    });
+  }, []);
+
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [filter, setFilter] = React.useState({
     order: ['lowPrice'],
@@ -35,6 +51,9 @@ const Container = () => {
     <View
       condition={condition}
       setCondition={setCondition}
+      brand={brand}
+      setBrand={setBrand}
+      changeBrand={changeBrand}
       filterOpen={filterOpen}
       setFilterOpen={setFilterOpen}
       filter={filter}
