@@ -5,6 +5,6 @@ export default {
   components: PopularProducts,
 };
 
-const Template = (args) => <Category {...args} />;
+const Template = (args) => <PopularProducts {...args} />;
 
 export const Default = Template.bind({});
