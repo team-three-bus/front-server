@@ -13,10 +13,14 @@ import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
 import { FilterPopup } from 'Common/FilterPopup';
 import { Pick } from 'Common/Pick';
+import { Btn, BtnArea } from 'Common/Btn';
+import { Empty } from 'Common/Empty';
+
+import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
   condition,
-  setCondition,
+  changeCategory,
   brand,
   setBrand,
   changeBrand,
@@ -26,10 +30,15 @@ const View = ({
   setFilter,
   orderClick,
   filterClick,
+  products,
+  pageSize,
+  productCnt,
+  currentPage,
+  getMoreProducts,
 }) => {
   return (
     <Layout header='sub' title='카테고리'>
-      <Condition condition={condition} setCondition={setCondition} />
+      <Condition condition={condition} setCondition={changeCategory} />
       <S.FilterBox>
         <DecideList>
           {brand.map((item, i) => (
@@ -68,7 +77,7 @@ const View = ({
         title={
           <>
             <strong>
-              총 <H.PrimaryColor>23</H.PrimaryColor>개
+              총 <H.PrimaryColor>{productCnt}</H.PrimaryColor>개
             </strong>
             의 상품이 있습니다
           </>
@@ -76,53 +85,27 @@ const View = ({
       />
       {
         <ItemList>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
+          {products.map((product, i) => {
+            return (
+              <Item key={i}>
+                <Product
+                  img={product.imageUrl}
+                  title={product.name}
+                  store={DATA_REVERSE.brand[product.brand]}
+                  plus={DATA_REVERSE.event[product.eventType]}
+                  price={product.price}
+                />
+              </Item>
+            );
+          })}
         </ItemList>
       }
+      {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
+      {products.length > 0 && pageSize !== currentPage && (
+        <BtnArea>
+          <Btn onClick={getMoreProducts}>더 많은 행사상품 보기</Btn>
+        </BtnArea>
+      )}
       <FilterPopup
         open={filterOpen}
         setOpen={setFilterOpen}
