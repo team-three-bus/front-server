@@ -9,8 +9,36 @@ import { IconTextBtn } from 'Common/IconTextBtn';
 
 const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
   const onDismiss = React.useCallback(() => {
+    Object.entries(filter).forEach(([key, item]) => {
+      switch (key) {
+        case 'order':
+          setOrder((order) => {
+            return order.map((o) => {
+              return { ...o, selected: item.indexOf(o.id) > -1 };
+            });
+          });
+        case 'category':
+          setCategory((category) => {
+            return category.map((c) => {
+              return { ...c, selected: item.indexOf(c.id) > -1 };
+            });
+          });
+        case 'event':
+          setEvent((event) => {
+            return event.map((e) => {
+              return { ...e, selected: item.indexOf(e.id) > -1 };
+            });
+          });
+        case 'brand':
+          setBrand((brand) => {
+            return brand.map((b) => {
+              return { ...b, selected: item.indexOf(b.id) > -1 };
+            });
+          });
+      }
+    });
     setOpen(false);
-  }, []);
+  }, [filter]);
 
   const getFilterBool = React.useCallback(({ type, id }) => {
     if (filter[type])
@@ -34,7 +62,7 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
       id: 'popularity',
     },
     {
-      name: '클릭순',
+      name: '조회순',
       selected: getFilterBool({ type: 'order', id: 'view' }),
       id: 'view',
     },
