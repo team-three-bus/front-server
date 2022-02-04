@@ -25,6 +25,6 @@ Example.args = {
     order: ['lowPrice'],
     category: [],
     event: [],
-    order: [],
+    brand: [],
   },
 };
