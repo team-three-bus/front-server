@@ -28,4 +28,7 @@ export const Btn = styled.button`
   }}
 `;
 
-export const BtnArea = styled.div``;
+export const BtnArea = styled.div`
+  padding-top: 24px;
+  padding-bottom: 24px;
+`;
