@@ -154,10 +154,7 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     }
   }, []);
   const resetFilter = React.useCallback(() => {
-    const newFilter = {};
-
     if (filter.order) {
-      newFilter.order = [order[0].id];
       setOrder((order) => {
         return order.map((item, i) => {
           if (i === 0) return { ...item, selected: true };
@@ -166,25 +163,20 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
       });
     }
     if (filter.category) {
-      newFilter.category = [];
       setCategory((category) => {
         return category.map((item) => ({ ...item, selected: false }));
       });
     }
     if (filter.brand) {
-      newFilter.brand = [];
       setBrand((brand) => {
         return brand.map((item) => ({ ...item, selected: false }));
       });
     }
     if (filter.event) {
-      newFilter.event = [];
       setEvent((event) => {
         return event.map((item) => ({ ...item, selected: false }));
       });
     }
-
-    setFilter(newFilter);
   }, []);
   const applyFilter = () => {
     const newFilter = {};
