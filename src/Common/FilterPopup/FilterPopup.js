@@ -8,6 +8,10 @@ import { Btn } from 'Common/Btn';
 import { IconTextBtn } from 'Common/IconTextBtn';
 
 const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
+  const onDismiss = React.useCallback(() => {
+    setOpen(false);
+  }, []);
+
   const getFilterBool = React.useCallback(({ type, id }) => {
     if (filter[type])
       return filter[type].find((item) => item === id) ? true : false;
@@ -217,7 +221,7 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
   };
 
   return (
-    <BottomSheet open={open}>
+    <BottomSheet open={open} onDismiss={onDismiss}>
       <S.Container>
         <S.Content>
           {filter.order && (
