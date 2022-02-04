@@ -5,8 +5,8 @@ export const Container = styled.div``;
 export const Content = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 20px;
-  min-height: 594px;
+  padding-bottom: 100px;
+  max-height: 594px;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
