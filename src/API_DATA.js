@@ -1,5 +1,6 @@
 export const DATA_FORWARD = {
   category: {
+    all: '전체',
     meal: '간편식사',
     bread: '빵/과자류',
     icecream: '아이스크림',
@@ -29,6 +30,7 @@ export const DATA_FORWARD = {
 
 export const DATA_REVERSE = {
   category: {
+    전체: 'all',
     간편식사: 'meal',
     '빵/과자류': 'bread',
     아이스크림: 'icecream',
