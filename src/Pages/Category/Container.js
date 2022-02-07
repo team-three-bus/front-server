@@ -15,6 +15,8 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const loading = React.useRef(false);
+
   let {
     category: locationCategory,
     brand: locationBrand,
@@ -159,6 +161,7 @@ const Container = () => {
   const [productCnt, setProductCnt] = React.useState(0);
 
   React.useEffect(() => {
+    loading.current = true;
     const _condition = {};
 
     _condition.page = currentPage;
@@ -207,12 +210,37 @@ const Container = () => {
         setCurrentPage(currentPage);
         setProductCnt(productCnt);
         setPageSize(pageSize);
+        loading.current = false;
       });
   }, [brand, condition, filter, currentPage]);
 
   const getMoreProducts = React.useCallback(() => {
     setCurrentPage((currentPage) => currentPage + 1);
   }, []);
+
+  const infiniteScroll = (e) => {
+    const $scrollingElement = e.target.scrollingElement;
+    const windowHeight = window.innerHeight;
+
+    const isBottom =
+      Math.ceil($scrollingElement.scrollHeight) <=
+      Math.ceil($scrollingElement.scrollTop + windowHeight);
+
+    if (isBottom && !loading.current && pageSize > currentPage) {
+      loading.current = true;
+      setCurrentPage((currentPage) => {
+        return currentPage + 1;
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', infiniteScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll, true);
+    };
+  }, [pageSize, currentPage]);
 
   return (
     <View

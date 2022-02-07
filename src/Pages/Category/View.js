@@ -101,11 +101,6 @@ const View = ({
         </ItemList>
       }
       {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
-      {products.length > 0 && pageSize !== currentPage && (
-        <BtnArea>
-          <Btn onClick={getMoreProducts}>더 많은 행사상품 보기</Btn>
-        </BtnArea>
-      )}
       <FilterPopup
         open={filterOpen}
         setOpen={setFilterOpen}
