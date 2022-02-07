@@ -20,22 +20,24 @@ const Condition = ({ title = '', condition = {}, setCondition }) => {
     <S.Container>
       <S.Contents title={title}>
         <Slider {...settings}>
-          {Object.entries(condition).map(([key, value]) => {
+          {condition.map((item) => {
             return (
               <S.Content
-                key={key}
-                on={value.selected}
+                key={item.id}
+                on={item.selected}
                 onClick={() => {
-                  setCondition({
-                    ...condition,
-                    [key]: {
-                      ...condition[key],
-                      selected: !value.selected,
-                    },
+                  const newCondition = JSON.parse(JSON.stringify(condition));
+                  newCondition.forEach((_item) => {
+                    if (_item.id == item.id) {
+                      _item.selected = true;
+                    } else {
+                      _item.selected = false;
+                    }
                   });
+                  setCondition(newCondition);
                 }}
               >
-                {value.name}
+                {item.name}
               </S.Content>
             );
           })}

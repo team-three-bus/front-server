@@ -34,6 +34,7 @@ export const Content = styled.div`
   text-align: center;
   color: rgba(196, 196, 196, 1);
   line-height: 32px;
+  cursor: pointer;
 
   ${({ on }) => {
     return on

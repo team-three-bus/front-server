@@ -9,8 +9,20 @@ import { Checkbox } from 'Common/Form';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
+import { FilterPopup } from 'Common/FilterPopup';
 
-const View = ({ isEvent, setIsEvent }) => {
+const View = ({
+  isEvent,
+  setIsEvent,
+  filterOpen,
+  setFilterOpen,
+  setFilter,
+  brandClick,
+  categoryClick,
+  categoryDeleteChoice,
+  brandDeleteChoice,
+  filter,
+}) => {
   return (
     <Layout header='sub' title='완내스'>
       <Title
@@ -20,8 +32,20 @@ const View = ({ isEvent, setIsEvent }) => {
         subTitle='찜한 상품을 모아서 볼 수 있어요.'
       />
       <S.FilterBox>
-        <Choice isChoosed={false}>편의점</Choice>
-        <Choice isChoosed={true}>카테고리 2</Choice>
+        <Choice
+          isChoosed={filter.brand.length > 0}
+          onClick={brandClick}
+          deleteChoice={brandDeleteChoice}
+        >
+          편의점 {filter.brand.length > 0 && filter.brand.length}
+        </Choice>
+        <Choice
+          isChoosed={filter.category.length > 0}
+          onClick={categoryClick}
+          deleteChoice={categoryDeleteChoice}
+        >
+          카테고리 {filter.category.length > 0 && filter.category.length}
+        </Choice>
       </S.FilterBox>
       <Title
         sort={'result'}
@@ -87,6 +111,13 @@ const View = ({ isEvent, setIsEvent }) => {
           </Item>
         </ItemList>
       }
+
+      <FilterPopup
+        open={filterOpen}
+        setOpen={setFilterOpen}
+        setFilter={setFilter}
+        filter={filter}
+      />
     </Layout>
   );
 };

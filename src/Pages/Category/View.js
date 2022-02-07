@@ -11,26 +11,64 @@ import { Choice } from 'Common/Choice';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
+import { FilterPopup } from 'Common/FilterPopup';
+import { Pick } from 'Common/Pick';
+import { Btn, BtnArea } from 'Common/Btn';
+import { Empty } from 'Common/Empty';
 
-const View = ({ condition, setCondition }) => {
+import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
+
+const View = ({
+  condition,
+  changeCategory,
+  brand,
+  setBrand,
+  changeBrand,
+  filterOpen,
+  setFilterOpen,
+  filter,
+  setFilter,
+  orderClick,
+  filterClick,
+  products,
+  pageSize,
+  productCnt,
+  currentPage,
+  getMoreProducts,
+}) => {
   return (
     <Layout header='sub' title='카테고리'>
-      <Condition condition={condition} setCondition={setCondition} />
+      <Condition condition={condition} setCondition={changeCategory} />
       <S.FilterBox>
         <DecideList>
-          <Decide>GS25</Decide>
-          <Decide>CU</Decide>
-          <Decide>7-ELEVEN</Decide>
-          <Decide>emart24</Decide>
+          {brand.map((item, i) => (
+            <Decide
+              key={i}
+              on={item.selected}
+              onClick={() => {
+                changeBrand(item.id);
+              }}
+            >
+              {item.name}
+            </Decide>
+          ))}
         </DecideList>
       </S.FilterBox>
       <Title
         right={
           <>
-            <Choice onClick={() => {}} isChoosed={false}>
-              낮은 가격순
+            <Choice onClick={orderClick} isChoosed={false}>
+              {filter.order[0] === 'lowPrice'
+                ? '낮은 가격순'
+                : filter.order[0] === 'highPrice'
+                ? '높은 가격순'
+                : filter.order[0] === 'popularity'
+                ? '인기순'
+                : filter.order[0] === 'view'
+                ? '조회순'
+                : null}
             </Choice>
-            <Choice onClick={() => {}} isChoosed='filter'>
+            <Choice onClick={filterClick} isChoosed='filter'>
               필터
             </Choice>
           </>
@@ -39,7 +77,7 @@ const View = ({ condition, setCondition }) => {
         title={
           <>
             <strong>
-              총 <H.PrimaryColor>23</H.PrimaryColor>개
+              총 <H.PrimaryColor>{productCnt}</H.PrimaryColor>개
             </strong>
             의 상품이 있습니다
           </>
@@ -47,53 +85,28 @@ const View = ({ condition, setCondition }) => {
       />
       {
         <ItemList>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
+          {products.map((product, i) => {
+            return (
+              <Item key={i}>
+                <Product
+                  img={product.imageUrl}
+                  title={product.name}
+                  store={DATA_REVERSE.brand[product.brand]}
+                  plus={DATA_REVERSE.event[product.eventType]}
+                  price={product.price}
+                />
+              </Item>
+            );
+          })}
         </ItemList>
       }
+      {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
+      <FilterPopup
+        open={filterOpen}
+        setOpen={setFilterOpen}
+        setFilter={setFilter}
+        filter={filter}
+      />
     </Layout>
   );
 };
