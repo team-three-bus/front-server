@@ -4,7 +4,6 @@ import { Title } from 'Common/Title';
 import { Product } from 'Common/Product';
 import { ItemList, Item } from 'Common/ItemList';
 import { Pick } from 'Common/Pick';
-import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { CATEGORY_LIST } from 'Common/Util/Constant';
 import { Btn } from 'Common/Btn';
 
@@ -32,8 +31,13 @@ const PickList = styled.ul`
   }
 `;
 
-const index = () => {
-  const data = [1, 2, 3, 4, 5]; // TODO: 실제 데이터 연동, 처음 6개, 더보기 시 6개씩 추가, 최대 30개
+const Index = ({ 
+  maxPopularItemsPageNum,
+  popularItems,
+  popularItemsPageNum,
+  onClickMoreBtn
+}) => {
+  const isShowMoreBtn = popularItemsPageNum < maxPopularItemsPageNum;
   return (
     <PopularProductBox>
       <Title
@@ -50,21 +54,28 @@ const index = () => {
         }
       </PickList>
       <ItemList>
-        {data.map((item, i) => (
+        {popularItems && popularItems.map((item, i) => (
           <Item key={i}>
             <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
+              img={item.imageUrl}
+              title={item.name}
+              store={item.brand}
               plus={`oneone`}
-              price={1500}
+              price={item.price}
             />
           </Item>
         ))}
       </ItemList>
-      <Btn option="add">더 많은 행사상품 보기</Btn>
+      {isShowMoreBtn && (
+        <Btn 
+          option="add"
+          onClick={onClickMoreBtn}
+        >
+          더 많은 행사상품 보기
+        </Btn>
+      )}
     </PopularProductBox>
   );
 }
 
-export default index;
+export default Index;

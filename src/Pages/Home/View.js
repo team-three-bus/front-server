@@ -10,13 +10,23 @@ const Home = styled.div`
   background: #F8F9FA;
 `
 
-function View() {
+function View({
+  maxPopularItemsPageNum,
+  popularItems,
+  popularItemsPageNum,
+  onClickMoreBtn
+}) {
   return (
     <Home>
       <Layout header='main'/>
       <Category />
       <RecommendProducts />
-      <PopularProducts />
+      <PopularProducts 
+        maxPopularItemsPageNum={maxPopularItemsPageNum}
+        popularItems={popularItems}
+        popularItemsPageNum={popularItemsPageNum}
+        onClickMoreBtn={onClickMoreBtn}
+      />
       <BottomNav />
     </Home>
   );

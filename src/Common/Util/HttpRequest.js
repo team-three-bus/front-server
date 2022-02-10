@@ -15,3 +15,10 @@ const axiosRequest = (method, url, param) => {
     })
   }
 }
+
+export const getPopularItems = param => {
+  const { num, category } = param;
+  return  axiosRequest(
+    'get', `products/main/popular?page=${num}${category ? `&category=${category}` : ""}`
+  );
+}
