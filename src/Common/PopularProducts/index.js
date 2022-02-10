@@ -31,6 +31,13 @@ const PickList = styled.ul`
   }
 `;
 
+const Placeholder = styled.p`
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #9f9f9f;
+`
+
 const Index = ({ 
   maxPopularItemsPageNum,
   popularItems,
@@ -39,7 +46,7 @@ const Index = ({
   onClickMoreBtn,
   onClickCategory
 }) => {
-  const isShowMoreBtn = popularItemsPageNum < maxPopularItemsPageNum;
+  const isShowMoreBtn = popularItems.length > 0 && popularItemsPageNum < maxPopularItemsPageNum;
   return (
     <PopularProductBox>
       <Title
@@ -66,17 +73,20 @@ const Index = ({
         ))}
       </PickList>
       <ItemList>
-        {popularItems && popularItems.map((item, i) => (
-          <Item key={i}>
-            <Product
-              img={item.imageUrl}
-              title={item.name}
-              store={item.brand}
-              plus={`oneone`}
-              price={item.price}
-            />
-          </Item>
-        ))}
+        {popularItems.length > 0 ?
+          popularItems.map((item, i) => (
+            <Item key={i}>
+              <Product
+                img={item.imageUrl}
+                title={item.name}
+                store={item.brand}
+                plus={`oneone`}
+                price={item.price}
+              />
+            </Item>
+          )) : 
+          <Placeholder>추천 상품이 없습니다.</Placeholder>
+        }
       </ItemList>
       {isShowMoreBtn && (
         <Btn 

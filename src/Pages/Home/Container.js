@@ -32,8 +32,8 @@ function Container() {
   }
   
   const onClickCategory = (category) => {
+    if ( category === popularCategory ) return;
     setPopularCategory(category);
-    setPopularItems([]);
     setPopularItemsPageNum(1);
   }
   
