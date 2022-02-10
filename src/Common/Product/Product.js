@@ -13,15 +13,7 @@ const Product = ({ size, img, store, plus, title, price, like, saleend }) => {
       </S.ImgBox>
       <S.Info saleend={saleend}>
         <S.StoreType type={store}>
-          {store == 'emart24'
-            ? `emart24`
-            : store == 'cu'
-            ? `CU`
-            : store == 'seven11'
-            ? '7-ElEVEN'
-            : store == 'gs25'
-            ? 'GS 25'
-            : null}
+          {store == 'GS' ? 'GS25' : store}
         </S.StoreType>
         <S.Title>{title}</S.Title>
         <S.Price>{price.toLocaleString()}원</S.Price>

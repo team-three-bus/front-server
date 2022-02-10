@@ -121,17 +121,17 @@ export const StoreType = styled.span`
           color: #FFB71C;
           border-color: #FFB71C;
         `;
-      case 'cu':
+      case 'CU':
         return `
           color: #ABCC44;
           border-color: #ABCC44;
         `;
-      case 'gs25':
+      case 'GS':
         return `
           color: #007BFF;
           border-color: #007BFF;
         `;
-      case 'seven11':
+      case '7-ELEVEN':
         return `
           color: #008061;
           border-color: #008061; 
