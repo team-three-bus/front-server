@@ -35,7 +35,9 @@ const Index = ({
   maxPopularItemsPageNum,
   popularItems,
   popularItemsPageNum,
-  onClickMoreBtn
+  popularCategory,
+  onClickMoreBtn,
+  onClickCategory
 }) => {
   const isShowMoreBtn = popularItemsPageNum < maxPopularItemsPageNum;
   return (
@@ -47,11 +49,21 @@ const Index = ({
         title="인기상품"
       />
       <PickList>
-        {
-          CATEGORY_LIST.map((category, i) => (
-            <Pick activeColor="g" key={i}>{category}</Pick>    
-          ))
-        }
+        <Pick 
+          on={!popularCategory ? true : false}
+          onClick={() => onClickCategory(null)}
+        >
+          전체보기
+        </Pick>
+        {CATEGORY_LIST.map((category, i) => (
+          <Pick 
+            key={i}
+            on={popularCategory === category ? true : false}
+            onClick={() => onClickCategory(category)}
+          >
+            {category}
+          </Pick>
+        ))}
       </PickList>
       <ItemList>
         {popularItems && popularItems.map((item, i) => (

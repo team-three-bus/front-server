@@ -14,7 +14,9 @@ function View({
   maxPopularItemsPageNum,
   popularItems,
   popularItemsPageNum,
-  onClickMoreBtn
+  popularCategory,
+  onClickMoreBtn,
+  onClickCategory
 }) {
   return (
     <Home>
@@ -25,7 +27,9 @@ function View({
         maxPopularItemsPageNum={maxPopularItemsPageNum}
         popularItems={popularItems}
         popularItemsPageNum={popularItemsPageNum}
+        popularCategory={popularCategory}
         onClickMoreBtn={onClickMoreBtn}
+        onClickCategory={onClickCategory}
       />
       <BottomNav />
     </Home>

@@ -12,8 +12,12 @@ function Container() {
     getPopularItems();
   }, [])
   
+  useEffect(() => {
+    getPopularItems();
+  }, [popularCategory])
+  
   const getPopularItems = async () => {
-    const res = await request.getPopularItems({ num : popularItemsPageNum });
+    const res = await request.getPopularItems({ num : popularItemsPageNum, category: popularCategory });
     setPopularItems(res.data.list);
   }
   
@@ -27,12 +31,20 @@ function Container() {
     getMorePopularItems();
   }
   
+  const onClickCategory = (category) => {
+    setPopularCategory(category);
+    setPopularItems([]);
+    setPopularItemsPageNum(1);
+  }
+  
   return (
     <View 
       maxPopularItemsPageNum={maxPopularItemsPageNum}
       popularItems={popularItems}
       popularItemsPageNum={popularItemsPageNum}
+      popularCategory={popularCategory}
       onClickMoreBtn={onClickMoreBtn}
+      onClickCategory={onClickCategory}
     />
   );
 }
