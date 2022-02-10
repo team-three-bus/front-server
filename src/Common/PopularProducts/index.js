@@ -45,7 +45,7 @@ const index = () => {
       <PickList>
         {
           CATEGORY_LIST.map((category, i) => (
-            <Pick activeColor="g" key={i}>{category.name}</Pick>    
+            <Pick activeColor="g" key={i}>{category}</Pick>    
           ))
         }
       </PickList>

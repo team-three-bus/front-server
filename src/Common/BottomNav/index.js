@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
-import { BOTTOM_NAV_LIST } from 'Common/Util/Constant';
+import { BOTTOM_NAV_LIST } from './Constant';
 
 const BottomNav = styled.div`
   box-sizing: border-box;

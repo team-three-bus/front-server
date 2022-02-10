@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CATEGORY_LIST } from '../Util/Constant';
+import { CATEGORY_LIST } from './Constant';
 
 const CategoryBox = styled.div`
   box-sizing: border-box;
