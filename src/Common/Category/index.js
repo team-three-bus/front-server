@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CATEGORY_LIST } from '../Util/Constant';
+import { CATEGORY_LIST } from './Constant';
 
 const CategoryBox = styled.div`
   box-sizing: border-box;
@@ -13,7 +14,8 @@ const CategoryBox = styled.div`
   background: #FFFFFF;
 `
 
-const CategoryItem = styled.div`
+const CategoryItem = styled(Link)`
+  text-decoration: none;
 `
 
 const CategoryItemImg = styled.img`
@@ -37,12 +39,17 @@ const CategoryItemName = styled.p`
 `
 
 const Category = () => {
+  const renameCategory = (name) => {
+    if ( name === "유제품/커피 음료" ) return "유제품/커피";
+    if ( name === "생수/과채/기타음료" ) return "생수/과채";
+    return name;
+  }
   return (
     <CategoryBox>
       {CATEGORY_LIST.map((item, i) => (
-        <CategoryItem key={i} >
+        <CategoryItem key={i} to={item.link}>
           <CategoryItemImg img={item.img} />
-          <CategoryItemName>{item.name}</CategoryItemName>
+          <CategoryItemName>{renameCategory(item.name)}</CategoryItemName>
         </CategoryItem>
       ))}
     </CategoryBox>

@@ -4,7 +4,6 @@ import { Title } from 'Common/Title';
 import { Product } from 'Common/Product';
 import { ItemList, Item } from 'Common/ItemList';
 import { Pick } from 'Common/Pick';
-import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { CATEGORY_LIST } from 'Common/Util/Constant';
 import { Btn } from 'Common/Btn';
 
@@ -32,8 +31,22 @@ const PickList = styled.ul`
   }
 `;
 
-const index = () => {
-  const data = [1, 2, 3, 4, 5]; // TODO: 실제 데이터 연동, 처음 6개, 더보기 시 6개씩 추가, 최대 30개
+const Placeholder = styled.p`
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #9f9f9f;
+`
+
+const Index = ({ 
+  maxPopularItemsPageNum,
+  popularItems,
+  popularItemsPageNum,
+  popularCategory,
+  onClickMoreBtn,
+  onClickCategory
+}) => {
+  const isShowMoreBtn = popularItems.length > 0 && popularItemsPageNum < maxPopularItemsPageNum;
   return (
     <PopularProductBox>
       <Title
@@ -43,28 +56,48 @@ const index = () => {
         title="인기상품"
       />
       <PickList>
-        {
-          CATEGORY_LIST.map((category, i) => (
-            <Pick activeColor="g" key={i}>{category.name}</Pick>    
-          ))
-        }
+        <Pick 
+          on={!popularCategory ? true : false}
+          onClick={() => onClickCategory(null)}
+        >
+          전체보기
+        </Pick>
+        {CATEGORY_LIST.map((category, i) => (
+          <Pick 
+            key={i}
+            on={popularCategory === category ? true : false}
+            onClick={() => onClickCategory(category)}
+          >
+            {category}
+          </Pick>
+        ))}
       </PickList>
       <ItemList>
-        {data.map((item, i) => (
-          <Item key={i}>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-        ))}
+        {popularItems.length > 0 ?
+          popularItems.map((item, i) => (
+            <Item key={i}>
+              <Product
+                img={item.imageUrl}
+                title={item.name}
+                store={item.brand}
+                plus={`oneone`}
+                price={item.price}
+              />
+            </Item>
+          )) : 
+          <Placeholder>추천 상품이 없습니다.</Placeholder>
+        }
       </ItemList>
-      <Btn option="add">더 많은 행사상품 보기</Btn>
+      {isShowMoreBtn && (
+        <Btn 
+          option="add"
+          onClick={onClickMoreBtn}
+        >
+          더 많은 행사상품 보기
+        </Btn>
+      )}
     </PopularProductBox>
   );
 }
 
-export default index;
+export default Index;
