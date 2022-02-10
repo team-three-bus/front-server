@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BOTTOM_NAV_LIST } from 'Common/Util/Constant';
 
 const BottomNav = styled.div`
@@ -14,8 +14,8 @@ const BottomNav = styled.div`
   height: 80px;
   padding: 0 36px;
   background: #FFFFFF;
-  ${'' /* TODO: 경계선 처리 */}
-  border-top: 1px solid green; 
+  -webkit-box-shadow: 0px 5px 40px -20px rgba(0,0,0,0.2); 
+  box-shadow: 0px 5px 40px -20px rgba(0,0,0,0.2);
 `
 
 const Nav = styled(Link)`
@@ -27,22 +27,23 @@ const Nav = styled(Link)`
   cursor: pointer;
   
   ${({icon}) => (
-    `background: ${`url(${icon}) no-repeat center/20px 20px;`}`
+    `background: ${`url(${icon}) no-repeat center/cover;`}`
   )}
 `
 
-const index = () => {
+const Index = () => {
+  const location = useLocation();
   return (
     <BottomNav>
       {BOTTOM_NAV_LIST.map((item, i) => (
         <Nav 
           key={i}
           to={item.link}
-          icon={item.img} 
+          icon={location.pathname === item.link ? item.onImg : item.offImg} 
         />
       ))}
     </BottomNav>
   );
 }
 
-export default index;
+export default Index;
