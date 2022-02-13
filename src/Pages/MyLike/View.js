@@ -10,6 +10,9 @@ import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
 import { FilterPopup } from 'Common/FilterPopup';
+import { Empty } from 'Common/Empty';
+
+import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
   isEvent,
@@ -22,6 +25,8 @@ const View = ({
   categoryDeleteChoice,
   brandDeleteChoice,
   filter,
+  changeLike,
+  products,
 }) => {
   return (
     <Layout header='sub' title='완내스'>
@@ -64,54 +69,33 @@ const View = ({
 
       {
         <ItemList>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
+          {products
+            .filter((products) => {
+              if (!isEvent) return true;
+              return products.isEvent === true;
+            })
+            .map((product, i) => {
+              return (
+                <Item key={i}>
+                  <Product
+                    id={product.id}
+                    img={product.imageUrl}
+                    title={product.name}
+                    store={DATA_REVERSE.brand[product.brand]}
+                    plus={DATA_REVERSE.event[product.eventType]}
+                    price={product.price}
+                    like={product.isLike}
+                    changeLike={changeLike}
+                  />
+                </Item>
+              );
+            })}
         </ItemList>
       }
 
+      {!products.length > 0 && (
+        <Empty text={`마음에 드는 상품을 찜해보세요!`} />
+      )}
       <FilterPopup
         open={filterOpen}
         setOpen={setFilterOpen}
