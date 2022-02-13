@@ -15,14 +15,14 @@ export const Btn = styled.button`
   letter-spacing: 0em;
   color: #fff;
   cursor: pointer;
-  
+
   ${({ option }) => {
     switch (option) {
-      case "add":
+      case 'add':
         return `
           width: calc(100% - 40px);
           margin: 24px 0 0 20px;
-        `
+        `;
     }
   }}
 
@@ -41,4 +41,14 @@ export const Btn = styled.button`
 export const BtnArea = styled.div`
   padding-top: 24px;
   padding-bottom: 24px;
+
+  ${({ sidespacing }) => {
+    switch (sidespacing) {
+      case true:
+        return `
+        padding-left: 20px;
+        padding-right: 20px;
+      `;
+    }
+  }}
 `;
