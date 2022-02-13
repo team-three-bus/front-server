@@ -11,7 +11,7 @@ import { Choice } from 'Common/Choice';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
-import { FilterPopup } from 'Common/FilterPopup';
+import { FilterPopup } from './FilterPopup';
 import { Pick } from 'Common/Pick';
 import { Btn, BtnArea } from 'Common/Btn';
 import { Empty } from 'Common/Empty';
@@ -35,6 +35,8 @@ const View = ({
   productCnt,
   currentPage,
   getMoreProducts,
+  changeLike,
+  gotoDetail,
 }) => {
   return (
     <Layout header='sub' title='카테고리'>
@@ -89,11 +91,15 @@ const View = ({
             return (
               <Item key={i}>
                 <Product
+                  id={product.id}
                   img={product.imageUrl}
                   title={product.name}
                   store={DATA_REVERSE.brand[product.brand]}
                   plus={DATA_REVERSE.event[product.eventType]}
                   price={product.price}
+                  like={product.isLike}
+                  gotoDetail={gotoDetail}
+                  changeLike={changeLike}
                 />
               </Item>
             );

@@ -9,7 +9,11 @@ import { Checkbox } from 'Common/Form';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
-import { FilterPopup } from 'Common/FilterPopup';
+import { FilterPopup } from './FilterPopup';
+import { Empty } from 'Common/Empty';
+import { Btn, BtnArea } from 'Common/Btn';
+
+import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
   isEvent,
@@ -22,6 +26,10 @@ const View = ({
   categoryDeleteChoice,
   brandDeleteChoice,
   filter,
+  changeLike,
+  products,
+  isLogin,
+  gotoLogin,
 }) => {
   return (
     <Layout header='sub' title='완내스'>
@@ -36,6 +44,7 @@ const View = ({
           isChoosed={filter.brand.length > 0}
           onClick={brandClick}
           deleteChoice={brandDeleteChoice}
+          disabled={!isLogin}
         >
           편의점 {filter.brand.length > 0 && filter.brand.length}
         </Choice>
@@ -43,81 +52,78 @@ const View = ({
           isChoosed={filter.category.length > 0}
           onClick={categoryClick}
           deleteChoice={categoryDeleteChoice}
+          disabled={!isLogin}
         >
           카테고리 {filter.category.length > 0 && filter.category.length}
         </Choice>
       </S.FilterBox>
-      <Title
-        sort={'result'}
-        right={
-          <Checkbox
-            id='isEvent'
-            name='isEvent'
-            label={`행사 중 상품만 보기`}
-            checked={isEvent}
-            onChange={(checked) => {
-              setIsEvent(checked);
-            }}
+
+      {isLogin ? (
+        <>
+          <Title
+            sort={'result'}
+            right={
+              <Checkbox
+                id='isEvent'
+                name='isEvent'
+                label={`행사 중 상품만 보기`}
+                checked={isEvent}
+                onChange={(checked) => {
+                  setIsEvent(checked);
+                }}
+              />
+            }
           />
-        }
-      />
+          <ItemList>
+            {products
+              .filter((products) => {
+                if (!isEvent) return true;
+                return products.isEvent === true;
+              })
+              .map((product, i) => {
+                return (
+                  <Item key={i}>
+                    <Product
+                      id={product.id}
+                      img={product.imageUrl}
+                      title={product.name}
+                      store={DATA_REVERSE.brand[product.brand]}
+                      plus={DATA_REVERSE.event[product.eventType]}
+                      price={product.price}
+                      like={product.isLike}
+                      changeLike={changeLike}
+                    />
+                  </Item>
+                );
+              })}
+          </ItemList>
 
-      {
-        <ItemList>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-          <Item>
-            <Product
-              img={tempProductImg}
-              title={`서울) 비요뜨`}
-              store={`emart24`}
-              plus={`oneone`}
-              price={1500}
-            />
-          </Item>
-        </ItemList>
-      }
-
-      <FilterPopup
-        open={filterOpen}
-        setOpen={setFilterOpen}
-        setFilter={setFilter}
-        filter={filter}
-      />
+          {!products.length > 0 && (
+            <Empty text={`마음에 드는 상품을 찜해보세요!`} />
+          )}
+          <FilterPopup
+            open={filterOpen}
+            setOpen={setFilterOpen}
+            setFilter={setFilter}
+            filter={filter}
+          />
+        </>
+      ) : (
+        <>
+          <Empty
+            iconType={'question'}
+            text={
+              <>
+                가입/로그인 하시면 상품을 찜할 수 있어요! <br />
+                로그인하러 가시겠어요?
+              </>
+            }
+          />
+          <BtnArea sidespacing={true}>
+            <Btn onClick={gotoLogin}>가입/로그인하기</Btn>
+          </BtnArea>
+        </>
+      )}
     </Layout>
   );
 };
