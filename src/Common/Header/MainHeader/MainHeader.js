@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from './MainHeader.styles';
 
@@ -11,6 +11,12 @@ const MainHeader = ({
   onSearchChange,
   onSearch,
 }) => {
+  const [isLogin, setIsLogin] = useState(false);
+  
+  useEffect(() => {
+    setIsLogin(localStorage.getItem("access_token"));
+  }, [])
+  
   return (
     <S.MainHeader>
       <S.LogoBtn />
@@ -21,7 +27,7 @@ const MainHeader = ({
           onKeyDown={onSearch}
         />
       )}
-      <S.LoginBtn />
+      <S.LoginBtn to={isLogin ? "/myPage" : "/login"} />
     </S.MainHeader>
   );
 };
