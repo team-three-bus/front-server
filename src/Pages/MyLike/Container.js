@@ -104,7 +104,51 @@ const Container = () => {
       });
   }, [filter, isEvent]);
 
-  const changeLike = React.useCallback(() => {}, []);
+  const changeLike = ({ id, isLike }) => {
+    const token = localStorage.getItem('token');
+
+    if (isLike === undefined) {
+      navigate({
+        pathname: '/login',
+      });
+    } else if (isLike === false || isLike === undefined) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'POST',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: true };
+            return { ...item };
+          });
+        });
+      });
+    } else if (isLike === true) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'DELETE',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: false };
+            return { ...item };
+          });
+        });
+      });
+    }
+  };
 
   const gotoLogin = React.useCallback(() => {
     navigate({
