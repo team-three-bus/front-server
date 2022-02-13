@@ -174,7 +174,7 @@ const Container = () => {
         setProducts(list);
         setProductCnt(productCnt);
       });
-  }, [filterBrand, filterEvent, filter]);
+  }, [filterBrand, filterEvent, filter, searchValue]);
 
   return (
     <View
