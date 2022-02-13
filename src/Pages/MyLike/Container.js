@@ -15,6 +15,7 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const token = React.useRef(localStorage.getItem('token'));
   const loading = React.useRef(false);
 
   let {
@@ -67,6 +68,9 @@ const Container = () => {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
+    if (!token.current) {
+      return;
+    }
     const _condition = {};
 
     Object.entries(filter).forEach(([key, item]) => {
@@ -80,12 +84,10 @@ const Container = () => {
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
     navigate(`?${querystring}`);
 
-    const token = localStorage.getItem('token');
-
     fetch(`http://133.186.208.125:3000/like?${getQueryString(_condition)}`, {
       method: 'GET',
       headers: {
-        authorization: token,
+        authorization: token.current,
       },
     })
       .then((res) => {
@@ -104,6 +106,12 @@ const Container = () => {
 
   const changeLike = React.useCallback(() => {}, []);
 
+  const gotoLogin = React.useCallback(() => {
+    navigate({
+      pathname: '/login',
+    });
+  }, []);
+
   return (
     <View
       isEvent={isEvent}
@@ -118,6 +126,8 @@ const Container = () => {
       categoryDeleteChoice={categoryDeleteChoice}
       products={products}
       changeLike={changeLike}
+      isLogin={token.current}
+      gotoLogin={gotoLogin}
     />
   );
 };
