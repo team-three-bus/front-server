@@ -17,10 +17,7 @@ const Container = () => {
         _prevSearchList.pop();
         searchList = _prevSearchList;
       }
-      const newSearchList = [
-        { name: value, id: searchList.length },
-        ...searchList,
-      ];
+      const newSearchList = [{ name: value, id: value }, ...searchList];
       localStorage.setItem('searchList', JSON.stringify(newSearchList));
       return newSearchList;
     });
