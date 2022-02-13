@@ -27,14 +27,20 @@ const Search = ({
           onKeyDown={(e) => {
             if (e.keyCode !== 13) return;
             onSearch(e.target.value);
-            onChange('');
           }}
         />
         {sort === 'basic' && (
           <S.BtnDelete type='button' onClick={deleteValue} />
         )}
       </S.Search>
-      {sort === 'basic' && <S.BtnSearch type='button' onClick={onSearch} />}
+      {sort === 'basic' && (
+        <S.BtnSearch
+          type='button'
+          onClick={() => {
+            onSearch(value);
+          }}
+        />
+      )}
     </>
   );
 };
