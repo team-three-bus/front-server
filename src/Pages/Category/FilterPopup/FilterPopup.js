@@ -17,22 +17,10 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
               return { ...o, selected: item.indexOf(o.id) > -1 };
             });
           });
-        case 'category':
-          setCategory((category) => {
-            return category.map((c) => {
-              return { ...c, selected: item.indexOf(c.id) > -1 };
-            });
-          });
         case 'event':
           setEvent((event) => {
             return event.map((e) => {
               return { ...e, selected: item.indexOf(e.id) > -1 };
-            });
-          });
-        case 'brand':
-          setBrand((brand) => {
-            return brand.map((b) => {
-              return { ...b, selected: item.indexOf(b.id) > -1 };
             });
           });
       }
@@ -67,70 +55,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
       id: 'view',
     },
   ]);
-  const [category, setCategory] = React.useState([
-    {
-      name: '간편식사',
-      selected: getFilterBool({ type: 'category', id: 'meal' }),
-      id: 'meal',
-    },
-    {
-      name: '빵/과자류',
-      selected: getFilterBool({ type: 'category', id: 'bread' }),
-      id: 'bread',
-    },
-    {
-      name: '아이스크림',
-      selected: getFilterBool({ type: 'category', id: 'icecream' }),
-      id: 'icecream',
-    },
-    {
-      name: '생활용품',
-      selected: getFilterBool({ type: 'category', id: 'supplies' }),
-      id: 'supplies',
-    },
-    {
-      name: '유제품/커피 음료',
-      selected: getFilterBool({ type: 'category', id: 'milkcoffe' }),
-      id: 'milkcoffe',
-    },
-    {
-      name: '탄산음료',
-      selected: getFilterBool({ type: 'category', id: 'soda' }),
-      id: 'soda',
-    },
-    {
-      name: '생수/과채/기타음료',
-      selected: getFilterBool({ type: 'category', id: 'drink' }),
-      id: 'drink',
-    },
-    {
-      name: '기타',
-      selected: getFilterBool({ type: 'category', id: 'etc' }),
-      id: 'etc',
-    },
-  ]);
-  const [brand, setBrand] = React.useState([
-    {
-      name: 'GS',
-      selected: getFilterBool({ type: 'brand', id: 'gs' }),
-      id: 'gs',
-    },
-    {
-      name: 'CU',
-      selected: getFilterBool({ type: 'brand', id: 'cu' }),
-      id: 'cu',
-    },
-    {
-      name: 'emart24',
-      selected: getFilterBool({ type: 'brand', id: 'emart24' }),
-      id: 'emart24',
-    },
-    {
-      name: '7-ELEVEN',
-      selected: getFilterBool({ type: 'brand', id: 'seven11' }),
-      id: 'seven11',
-    },
-  ]);
   const [event, setEvent] = React.useState([
     {
       name: '1+1',
@@ -154,23 +78,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
           });
         });
         break;
-      case 'category':
-        setCategory((category) => {
-          const newCategory = category.map((item) => {
-            if (item.id == id) return { ...item, selected: !item.selected };
-            return item;
-          });
-          return newCategory;
-        });
-        break;
-      case 'brand':
-        setBrand((brand) => {
-          return brand.map((item) => {
-            if (item.id == id) return { ...item, selected: !item.selected };
-            return item;
-          });
-        });
-        break;
       case 'event':
         setEvent((event) => {
           return event.map((item) => {
@@ -190,16 +97,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
         });
       });
     }
-    if (filter.category) {
-      setCategory((category) => {
-        return category.map((item) => ({ ...item, selected: false }));
-      });
-    }
-    if (filter.brand) {
-      setBrand((brand) => {
-        return brand.map((item) => ({ ...item, selected: false }));
-      });
-    }
     if (filter.event) {
       setEvent((event) => {
         return event.map((item) => ({ ...item, selected: false }));
@@ -210,20 +107,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     const newFilter = {};
     if (filter.order) {
       newFilter.order = order
-        .filter((item, i) => {
-          return item.selected;
-        })
-        .map((item) => item.id);
-    }
-    if (filter.category) {
-      newFilter.category = category
-        .filter((item, i) => {
-          return item.selected;
-        })
-        .map((item) => item.id);
-    }
-    if (filter.brand) {
-      newFilter.brand = brand
         .filter((item, i) => {
           return item.selected;
         })
@@ -249,20 +132,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
         });
       });
     }
-    if (brand) {
-      setBrand((prevBrand) => {
-        return prevBrand.map((item) => {
-          return { ...item, selected: brand.indexOf(item.id) > -1 };
-        });
-      });
-    }
-    if (category) {
-      setCategory((prevCategory) => {
-        return prevCategory.map((item) => {
-          return { ...item, selected: category.indexOf(item.id) > -1 };
-        });
-      });
-    }
     if (event) {
       setEvent((prevEvent) => {
         return prevEvent.map((item) => {
@@ -284,37 +153,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
                   on={item.selected}
                   onClick={() => {
                     handlePick({ type: 'order', id: item.id });
-                  }}
-                >
-                  {item.name}
-                </Pick>
-              ))}
-            </PickList>
-          )}
-          {filter.category && (
-            <PickList title='카테고리'>
-              {category.map((item, i) => (
-                <Pick
-                  key={i}
-                  on={item.selected}
-                  onClick={() => {
-                    handlePick({ type: 'category', id: item.id });
-                  }}
-                >
-                  {item.name}
-                </Pick>
-              ))}
-            </PickList>
-          )}
-
-          {filter.brand && (
-            <PickList title='편의점'>
-              {brand.map((item, i) => (
-                <Pick
-                  key={i}
-                  on={item.selected}
-                  onClick={() => {
-                    handlePick({ type: 'brand', id: item.id });
                   }}
                 >
                   {item.name}
