@@ -74,7 +74,9 @@ export const Plus = styled.div`
     ${({ plus }) => {
       switch (plus) {
         case 'oneone':
+        case '1+1':
           return `background: url(${IconPlusOneOne}) center/cover no-repeat;`;
+        case '2+1':
         case 'twoone':
           return `background: url(${IconPlusTwoOne}) center/cover no-repeat;`;
       }
@@ -122,16 +124,19 @@ export const StoreType = styled.span`
           border-color: #FFB71C;
         `;
       case 'CU':
+      case 'cu':
         return `
           color: #ABCC44;
           border-color: #ABCC44;
         `;
       case 'GS':
+      case 'gs':
         return `
           color: #007BFF;
           border-color: #007BFF;
         `;
       case '7-ELEVEN':
+      case 'seven11':
         return `
           color: #008061;
           border-color: #008061; 
