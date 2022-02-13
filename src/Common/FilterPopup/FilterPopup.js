@@ -240,6 +240,38 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     setFilter(newFilter);
   };
 
+  React.useEffect(() => {
+    const { order, category, brand, event } = filter;
+    if (order) {
+      setOrder((prevOrder) => {
+        return prevOrder.map((item) => {
+          return { ...item, selected: order.indexOf(item.id) > -1 };
+        });
+      });
+    }
+    if (brand) {
+      setBrand((prevBrand) => {
+        return prevBrand.map((item) => {
+          return { ...item, selected: brand.indexOf(item.id) > -1 };
+        });
+      });
+    }
+    if (category) {
+      setCategory((prevCategory) => {
+        return prevCategory.map((item) => {
+          return { ...item, selected: category.indexOf(item.id) > -1 };
+        });
+      });
+    }
+    if (event) {
+      setEvent((prevEvent) => {
+        return prevEvent.map((item) => {
+          return { ...item, selected: event.indexOf(item.id) > -1 };
+        });
+      });
+    }
+  }, [filter]);
+
   return (
     <BottomSheet open={open} onDismiss={onDismiss}>
       <S.Container>
