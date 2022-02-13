@@ -52,8 +52,9 @@ const Oauth = () => {
           },
         })
           .then((data) => data.json())
-          .then(({ token }) => {
-            setToken(token);
+          .then((data) => {
+            setToken(data.jwt);
+            localStorage.setItem('token', data.jwt);
           });
       });
   }, []);
