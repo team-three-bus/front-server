@@ -3,16 +3,23 @@ import React from 'react';
 import View from './View';
 
 const Container = () => {
+  const maxSearchListLength = React.useRef(10);
   const [searchValue, onSearchChange] = React.useState('');
 
   const [searchList, setSearchList] = React.useState(
     JSON.parse(localStorage.getItem('searchList')) || []
   );
   const onSearch = (value) => {
-    setSearchList((searchList) => {
+    setSearchList((prevSearchList) => {
+      let searchList = prevSearchList;
+      if (maxSearchListLength.current <= prevSearchList.length) {
+        const _prevSearchList = [...prevSearchList];
+        _prevSearchList.pop();
+        searchList = _prevSearchList;
+      }
       const newSearchList = [
-        ...searchList,
         { name: value, id: searchList.length },
+        ...searchList,
       ];
       localStorage.setItem('searchList', JSON.stringify(newSearchList));
       return newSearchList;
