@@ -9,7 +9,7 @@ import { Checkbox } from 'Common/Form';
 import { Product } from 'Common/Product';
 import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
 import { ItemList, Item } from 'Common/ItemList';
-import { FilterPopup } from 'Common/FilterPopup';
+import { FilterPopup } from './FilterPopup';
 import { Empty } from 'Common/Empty';
 import { Btn, BtnArea } from 'Common/Btn';
 
