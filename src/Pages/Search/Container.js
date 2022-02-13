@@ -12,6 +12,9 @@ const Container = () => {
   const onSearch = (value) => {
     setSearchList((prevSearchList) => {
       let searchList = prevSearchList;
+
+      searchList = prevSearchList.filter((item) => item.name !== value);
+
       if (maxSearchListLength.current <= prevSearchList.length) {
         const _prevSearchList = [...prevSearchList];
         _prevSearchList.pop();
