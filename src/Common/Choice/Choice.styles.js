@@ -46,6 +46,16 @@ export const Choice = styled.span`
         `;
     }
   }}
+
+  ${({ disabled }) => {
+    switch (disabled) {
+      case true:
+        return `
+          cursor: not-allowed;
+          pointer-events: none;
+        `;
+    }
+  }}
 `;
 
 export const Text = styled.span`

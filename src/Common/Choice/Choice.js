@@ -2,11 +2,19 @@ import React from 'react';
 
 import * as S from './Choice.styles';
 
-const Choice = ({ children, isChoosed, deleteChoice, size, onClick }) => {
+const Choice = ({
+  children,
+  isChoosed,
+  deleteChoice,
+  size,
+  disabled,
+  onClick,
+}) => {
   return (
     <S.Choice
       isChoosed={isChoosed}
       size={size}
+      disabled={disabled}
       onClick={() => {
         if (isChoosed !== true) onClick();
       }}
