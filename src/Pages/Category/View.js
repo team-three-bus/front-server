@@ -35,6 +35,8 @@ const View = ({
   productCnt,
   currentPage,
   getMoreProducts,
+  changeLike,
+  gotoDetail,
 }) => {
   return (
     <Layout header='sub' title='카테고리'>
@@ -89,11 +91,15 @@ const View = ({
             return (
               <Item key={i}>
                 <Product
+                  id={product.id}
                   img={product.imageUrl}
                   title={product.name}
                   store={DATA_REVERSE.brand[product.brand]}
                   plus={DATA_REVERSE.event[product.eventType]}
                   price={product.price}
+                  like={product.isLike}
+                  gotoDetail={gotoDetail}
+                  changeLike={changeLike}
                 />
               </Item>
             );
