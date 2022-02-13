@@ -15,12 +15,15 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const loading = React.useRef(false);
+
   let {
     search: locationSearch = '',
     brand: locationBrand,
     event: locationEvent,
     category: locationCategory,
     sort: locationSort,
+    currentPage: locationPage,
   } = qs.parse(location.search.slice(1), {
     arrayFormat: 'comma',
   });
@@ -135,12 +138,16 @@ const Container = () => {
   }, []);
 
   const [products, setProducts] = React.useState([]);
+  const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
   const [productCnt, setProductCnt] = React.useState(0);
   const changeLike = React.useCallback(() => {});
   const gotoDetail = React.useCallback(() => {});
 
   React.useEffect(() => {
+    loading.current = true;
     const _condition = {};
+
+    _condition.currentPage = currentPage;
     _condition.search = searchValue;
     _condition.brand = filterBrand.map((item) => {
       return DATA_FORWARD.brand[item];
@@ -170,11 +177,45 @@ const Container = () => {
       .catch((data) => {
         setProducts([]);
       })
-      .then(({ list, productCnt }) => {
-        setProducts(list);
+      .then(({ list, currentPage, productCnt }) => {
+        currentPage = Number(currentPage);
+        setProducts((prodtucts) => {
+          if (currentPage == 1) return list;
+          return [...prodtucts, ...list];
+        });
+        setCurrentPage(currentPage);
         setProductCnt(productCnt);
+        loading.current = false;
       });
-  }, [filterBrand, filterEvent, filter, searchValue]);
+  }, [filterBrand, filterEvent, filter, searchValue, currentPage]);
+
+  const infiniteScroll = (e) => {
+    const $scrollingElement = e.target.scrollingElement;
+    const windowHeight = window.innerHeight;
+
+    const isBottom =
+      Math.ceil($scrollingElement.scrollHeight) <=
+      Math.ceil($scrollingElement.scrollTop + windowHeight);
+
+    if (
+      isBottom &&
+      !loading.current &&
+      Math.ceil(productCnt / 10) > currentPage
+    ) {
+      loading.current = true;
+      setCurrentPage((currentPage) => {
+        return currentPage + 1;
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', infiniteScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', infiniteScroll, true);
+    };
+  }, [currentPage, productCnt]);
 
   return (
     <View
