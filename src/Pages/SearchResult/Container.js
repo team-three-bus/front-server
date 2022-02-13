@@ -19,6 +19,8 @@ const Container = () => {
     search: locationSearch = '',
     brand: locationBrand,
     event: locationEvent,
+    category: locationCategory,
+    sort: locationSort,
   } = qs.parse(location.search.slice(1), {
     arrayFormat: 'comma',
   });
@@ -97,8 +99,43 @@ const Container = () => {
     });
   };
 
-  const [products, setProducts] = React.useState([]);
+  if (locationCategory && !Array.isArray(locationCategory)) {
+    locationCategory = [locationCategory];
+  } else if (Array.isArray(locationCategory)) {
+    locationCategory = locationCategory.map((item) => {
+      return DATA_REVERSE.category[item];
+    });
+  }
+  if (!locationCategory) locationCategory = [];
 
+  if (locationSort && !Array.isArray(locationSort)) {
+    locationSort = [locationSort];
+  }
+  if (!locationSort) locationSort = ['firstattr'];
+
+  const [filterOpen, setFilterOpen] = React.useState(false);
+  const [filter, setFilter] = React.useState({
+    sort: locationSort,
+    category: locationCategory,
+  });
+
+  const sortClick = React.useCallback(() => {
+    setFilterOpen(true);
+  }, []);
+
+  const categoryClick = React.useCallback(() => {
+    setFilterOpen(true);
+  }, []);
+  const categoryDeleteChoice = React.useCallback(() => {
+    setFilter((filter) => {
+      const newfilter = JSON.parse(JSON.stringify(filter));
+      newfilter.category = [];
+      return newfilter;
+    });
+  }, []);
+
+  const [products, setProducts] = React.useState([]);
+  const [productCnt, setProductCnt] = React.useState(0);
   const changeLike = React.useCallback(() => {});
   const gotoDetail = React.useCallback(() => {});
 
@@ -110,6 +147,13 @@ const Container = () => {
     });
     _condition.event = filterEvent.map((item) => {
       return DATA_FORWARD.event[item];
+    });
+
+    _condition.category = filter.category.map((item) => {
+      return DATA_FORWARD.category[item];
+    });
+    _condition.sort = filter.sort.map((item) => {
+      return item;
     });
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
@@ -126,10 +170,11 @@ const Container = () => {
       .catch((data) => {
         setProducts([]);
       })
-      .then(({ list }) => {
+      .then(({ list, productCnt }) => {
         setProducts(list);
+        setProductCnt(productCnt);
       });
-  }, [filterBrand, filterEvent]);
+  }, [filterBrand, filterEvent, filter]);
 
   return (
     <View
@@ -142,7 +187,15 @@ const Container = () => {
       filterEvent={filterEvent}
       changeBrand={changeBrand}
       changeEvent={changeEvent}
+      sortClick={sortClick}
+      categoryClick={categoryClick}
+      categoryDeleteChoice={categoryDeleteChoice}
+      filter={filter}
+      filterOpen={filterOpen}
+      setFilterOpen={setFilterOpen}
+      setFilter={setFilter}
       products={products}
+      productCnt={productCnt}
       changeLike={changeLike}
       gotoDetail={gotoDetail}
     />

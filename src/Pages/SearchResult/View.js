@@ -10,6 +10,7 @@ import { Title } from 'Common/Title';
 import { Product } from 'Common/Product';
 import { ItemList, Item } from 'Common/ItemList';
 import { Empty } from 'Common/Empty';
+import { FilterPopup } from './FilterPopup';
 
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
@@ -23,7 +24,15 @@ const View = ({
   filterEvent,
   changeBrand,
   changeEvent,
+  filter,
+  setFilter,
+  filterOpen,
+  setFilterOpen,
+  sortClick,
+  categoryClick,
+  categoryDeleteChoice,
   products,
+  productCnt,
   changeLike,
   gotoDetail,
 }) => {
@@ -66,17 +75,34 @@ const View = ({
             );
           })}
         </DecideList>
-        <Choice size='lg' isChoosed={false}>
-          카테고리
+        <Choice
+          size='lg'
+          isChoosed={filter.category.length > 0}
+          onClick={categoryClick}
+          deleteChoice={categoryDeleteChoice}
+        >
+          카테고리 {filter.category.length > 0 && filter.category.length}
         </Choice>
       </S.DecideChoice>
       <Title
-        right={<Choice isChoosed={false}>연관순</Choice>}
+        right={
+          <Choice isChoosed={false} onClick={sortClick}>
+            {filter.sort[0] === 'firstattr'
+              ? '연관순'
+              : filter.sort[0] === 'priceAsc'
+              ? '낮은 가격순'
+              : filter.sort[0] === 'priceDesc'
+              ? '높은 가격순'
+              : filter.sort[0] === 'likecnt'
+              ? '인기순'
+              : null}
+          </Choice>
+        }
         sort='result'
         title={
           <>
             <strong>
-              총 <H.PrimaryColor>23</H.PrimaryColor>개
+              총 <H.PrimaryColor>{productCnt || 0}</H.PrimaryColor>개
             </strong>
             의 상품이 있습니다
           </>
@@ -102,6 +128,12 @@ const View = ({
           );
         })}
       </ItemList>
+      <FilterPopup
+        open={filterOpen}
+        setOpen={setFilterOpen}
+        setFilter={setFilter}
+        filter={filter}
+      />
 
       {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
     </Layout>
