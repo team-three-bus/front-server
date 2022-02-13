@@ -15,7 +15,11 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const token = React.useRef(localStorage.getItem('token'));
+  const token = React.useRef(
+    localStorage.getItem('token') !== 'undefined'
+      ? localStorage.getItem('token')
+      : undefined
+  );
   const loading = React.useRef(false);
 
   let {
