@@ -176,6 +176,7 @@ const Container = () => {
       })
       .catch((data) => {
         setProducts([]);
+        setProductCnt(0);
       })
       .then(({ list, currentPage, productCnt }) => {
         currentPage = Number(currentPage);
