@@ -26,6 +26,12 @@ export const DATA_FORWARD = {
     popularity: '인기순',
     view: '조회순',
   },
+  sort: {
+    firstattr: '연관순',
+    priceAsc: '낮은 가격순',
+    priceDesc: '높은 가격순',
+    likecnt: '인기순',
+  },
 };
 
 export const DATA_REVERSE = {
@@ -55,5 +61,11 @@ export const DATA_REVERSE = {
     '높은 가격순': 'highPrice',
     인기순: 'popularity',
     조회순: 'view',
+  },
+  sort: {
+    연관순: 'firstattr',
+    '낮은 가격순': 'priceAsc',
+    '높은 가격순': 'priceDesc',
+    인기순: 'likecnt',
   },
 };

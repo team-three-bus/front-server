@@ -7,8 +7,8 @@ import PopularProducts from 'Common/PopularProducts';
 import BottomNav from 'Common/BottomNav';
 
 const Home = styled.div`
-  background: #F8F9FA;
-`
+  background: #f8f9fa;
+`;
 
 function View({
   maxPopularItemsPageNum,
@@ -16,14 +16,15 @@ function View({
   popularItemsPageNum,
   popularCategory,
   onClickMoreBtn,
-  onClickCategory
+  onClickCategory,
+  onSearchClick,
 }) {
   return (
     <Home>
-      <Layout header='main'/>
+      <Layout header='main' onSearchClick={onSearchClick} />
       <Category />
       <RecommendProducts />
-      <PopularProducts 
+      <PopularProducts
         maxPopularItemsPageNum={maxPopularItemsPageNum}
         popularItems={popularItems}
         popularItemsPageNum={popularItemsPageNum}
@@ -36,4 +37,4 @@ function View({
   );
 }
 
-export default View
+export default View;

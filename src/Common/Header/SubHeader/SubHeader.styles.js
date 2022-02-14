@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import IconBack from './img/icon-back.svg';
 import IconSearch from './img/icon-search.svg';
+import IconShare from './img/icon-share.svg';
 
 export const SubHeader = styled.div`
   position: relative;
@@ -50,4 +51,16 @@ export const BtnSearch = styled.button`
   font-weight: 700;
   line-height: 16px;
   text-align: center;
+`;
+export const BtnShare = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  border: none;
+  background: url(${IconShare}) center center no-repeat;
+  text-indent: -999px;
 `;
