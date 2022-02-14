@@ -28,12 +28,10 @@ const Product = ({
         />
         {saleend && <S.SaleEnd />}
       </S.ImgBox>
-      <S.Info saleend={saleend} onClick={gotoDetail}>
-        <S.StoreType type={store}>
-          {store == 'GS' ? 'GS25' : store}
-        </S.StoreType>
-        <S.Title>{title}</S.Title>
-        <S.Price>{price.toLocaleString()}원</S.Price>
+      <S.Info size={size} saleend={saleend} onClick={gotoDetail}>
+        <S.StoreType type={store}>{store == 'GS' ? 'GS25' : store}</S.StoreType>
+        <S.Title size={size}>{title}</S.Title>
+        <S.Price size={size}>{price.toLocaleString()}원</S.Price>
       </S.Info>
     </S.Product>
   );

@@ -14,6 +14,17 @@ export const Product = styled.div`
   ${({ saleend }) => {
     return saleend ? 'cursor: not-allowed' : '';
   }}
+
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          display: flex;
+          padding-bottom: 48px;
+          border-bottom: 2px solid #EFF0F4;
+        `;
+    }
+  }}
 `;
 
 export const ImgBox = styled.div`
@@ -32,6 +43,13 @@ export const ImgBox = styled.div`
           width: 135px;
           height: 135px;
           padding-bottom: 0;
+        `;
+      case 'lg':
+        return `
+          width: 170px;
+          height: 170px;
+          padding-bottom: 0;
+          border-radius: 32px;
         `;
     }
     return `
@@ -99,6 +117,16 @@ export const Like = styled.div`
 `;
 
 export const Info = styled.div`
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          flex: 1; 
+          padding-left: 16px;
+        `;
+    }
+  }}
+
   ${({ saleend }) => {
     return saleend ? 'opacity: 0.5;' : '';
   }}
@@ -172,6 +200,18 @@ export const Price = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  color: #212529;
+
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          margin-top: 6px;
+          font-family: NanumSquareRound;
+          font-weight: 800;
+        `;
+    }
+  }};
 `;
 
 export const SaleEnd = styled.div`
