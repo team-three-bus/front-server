@@ -12,6 +12,7 @@ const Layout = ({
   searchValue,
   onSearchChange,
   onSearch,
+  onSearchClick,
 }) => {
   return (
     <S.Layout>
@@ -30,6 +31,7 @@ const Layout = ({
           searchValue={searchValue}
           onSearchChange={onSearchChange}
           onSearch={onSearch}
+          onSearchClick={onSearchClick}
         />
       )}
 

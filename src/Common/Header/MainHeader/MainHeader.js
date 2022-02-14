@@ -10,6 +10,7 @@ const MainHeader = ({
   searchValue,
   onSearchChange,
   onSearch,
+  onSearchClick = () => {},
 }) => {
   return (
     <S.MainHeader>
@@ -19,6 +20,7 @@ const MainHeader = ({
           value={searchValue}
           onChange={onSearchChange}
           onKeyDown={onSearch}
+          onClick={onSearchClick}
         />
       )}
       <S.LoginBtn />

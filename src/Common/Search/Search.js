@@ -9,6 +9,7 @@ const Search = ({
   type = 'search',
   onChange = () => {},
   onSearch = () => {},
+  onClick = () => {},
 }) => {
   const deleteValue = React.useCallback(() => {
     onChange('');
@@ -28,6 +29,7 @@ const Search = ({
             if (e.keyCode !== 13) return;
             onSearch(e.target.value);
           }}
+          onClick={onClick}
         />
         {sort === 'basic' && (
           <S.BtnDelete type='button' onClick={deleteValue} />
