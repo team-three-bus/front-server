@@ -20,7 +20,7 @@ const Container = () => {
   let {
     search: locationSearch = '',
     brand: locationBrand,
-    event: locationEvent,
+    eventtype: locationEvent,
     category: locationCategory,
     sort: locationSort,
     currentPage: locationPage,
@@ -155,7 +155,7 @@ const Container = () => {
     _condition.brand = filterBrand.map((item) => {
       return DATA_FORWARD.brand[item];
     });
-    _condition.event = filterEvent.map((item) => {
+    _condition.eventtype = filterEvent.map((item) => {
       return DATA_FORWARD.event[item];
     });
 
