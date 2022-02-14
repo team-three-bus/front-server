@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import View from './View';
 
 const Container = () => {
+  const navigate = useNavigate();
   const maxSearchListLength = React.useRef(10);
   const [searchValue, onSearchChange] = React.useState('');
 
@@ -24,6 +26,11 @@ const Container = () => {
       localStorage.setItem('searchList', JSON.stringify(newSearchList));
       return newSearchList;
     });
+    setTimeout(() => {
+      navigate({
+        pathname: `/searchresult?search=${value}`,
+      });
+    }, 0);
   };
 
   const customSetSearchList = (value) => {
