@@ -90,6 +90,7 @@ const Container = () => {
         return [...prevFilterBrand, brand];
       }
     });
+    setCurrentPage(1);
   };
 
   const changeEvent = (event) => {
@@ -100,6 +101,7 @@ const Container = () => {
         return [...prevFilterEvent, event];
       }
     });
+    setCurrentPage(1);
   };
 
   if (locationCategory && !Array.isArray(locationCategory)) {
@@ -135,6 +137,7 @@ const Container = () => {
       newfilter.category = [];
       return newfilter;
     });
+    setCurrentPage(1);
   }, []);
 
   const [products, setProducts] = React.useState([]);
