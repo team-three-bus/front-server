@@ -29,7 +29,12 @@ const Container = () => {
   });
 
   if (locationBrand && !Array.isArray(locationBrand))
-    locationBrand = [locationBrand];
+    locationBrand = [DATA_REVERSE.brand[locationBrand]];
+  else if (Array.isArray(locationBrand)) {
+    locationBrand = locationBrand.map((item) => {
+      return DATA_REVERSE.brand[item];
+    });
+  }
   if (!locationBrand) locationBrand = [];
 
   if (locationEvent && !Array.isArray(locationEvent)) {
