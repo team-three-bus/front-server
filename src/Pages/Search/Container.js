@@ -38,6 +38,12 @@ const Container = () => {
     setSearchList(value);
   };
 
+  const gotoSearchResult = (search) => {
+    navigate({
+      pathname: `/searchresult?search=${search}`,
+    });
+  };
+
   return (
     <View
       searchValue={searchValue}
@@ -45,6 +51,7 @@ const Container = () => {
       searchList={searchList}
       setSearchList={customSetSearchList}
       onSearch={onSearch}
+      gotoSearchResult={gotoSearchResult}
     />
   );
 };

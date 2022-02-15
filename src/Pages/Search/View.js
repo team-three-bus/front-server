@@ -15,6 +15,7 @@ const View = ({
   searchList,
   setSearchList,
   onSearch,
+  gotoSearchResult,
 }) => {
   return (
     <Layout
@@ -41,6 +42,7 @@ const View = ({
       {searchList.length ? (
         <MarkBox
           list={searchList}
+          onClick={gotoSearchResult}
           onChange={(searchList) => {
             setSearchList(searchList);
           }}
