@@ -24,6 +24,7 @@ const LoginBottom = styled.div`
 
 const LoginInfoImg = styled.img`
   width: 295px;
+  max-width: 100%;
   margin: calc(147 / 774 * 100vh) 0 calc(14 / 774 * 100vh);
 `
 
@@ -77,7 +78,7 @@ const View = ({ loginurl }) => {
       </LoginCenter>
       <LoginBottom>
         <LoginBtn href={loginurl}>
-          <KakaoIcon src={kakaoIcon} alt="" />
+          <KakaoIcon src={kakaoIcon} alt="kakao Icon" />
           카카오 ID로 로그인
         </LoginBtn>
         {/* TODO: 약관 Link 수정 */}
