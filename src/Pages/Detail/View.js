@@ -5,19 +5,21 @@ import * as H from 'Common/Helper';
 
 import { Layout } from 'Common/Layout';
 import { ProductInfo } from 'Common/ProductInfo';
+import { Empty } from 'Common/Empty';
 
-import tempProductImg from 'Common/Product/img/tempProductImg.jpg';
-
-const View = ({}) => {
+const View = ({ id, product, getPerPrice, changeLike }) => {
+  if (!product) return <Empty text={`상품 데이터가 없습니다`} />;
   return (
-    <Layout header='sub' title='서울) 비요뜨' share={true}>
+    <Layout header='sub' title={product.name} share={true} search={false}>
       <ProductInfo
-        img={tempProductImg}
-        title={'서울) 비요뜨'}
-        price={`1,500원 (1개당 750원)`}
-        like={true}
-        plus={'oneone'}
-        store={'emart24'}
+        img={product.imageUrl}
+        title={product.name}
+        price={product.price}
+        perPrice={getPerPrice(product.price, product.event)}
+        like={product.isLike}
+        plus={product.event}
+        store={product.brand}
+        changeLike={changeLike}
       />
     </Layout>
   );
