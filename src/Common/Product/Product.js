@@ -8,6 +8,7 @@ const Product = ({
   plus,
   title,
   price,
+  perprice,
   like,
   saleend,
   changeLike,
@@ -31,7 +32,12 @@ const Product = ({
       <S.Info size={size} saleend={saleend} onClick={gotoDetail}>
         <S.StoreType type={store}>{store == 'GS' ? 'GS25' : store}</S.StoreType>
         <S.Title size={size}>{title}</S.Title>
-        <S.Price size={size}>{price.toLocaleString()}원</S.Price>
+        <S.Price size={size}>
+          {price}원{' '}
+          {perprice && (
+            <S.PerPrice>(1개당 {perprice.toLocaleString()}원)</S.PerPrice>
+          )}
+        </S.Price>
       </S.Info>
     </S.Product>
   );

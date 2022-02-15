@@ -214,6 +214,8 @@ export const Price = styled.div`
   }};
 `;
 
+export const PerPrice = styled.div``;
+
 export const SaleEnd = styled.div`
   position: absolute;
   top: 0;

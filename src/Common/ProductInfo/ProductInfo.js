@@ -3,7 +3,16 @@ import { Product } from 'Common/Product';
 
 import * as S from './ProductInfo.styles';
 
-const ProductInfo = ({ img, title, price, store, plus, like, changeLike }) => {
+const ProductInfo = ({
+  img,
+  title,
+  price,
+  perPrice,
+  store,
+  plus,
+  like,
+  changeLike,
+}) => {
   return (
     <S.Container>
       <Product
@@ -11,6 +20,7 @@ const ProductInfo = ({ img, title, price, store, plus, like, changeLike }) => {
         img={img}
         title={title}
         price={price}
+        perPrice={perPrice}
         store={store}
         plus={plus}
         like={like}
