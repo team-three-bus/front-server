@@ -110,12 +110,11 @@ const Container = () => {
 
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('token');
-
-    if (isLike === undefined) {
+    if (!token) {
       navigate({
         pathname: '/login',
       });
-    } else if (isLike === false || isLike === undefined) {
+    } else if (isLike === false) {
       fetch('http://133.186.208.125:3000/products/like', {
         method: 'POST',
         headers: {

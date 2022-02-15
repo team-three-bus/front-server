@@ -254,7 +254,7 @@ const Container = () => {
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('token');
 
-    if (isLike === undefined) {
+    if (!token) {
       navigate({
         pathname: '/login',
       });
