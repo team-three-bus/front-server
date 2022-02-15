@@ -9,6 +9,7 @@ const Layout = ({
   title = '',
   header = 'main',
   line,
+  search,
   share,
   shareLink,
   searchValue,
@@ -19,7 +20,12 @@ const Layout = ({
   return (
     <S.Layout>
       {header === 'sub' ? (
-        <SubHeader title={title} share={share} shareLink={shareLink} />
+        <SubHeader
+          title={title}
+          search={search}
+          share={share}
+          shareLink={shareLink}
+        />
       ) : header === 'search' ? (
         <SearchHeader
           line={line}

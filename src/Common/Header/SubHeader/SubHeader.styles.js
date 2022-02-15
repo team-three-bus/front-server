@@ -62,5 +62,5 @@ export const BtnShare = styled.button`
   box-sizing: border-box;
   border: none;
   background: url(${IconShare}) center center no-repeat;
-  text-indent: -999px;
+  text-indent: -9999px;
 `;
