@@ -42,7 +42,17 @@ const Product = ({
           gotoDetail(id);
         }}
       >
-        <S.StoreType type={store}>{store == 'GS' ? 'GS25' : store}</S.StoreType>
+        <S.StoreType type={store}>
+          {store == 'GS' || store == 'gs25'
+            ? 'GS25'
+            : store == 'emart24'
+            ? 'emart24'
+            : store == 'cu'
+            ? 'CU'
+            : store == 'seven11'
+            ? '7-EVELEN'
+            : store}
+        </S.StoreType>
         <S.Title size={size}>{title}</S.Title>
         <S.Price size={size}>
           {price}원{' '}

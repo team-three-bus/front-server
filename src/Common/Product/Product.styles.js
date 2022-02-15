@@ -162,6 +162,7 @@ export const StoreType = styled.span`
         `;
       case 'GS':
       case 'gs':
+      case 'gs25':
         return `
           color: #007BFF;
           border-color: #007BFF;
