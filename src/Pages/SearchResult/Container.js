@@ -15,7 +15,32 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const token = React.useRef(localStorage.getItem('token'));
   const loading = React.useRef(false);
+
+  const mylikeList = React.useRef([]);
+
+  React.useEffect(() => {
+    if (!token.current) return;
+    fetch(`http://133.186.208.125:3000/like`, {
+      method: 'GET',
+      headers: {
+        authorization: token.current,
+      },
+    })
+      .then((res) => {
+        if (res.status == 200) {
+          return res.json();
+        }
+      })
+      .then(({ list }) => {
+        const _mylikeList = {};
+        list.forEach((item) => {
+          _mylikeList[item.id] = item;
+        });
+        mylikeList.current = _mylikeList;
+      });
+  }, []);
 
   let {
     search: locationSearch = '',
@@ -148,7 +173,52 @@ const Container = () => {
   const [products, setProducts] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
   const [productCnt, setProductCnt] = React.useState(0);
-  const changeLike = React.useCallback(() => {});
+  const changeLike = React.useCallback(({ id, isLike }) => {
+    if (!token.current) {
+      navigate({
+        pathname: '/login',
+      });
+      return;
+    }
+
+    if (!isLike) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'POST',
+        headers: {
+          authorization: token.current,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: true };
+            return { ...item };
+          });
+        });
+      });
+    } else {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'DELETE',
+        headers: {
+          authorization: token.current,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: false };
+            return { ...item };
+          });
+        });
+      });
+    }
+  });
   const gotoDetail = React.useCallback(() => {});
 
   React.useEffect(() => {
@@ -188,9 +258,16 @@ const Container = () => {
       })
       .then(({ list, currentPage, productCnt }) => {
         currentPage = Number(currentPage);
-        setProducts((prodtucts) => {
-          if (currentPage == 1) return list;
-          return [...prodtucts, ...list];
+        const _list = list.map((item) => {
+          return {
+            ...item,
+            isLike: mylikeList.current[item.id] ? true : false,
+          };
+        });
+
+        setProducts((products) => {
+          if (currentPage == 1) return _list;
+          return [...products, ..._list];
         });
         setCurrentPage(currentPage);
         setProductCnt(productCnt);
