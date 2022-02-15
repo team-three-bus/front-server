@@ -3,11 +3,13 @@ import React from 'react';
 import * as S from './Layout.styles';
 
 import { MainHeader, SubHeader, SearchHeader } from 'Common/Header';
+import BottomNav from 'Common/BottomNav';
 
 const Layout = ({
   children,
   title = '',
   header = 'main',
+  bottomnav,
   line,
   search,
   share,
@@ -18,7 +20,7 @@ const Layout = ({
   onSearchClick,
 }) => {
   return (
-    <S.Layout>
+    <S.Layout bottomnav={bottomnav}>
       {header === 'sub' ? (
         <SubHeader
           title={title}
@@ -44,6 +46,7 @@ const Layout = ({
       )}
 
       <S.Wrap>{children}</S.Wrap>
+      {bottomnav && <BottomNav />}
     </S.Layout>
   );
 };
