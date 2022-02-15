@@ -11,8 +11,8 @@ const Product = ({
   perprice,
   like,
   saleend,
-  changeLike,
-  gotoDetail,
+  changeLike = () => {},
+  gotoDetail = () => {},
 }) => {
   return (
     <S.Product size={size} saleend={saleend}>
