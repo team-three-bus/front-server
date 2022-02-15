@@ -220,6 +220,7 @@ const Container = () => {
       });
     }
   });
+
  const gotoDetail = React.useCallback((id) => {
     navigate({
       pathname: `/detail/${id}`,
