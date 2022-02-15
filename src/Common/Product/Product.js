@@ -17,7 +17,13 @@ const Product = ({
   return (
     <S.Product size={size} saleend={saleend}>
       <S.ImgBox size={size}>
-        <S.Img src={img} alt={title} onClick={gotoDetail} />
+        <S.Img
+          src={img}
+          alt={title}
+          onClick={() => {
+            gotoDetail(id);
+          }}
+        />
         <S.Plus plus={plus}>
           {plus == 'oneone' ? `1+1` : plus == 'twoone' ? `2+1` : null}
         </S.Plus>
@@ -29,7 +35,13 @@ const Product = ({
         />
         {saleend && <S.SaleEnd />}
       </S.ImgBox>
-      <S.Info size={size} saleend={saleend} onClick={gotoDetail}>
+      <S.Info
+        size={size}
+        saleend={saleend}
+        onClick={() => {
+          gotoDetail(id);
+        }}
+      >
         <S.StoreType type={store}>{store == 'GS' ? 'GS25' : store}</S.StoreType>
         <S.Title size={size}>{title}</S.Title>
         <S.Price size={size}>
