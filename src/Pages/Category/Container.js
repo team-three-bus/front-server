@@ -297,7 +297,11 @@ const Container = () => {
     }
   };
 
-  const gotoDetail = () => {};
+  const gotoDetail = (id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  };
 
   return (
     <View

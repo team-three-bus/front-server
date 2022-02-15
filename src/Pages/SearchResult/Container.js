@@ -149,7 +149,11 @@ const Container = () => {
   const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
   const [productCnt, setProductCnt] = React.useState(0);
   const changeLike = React.useCallback(() => {});
-  const gotoDetail = React.useCallback(() => {});
+  const gotoDetail = React.useCallback((id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  });
 
   React.useEffect(() => {
     loading.current = true;

@@ -27,6 +27,7 @@ const View = ({
   brandDeleteChoice,
   filter,
   changeLike,
+  gotoDetail,
   products,
   isLogin,
   gotoLogin,
@@ -92,6 +93,7 @@ const View = ({
                       price={product.price}
                       like={product.isLike}
                       changeLike={changeLike}
+                      gotoDetail={gotoDetail}
                     />
                   </Item>
                 );
