@@ -190,7 +190,7 @@ const Container = () => {
     });
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
 
     const token = localStorage.getItem('token');
     const option = {
@@ -297,7 +297,11 @@ const Container = () => {
     }
   };
 
-  const gotoDetail = () => {};
+  const gotoDetail = (id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  };
 
   return (
     <View

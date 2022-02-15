@@ -6,6 +6,7 @@ import IconPlusTwoOne from './img/iconPlusTwoOne.png';
 import IconLike from './img/iconLike.svg';
 import IconLikeOn from './img/iconLikeOn.svg';
 import ImgSaleEnd from './img/sale-end.svg';
+import NoImg from './img/no-img.svg';
 
 export const Product = styled.div`
   display: inline-block;
@@ -36,6 +37,8 @@ export const ImgBox = styled.div`
   border: 1px solid #f6f6f6;
   border-radius: 8px;
 
+  background: url(${NoImg}) center center no-repeat;
+
   ${({ size }) => {
     switch (size) {
       case 'sm':
@@ -57,7 +60,7 @@ export const ImgBox = styled.div`
       height: 0;
       padding-bottom: 100%;
     `;
-  }}
+  }};
 `;
 export const Img = styled.img`
   position: absolute;
@@ -159,6 +162,7 @@ export const StoreType = styled.span`
         `;
       case 'GS':
       case 'gs':
+      case 'gs25':
         return `
           color: #007BFF;
           border-color: #007BFF;
@@ -213,6 +217,8 @@ export const Price = styled.div`
     }
   }};
 `;
+
+export const PerPrice = styled.div``;
 
 export const SaleEnd = styled.div`
   position: absolute;

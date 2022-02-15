@@ -27,12 +27,13 @@ const View = ({
   brandDeleteChoice,
   filter,
   changeLike,
+  gotoDetail,
   products,
   isLogin,
   gotoLogin,
 }) => {
   return (
-    <Layout header='sub' title='완내스'>
+    <Layout header='sub' title='완내스' bottomnav={true}>
       <Title
         sort='main'
         icon='like'
@@ -92,6 +93,7 @@ const View = ({
                       price={product.price}
                       like={product.isLike}
                       changeLike={changeLike}
+                      gotoDetail={gotoDetail}
                     />
                   </Item>
                 );

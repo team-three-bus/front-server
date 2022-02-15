@@ -39,6 +39,7 @@ const View = ({
   return (
     <Layout
       header='search'
+      bottomnav={true}
       line={true}
       searchValue={searchValue}
       onSearchChange={onSearchChange}

@@ -173,6 +173,7 @@ const Container = () => {
   const [products, setProducts] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
   const [productCnt, setProductCnt] = React.useState(0);
+
   const changeLike = React.useCallback(({ id, isLike }) => {
     if (!token.current) {
       navigate({
@@ -219,7 +220,11 @@ const Container = () => {
       });
     }
   });
-  const gotoDetail = React.useCallback(() => {});
+ const gotoDetail = React.useCallback((id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  });
 
   React.useEffect(() => {
     loading.current = true;
@@ -242,7 +247,7 @@ const Container = () => {
     });
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
 
     fetch(`http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`)
       .then((res) => {

@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import View from './View';
 
 const Oauth = () => {
+  const navigate = useNavigate();
   const [access_token, setAccess_token] = React.useState('');
   const [token, setToken] = React.useState('');
 
@@ -55,6 +57,9 @@ const Oauth = () => {
           .then((data) => {
             setToken(data.jwt);
             localStorage.setItem('token', data.jwt);
+            navigate({
+              pathname: '/',
+            });
           });
       });
   }, []);

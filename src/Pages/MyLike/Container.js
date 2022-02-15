@@ -86,7 +86,7 @@ const Container = () => {
     }
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
 
     fetch(`http://133.186.208.125:3000/like?${getQueryString(_condition)}`, {
       method: 'GET',
@@ -154,6 +154,12 @@ const Container = () => {
     }
   };
 
+  const gotoDetail = (id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  };
+
   const gotoLogin = React.useCallback(() => {
     navigate({
       pathname: '/login',
@@ -174,6 +180,7 @@ const Container = () => {
       categoryDeleteChoice={categoryDeleteChoice}
       products={products}
       changeLike={changeLike}
+      gotoDetail={gotoDetail}
       isLogin={token.current}
       gotoLogin={gotoLogin}
     />
