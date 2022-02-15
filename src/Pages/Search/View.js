@@ -48,15 +48,17 @@ const View = ({
         <Empty />
       )}
 
-      <Title title={`이런 검색어는 어떠세요?`} />
-      <FeatureBox>
-        <Feature>숙취해소</Feature>
-        <Feature>커피</Feature>
-        <Feature>즉석조리식품</Feature>
-        <Feature>샐러드</Feature>
-        <Feature>붉닭볶음면</Feature>
-        <Feature>탄산수</Feature>
-      </FeatureBox>
+      {
+        // <Title title={`이런 검색어는 어떠세요?`} />
+        // <FeatureBox>
+        //   <Feature>숙취해소</Feature>
+        //   <Feature>커피</Feature>
+        //   <Feature>즉석조리식품</Feature>
+        //   <Feature>샐러드</Feature>
+        //   <Feature>붉닭볶음면</Feature>
+        //   <Feature>탄산수</Feature>
+        // </FeatureBox>
+      }
     </Layout>
   );
 };
