@@ -61,3 +61,11 @@ SearchHeader.args = {
   searchValue: '',
   children: content,
 };
+
+export const BottomNav = Template.bind({});
+BottomNav.args = {
+  header: 'search',
+  searchValue: '',
+  children: content,
+  bottomnav: true,
+};

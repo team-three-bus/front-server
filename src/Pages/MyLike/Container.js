@@ -86,7 +86,7 @@ const Container = () => {
     }
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
 
     fetch(`http://133.186.208.125:3000/like?${getQueryString(_condition)}`, {
       method: 'GET',

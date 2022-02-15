@@ -220,7 +220,8 @@ const Container = () => {
       });
     }
   });
-  const gotoDetail = React.useCallback((id) => {
+
+ const gotoDetail = React.useCallback((id) => {
     navigate({
       pathname: `/detail/${id}`,
     });
@@ -247,7 +248,7 @@ const Container = () => {
     });
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
 
     fetch(`http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`)
       .then((res) => {

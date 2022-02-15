@@ -39,7 +39,7 @@ const View = ({
   gotoDetail,
 }) => {
   return (
-    <Layout header='sub' title='카테고리'>
+    <Layout header='sub' title='카테고리' bottomnav={true}>
       <Condition condition={condition} setCondition={changeCategory} />
       <S.FilterBox>
         <DecideList>
