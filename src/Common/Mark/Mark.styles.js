@@ -17,6 +17,9 @@ export const Mark = styled.span`
   text-align: left;
   border-bottom: 1px solid rgba(181, 181, 181, 0.5);
 `;
+export const Text = styled.span`
+  display: block;
+`;
 export const MarkBtn = styled.button`
   display: block;
   position: relative;
