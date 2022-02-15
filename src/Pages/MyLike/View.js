@@ -33,7 +33,7 @@ const View = ({
   gotoLogin,
 }) => {
   return (
-    <Layout header='sub' title='완내스'>
+    <Layout header='sub' title='완내스' bottomnav={true}>
       <Title
         sort='main'
         icon='like'
