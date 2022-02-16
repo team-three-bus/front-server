@@ -1,21 +1,23 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
+  position: relative;
   margin: 0 auto;
   max-width: 768px;
   background: #fff;
-
-  ${({ bottomnav }) => {
-    switch (bottomnav) {
-      case true:
-        return `
-        padding-bottom: 80px;
-      `;
-    }
-  }}
+  
+  ${props => 
+    props.isFixed && `
+      position: sticky;
+      background: #fff;
+      z-index: 1;
+      top: 0;
+      left: 0;
+    `
+  }
 `;
 
 export const Wrap = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 64px);
   box-sizing: border-box;
 `;
