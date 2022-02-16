@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as request from 'Common/Util/HttpRequest';
 import View from './View';
 
 function Container() {
+  const navigate = useNavigate();
   const maxPopularItemsPageNum = 5;
   const [popularItems, setPopularItems] = useState([]);
   const [popularItemsPageNum, setPopularItemsPageNum] = useState(1);
@@ -43,6 +45,17 @@ function Container() {
     setPopularItemsPageNum(1);
   };
   
+  const changeLike = async ({ id, isLike }) => {
+    const token = localStorage.getItem('access_token');
+    if (!token) return navigate('/login');
+    if (isLike) {
+      await request.deleteLikeItem({id});
+    } else {
+      await request.postLikeItem({id});
+    }
+    getPopularItems();
+  };
+  
   return (
     <View
       maxPopularItemsPageNum={maxPopularItemsPageNum}
@@ -51,6 +64,7 @@ function Container() {
       popularCategory={popularCategory}
       onClickMoreBtn={onClickMoreBtn}
       onClickCategory={onClickCategory}
+      changeLike={changeLike}
     />
   );
 }
