@@ -235,7 +235,11 @@ const Container = () => {
       Math.ceil($scrollingElement.scrollHeight) <=
       Math.ceil($scrollingElement.scrollTop + windowHeight);
 
-    if (isBottom && !loading.current && pageSize > currentPage) {
+    if (
+      isBottom &&
+      !loading.current &&
+      Math.ceil(productCnt / 10) > currentPage
+    ) {
       loading.current = true;
       setCurrentPage((currentPage) => {
         return currentPage + 1;
@@ -249,7 +253,7 @@ const Container = () => {
     return () => {
       window.removeEventListener('scroll', infiniteScroll, true);
     };
-  }, [pageSize, currentPage]);
+  }, [productCnt, currentPage]);
 
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('token');
