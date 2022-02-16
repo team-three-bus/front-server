@@ -225,9 +225,7 @@ const Container = () => {
   });
 
   const gotoDetail = React.useCallback((id) => {
-    navigate({
-      pathname: `/detail/${id}`,
-    });
+    return (window.location.href = `/detail/${id}`);
   });
 
   React.useEffect(() => {
