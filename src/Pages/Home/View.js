@@ -11,12 +11,6 @@ const Home = styled.div`
 `;
 
 function View({
-  maxPopularItemsPageNum,
-  popularItems,
-  popularItemsPageNum,
-  popularCategory,
-  onClickMoreBtn,
-  onClickCategory,
   onSearchClick,
 }) {
   return (
@@ -24,14 +18,7 @@ function View({
       <Layout header='main' onSearchClick={onSearchClick} />
       <Category />
       {/* <RecommendProducts /> */}
-      <PopularProducts
-        maxPopularItemsPageNum={maxPopularItemsPageNum}
-        popularItems={popularItems}
-        popularItemsPageNum={popularItemsPageNum}
-        popularCategory={popularCategory}
-        onClickMoreBtn={onClickMoreBtn}
-        onClickCategory={onClickCategory}
-      />
+      <PopularProducts />
       <BottomNav />
     </Home>
   );
