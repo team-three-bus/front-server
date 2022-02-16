@@ -5,6 +5,7 @@ import qs from 'query-string';
 import View from './View';
 
 const Container = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [product, setProduct] = React.useState(null);
@@ -21,7 +22,45 @@ const Container = () => {
     }
   });
 
-  const changeLike = () => {};
+  const changeLike = ({ id, isLike }) => {
+    const token = localStorage.getItem('token');
+    console.log(id);
+    if (!token) {
+      navigate({
+        pathname: '/login',
+      });
+    } else if (isLike === false || isLike === undefined) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'POST',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProduct((product) => {
+          return { ...product, isLike: true };
+        });
+      });
+    } else if (isLike === true) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'DELETE',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProduct((prevProducts) => {
+          return { ...product, isLike: false };
+        });
+      });
+    }
+  };
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
