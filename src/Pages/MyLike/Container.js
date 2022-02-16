@@ -20,6 +20,7 @@ const Container = () => {
       ? localStorage.getItem('access_token')
       : undefined
   );
+  const [isInit, setIsInit] = React.useState(true);
   const loading = React.useRef(false);
 
   let {
@@ -108,6 +109,13 @@ const Container = () => {
       });
   }, [filter, isEvent]);
 
+  React.useEffect(() => {
+    if (isInit) {
+      const scrollY = localStorage.getItem('mylikeScroll');
+      window.scrollTo(0, scrollY);
+    }
+  }, [products]);
+
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -154,15 +162,25 @@ const Container = () => {
   };
 
   const gotoDetail = (id) => {
-    navigate({
-      pathname: `/detail/${id}`,
-    });
+    return (window.location.href = `/detail/${id}`);
   };
 
   const gotoLogin = React.useCallback(() => {
     navigate({
       pathname: '/login',
     });
+  }, []);
+
+  const saveScroll = () => {
+    const scrollY = window.scrollY;
+    localStorage.setItem('mylikeScroll', scrollY);
+  };
+  React.useEffect(() => {
+    window.addEventListener('scroll', saveScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', saveScroll, true);
+    };
   }, []);
 
   return (
