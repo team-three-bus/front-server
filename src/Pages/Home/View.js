@@ -23,7 +23,7 @@ function View({
     <Home>
       <Layout header='main' onSearchClick={onSearchClick} />
       <Category />
-      <RecommendProducts />
+      {/* <RecommendProducts /> */}
       <PopularProducts
         maxPopularItemsPageNum={maxPopularItemsPageNum}
         popularItems={popularItems}
