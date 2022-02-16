@@ -67,6 +67,7 @@ export const Img = styled.img`
   right: 0;
   margin: auto auto;
   max-width: 100%;
+  max-height: 100%;
 `;
 export const Plus = styled.div`
   width: 45px;
