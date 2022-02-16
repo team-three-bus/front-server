@@ -161,10 +161,6 @@ const Container = () => {
     }
   };
 
-  const gotoDetail = (id) => {
-    return (window.location.href = `/detail/${id}`);
-  };
-
   const gotoLogin = React.useCallback(() => {
     navigate({
       pathname: '/login',
@@ -197,7 +193,6 @@ const Container = () => {
       categoryDeleteChoice={categoryDeleteChoice}
       products={products}
       changeLike={changeLike}
-      gotoDetail={gotoDetail}
       isLogin={token.current}
       gotoLogin={gotoLogin}
     />

@@ -1,5 +1,6 @@
 import * as S from './Product.styles';
 import NoImg from './img/no-img.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({
   id,
@@ -13,17 +14,15 @@ const Product = ({
   like,
   saleend,
   changeLike = () => {},
-  gotoDetail = () => {},
 }) => {
+  const navigate = useNavigate();
   return (
     <S.Product size={size} saleend={saleend}>
       <S.ImgBox size={size}>
         <S.Img
           src={img}
           alt={title}
-          onClick={() => {
-            gotoDetail(id);
-          }}
+          onClick={() => navigate(`/detail/${id}`)}
           onError={(e) => e.target.src = NoImg}
         />
         <S.Plus plus={plus}>
@@ -40,9 +39,7 @@ const Product = ({
       <S.Info
         size={size}
         saleend={saleend}
-        onClick={() => {
-          gotoDetail(id);
-        }}
+        onClick={() => navigate(`/detail/${id}`)}
       >
         <S.StoreType type={store}>
           {store == 'GS' || store == 'gs25'

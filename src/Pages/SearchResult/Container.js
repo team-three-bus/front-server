@@ -224,10 +224,6 @@ const Container = () => {
     }
   });
 
-  const gotoDetail = React.useCallback((id) => {
-    return (window.location.href = `/detail/${id}`);
-  });
-
   React.useEffect(() => {
     loading.current = true;
     const _condition = {};
@@ -380,7 +376,6 @@ const Container = () => {
       products={products}
       productCnt={productCnt}
       changeLike={changeLike}
-      gotoDetail={gotoDetail}
     />
   );
 };

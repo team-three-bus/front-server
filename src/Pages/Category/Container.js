@@ -337,10 +337,6 @@ const Container = () => {
     }
   };
 
-  const gotoDetail = (id) => {
-    return (window.location.href = `/detail/${id}`);
-  };
-
   return (
     <View
       condition={condition}
@@ -359,7 +355,6 @@ const Container = () => {
       currentPage={currentPage}
       getMoreProducts={getMoreProducts}
       changeLike={changeLike}
-      gotoDetail={gotoDetail}
     />
   );
 };

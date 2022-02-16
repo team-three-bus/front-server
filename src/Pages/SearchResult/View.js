@@ -34,7 +34,6 @@ const View = ({
   products,
   productCnt,
   changeLike,
-  gotoDetail,
 }) => {
   return (
     <Layout
@@ -122,7 +121,6 @@ const View = ({
                 plus={DATA_REVERSE.event[product.eventtype]}
                 price={product.price}
                 like={product.isLike}
-                gotoDetail={gotoDetail}
                 changeLike={changeLike}
               />
             </Item>

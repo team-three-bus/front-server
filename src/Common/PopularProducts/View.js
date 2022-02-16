@@ -77,6 +77,7 @@ const View = ({
           popularItems.map((item, i) => (
             <Item key={i}>
               <Product
+                id={item.id}
                 img={item.imageUrl}
                 title={item.name}
                 store={item.brand}

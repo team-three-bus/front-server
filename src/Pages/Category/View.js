@@ -35,7 +35,6 @@ const View = ({
   currentPage,
   getMoreProducts,
   changeLike,
-  gotoDetail,
 }) => {
   return (
     <Layout header='sub' title='카테고리' bottomnav={true}>
@@ -96,7 +95,6 @@ const View = ({
                 plus={DATA_REVERSE.event[product.eventType]}
                 price={product.price}
                 like={product.isLike}
-                gotoDetail={gotoDetail}
                 changeLike={changeLike}
               />
             </Item>
