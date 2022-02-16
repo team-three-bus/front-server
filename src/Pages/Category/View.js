@@ -31,7 +31,6 @@ const View = ({
   orderClick,
   filterClick,
   products,
-  pageSize,
   productCnt,
   currentPage,
   getMoreProducts,
