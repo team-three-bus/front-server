@@ -157,7 +157,6 @@ const Container = () => {
 
   const [products, setProducts] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
-  const [pageSize, setPageSize] = React.useState(1);
   const [productCnt, setProductCnt] = React.useState(0);
 
   React.useEffect(() => {
@@ -210,7 +209,7 @@ const Container = () => {
       option
     )
       .then((res) => res.json())
-      .then(({ list, currentPage, pageSize, productCnt }) => {
+      .then(({ list, currentPage, productCnt }) => {
         currentPage = Number(currentPage);
         setProducts((prodtucts) => {
           if (currentPage == 1) return list;
@@ -218,7 +217,6 @@ const Container = () => {
         });
         setCurrentPage(currentPage);
         setProductCnt(productCnt);
-        setPageSize(pageSize);
         loading.current = false;
       });
   }, [brand, condition, filter, currentPage]);
@@ -321,7 +319,6 @@ const Container = () => {
       orderClick={orderClick}
       filterClick={filterClick}
       products={products}
-      pageSize={pageSize}
       productCnt={productCnt}
       currentPage={currentPage}
       getMoreProducts={getMoreProducts}
