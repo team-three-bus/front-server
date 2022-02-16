@@ -44,7 +44,8 @@ const View = ({
   popularItemsPageNum,
   popularCategory,
   onClickMoreBtn,
-  onClickCategory
+  onClickCategory,
+  changeLike
 }) => {
   const isShowMoreBtn = popularItems.length > 0 && popularItemsPageNum < maxPopularItemsPageNum;
   return (
@@ -83,6 +84,7 @@ const View = ({
                 plus={item.eventType}
                 price={item.price}
                 like={item.isLike}
+                changeLike={changeLike}
               />
             </Item>
           )) : 
