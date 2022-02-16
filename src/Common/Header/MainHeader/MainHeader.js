@@ -5,7 +5,6 @@ import * as S from './MainHeader.styles';
 import { Search } from 'Common/Search';
 
 const MainHeader = ({
-  title,
   search = false,
   searchValue,
   onSearchChange,

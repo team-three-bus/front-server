@@ -7,6 +7,7 @@ export const ItemList = styled.ul`
   margin: 0;
   padding-left: 21px;
   padding-right: 21px;
+  padding-bottom: 80px;
   list-style: none;
 `;
 

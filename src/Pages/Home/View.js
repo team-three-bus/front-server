@@ -4,7 +4,6 @@ import { Layout } from 'Common/Layout';
 import Category from 'Common/Category';
 // import RecommendProducts from 'Common/RecommendProducts';
 import PopularProducts from 'Common/PopularProducts';
-import BottomNav from 'Common/BottomNav';
 
 const Home = styled.div`
   background: #f8f9fa;
@@ -17,11 +16,14 @@ function View({
 }) {
   return (
     <Home>
-      <Layout header='main' onSearchClick={onSearchClick} />
+      <Layout 
+        header='main' 
+        onSearchClick={onSearchClick} 
+        bottomnav={true} 
+      />
       <Category />
       {/* <RecommendProducts /> */}
       <PopularProducts />
-      <BottomNav />
     </Home>
   );
 }
