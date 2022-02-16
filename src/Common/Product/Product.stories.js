@@ -62,6 +62,12 @@ SmallSize.args = {
   size: 'sm',
 };
 
+export const LargeSize = Template.bind({});
+LargeSize.args = {
+  ...productData,
+  size: 'lg',
+};
+
 export const LikeOn = Template.bind({});
 LikeOn.args = {
   ...productData,

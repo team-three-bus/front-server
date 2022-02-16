@@ -41,11 +41,10 @@ const Oauth = () => {
           },
         })
           .then((data) => data.json())
-          .then(({ token }) => {
-            localStorage.setItem('access_token', token);
+          .then((data) => {
+            localStorage.setItem('access_token', data.jwt);
+            navigate('/');
           });
-          
-        navigate('/');
       })
   }, []);
 

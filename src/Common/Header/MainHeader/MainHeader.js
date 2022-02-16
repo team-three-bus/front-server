@@ -10,6 +10,7 @@ const MainHeader = ({
   searchValue,
   onSearchChange,
   onSearch,
+  onSearchClick = () => {},
 }) => {
   const [isLogin, setIsLogin] = useState(false);
   
@@ -25,6 +26,7 @@ const MainHeader = ({
           value={searchValue}
           onChange={onSearchChange}
           onKeyDown={onSearch}
+          onClick={onSearchClick}
         />
       )}
       <S.LoginBtn to={isLogin ? "/myPage" : "/login"} />

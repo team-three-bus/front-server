@@ -6,6 +6,7 @@ import IconPlusTwoOne from './img/iconPlusTwoOne.png';
 import IconLike from './img/iconLike.svg';
 import IconLikeOn from './img/iconLikeOn.svg';
 import ImgSaleEnd from './img/sale-end.svg';
+import NoImg from './img/no-img.svg';
 
 export const Product = styled.div`
   display: inline-block;
@@ -13,6 +14,17 @@ export const Product = styled.div`
 
   ${({ saleend }) => {
     return saleend ? 'cursor: not-allowed' : '';
+  }}
+
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          display: flex;
+          padding-bottom: 48px;
+          border-bottom: 2px solid #EFF0F4;
+        `;
+    }
   }}
 `;
 
@@ -25,6 +37,8 @@ export const ImgBox = styled.div`
   border: 1px solid #f6f6f6;
   border-radius: 8px;
 
+  background: url(${NoImg}) center center no-repeat;
+
   ${({ size }) => {
     switch (size) {
       case 'sm':
@@ -33,13 +47,20 @@ export const ImgBox = styled.div`
           height: 135px;
           padding-bottom: 0;
         `;
+      case 'lg':
+        return `
+          width: 170px;
+          height: 170px;
+          padding-bottom: 0;
+          border-radius: 32px;
+        `;
     }
     return `
       width: 100%;
       height: 0;
       padding-bottom: 100%;
     `;
-  }}
+  }};
 `;
 export const Img = styled.img`
   position: absolute;
@@ -74,7 +95,9 @@ export const Plus = styled.div`
     ${({ plus }) => {
       switch (plus) {
         case 'oneone':
+        case '1+1':
           return `background: url(${IconPlusOneOne}) center/cover no-repeat;`;
+        case '2+1':
         case 'twoone':
           return `background: url(${IconPlusTwoOne}) center/cover no-repeat;`;
       }
@@ -97,6 +120,16 @@ export const Like = styled.div`
 `;
 
 export const Info = styled.div`
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          flex: 1; 
+          padding-left: 16px;
+        `;
+    }
+  }}
+
   ${({ saleend }) => {
     return saleend ? 'opacity: 0.5;' : '';
   }}
@@ -122,16 +155,20 @@ export const StoreType = styled.span`
           border-color: #FFB71C;
         `;
       case 'CU':
+      case 'cu':
         return `
           color: #ABCC44;
           border-color: #ABCC44;
         `;
       case 'GS':
+      case 'gs':
+      case 'gs25':
         return `
           color: #007BFF;
           border-color: #007BFF;
         `;
       case '7-ELEVEN':
+      case 'seven11':
         return `
           color: #008061;
           border-color: #008061; 
@@ -167,7 +204,21 @@ export const Price = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  color: #212529;
+
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          margin-top: 6px;
+          font-family: NanumSquareRound;
+          font-weight: 800;
+        `;
+    }
+  }};
 `;
+
+export const PerPrice = styled.div``;
 
 export const SaleEnd = styled.div`
   position: absolute;

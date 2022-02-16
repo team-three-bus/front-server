@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './SearchHeader.styles';
 
@@ -11,9 +12,14 @@ const SearchHeader = ({
   onKeyDown = () => {},
   onSearch = () => {},
 }) => {
+  const navigate = useNavigate();
   return (
     <S.SearchHeader line={line}>
-      <S.BtnBack />
+      <S.BtnBack
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
       <Search
         sort='basic'
         value={searchValue}

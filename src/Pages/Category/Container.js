@@ -190,15 +190,24 @@ const Container = () => {
     });
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
-    navigate(`?${querystring}`);
+    navigate(`?${querystring}`, { replace: true });
+
+    const token = localStorage.getItem('token');
+    const option = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    if (token) {
+      option.headers.authorization = `${token}`;
+    }
 
     fetch(
       `http://133.186.208.125:3000/products/category?${getQueryString(
         _condition
       )}`,
-      {
-        method: 'GET',
-      }
+      option
     )
       .then((res) => res.json())
       .then(({ list, currentPage, pageSize, productCnt }) => {
@@ -242,6 +251,58 @@ const Container = () => {
     };
   }, [pageSize, currentPage]);
 
+  const changeLike = ({ id, isLike }) => {
+    const token = localStorage.getItem('token');
+
+    if (isLike === undefined) {
+      navigate({
+        pathname: '/login',
+      });
+    } else if (isLike === false || isLike === undefined) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'POST',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: true };
+            return { ...item };
+          });
+        });
+      });
+    } else if (isLike === true) {
+      fetch('http://133.186.208.125:3000/products/like', {
+        method: 'DELETE',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productId: id,
+        }),
+      }).then((res) => {
+        setProducts((prevProducts) => {
+          return prevProducts.map((item) => {
+            if (item.id === id) return { ...item, isLike: false };
+            return { ...item };
+          });
+        });
+      });
+    }
+  };
+
+  const gotoDetail = (id) => {
+    navigate({
+      pathname: `/detail/${id}`,
+    });
+  };
+
   return (
     <View
       condition={condition}
@@ -260,6 +321,8 @@ const Container = () => {
       productCnt={productCnt}
       currentPage={currentPage}
       getMoreProducts={getMoreProducts}
+      changeLike={changeLike}
+      gotoDetail={gotoDetail}
     />
   );
 };
