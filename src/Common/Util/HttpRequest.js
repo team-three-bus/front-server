@@ -13,10 +13,8 @@ const axiosRequest = (method, url, param) => {
     }
   }
   if (param) {
-    console.log(123, {...axiosOption, data: param})
     return axios({...axiosOption, data: param})
   } else {
-    console.log(1234, axiosOption)
     return axios(axiosOption)
   }
 }
