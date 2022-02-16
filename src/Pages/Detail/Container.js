@@ -23,7 +23,7 @@ const Container = () => {
   });
 
   const changeLike = ({ id, isLike }) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     console.log(id);
     if (!token) {
       navigate({
@@ -63,7 +63,7 @@ const Container = () => {
   };
 
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     const options = {
       method: 'GET',
       headers: {},

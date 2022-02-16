@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import View from './View';
 
 const Container = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('access_token');
   const navigate = useNavigate();
 
   const REST_API_KEY = React.useRef('23c0a0c03900fcb72185e2dd8ecc9df3');
@@ -14,7 +14,6 @@ const Container = () => {
   );
   React.useEffect(() => {
     if (token == 'undefined') {
-      console.log('ddd');
       navigate({
         pathname: '/',
       });

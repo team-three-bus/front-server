@@ -15,7 +15,7 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const token = React.useRef(localStorage.getItem('token'));
+  const token = React.useRef(localStorage.getItem('access_token'));
   const loading = React.useRef(false);
 
   const mylikeList = React.useRef([]);
@@ -221,7 +221,7 @@ const Container = () => {
     }
   });
 
- const gotoDetail = React.useCallback((id) => {
+  const gotoDetail = React.useCallback((id) => {
     navigate({
       pathname: `/detail/${id}`,
     });

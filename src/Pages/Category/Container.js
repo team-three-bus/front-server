@@ -191,7 +191,7 @@ const Container = () => {
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
     navigate(`?${querystring}`, { replace: true });
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     const option = {
       method: 'GET',
       headers: {
@@ -254,7 +254,7 @@ const Container = () => {
   }, [productCnt, currentPage]);
 
   const changeLike = ({ id, isLike }) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     if (!token) {
       navigate({

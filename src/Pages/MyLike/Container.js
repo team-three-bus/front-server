@@ -16,8 +16,8 @@ const Container = () => {
   const location = useLocation();
 
   const token = React.useRef(
-    localStorage.getItem('token') !== 'undefined'
-      ? localStorage.getItem('token')
+    localStorage.getItem('access_token') !== 'undefined'
+      ? localStorage.getItem('access_token')
       : undefined
   );
   const loading = React.useRef(false);
@@ -109,7 +109,7 @@ const Container = () => {
   }, [filter, isEvent]);
 
   const changeLike = ({ id, isLike }) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     if (!token) {
       navigate({
         pathname: '/login',
