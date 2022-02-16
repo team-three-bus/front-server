@@ -15,6 +15,7 @@ const Container = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isInit, setIsInit] = React.useState(true);
   const loading = React.useRef(false);
 
   let {
@@ -22,7 +23,7 @@ const Container = () => {
     brand: locationBrand,
     order: locationOrder,
     event: locationEvent,
-    page: locationPage,
+    currentPage: locationPage,
   } = qs.parse(location.search.slice(1), { arrayFormat: 'comma' });
 
   if (locationBrand && !Array.isArray(locationBrand))
@@ -156,14 +157,16 @@ const Container = () => {
   }, []);
 
   const [products, setProducts] = React.useState([]);
-  const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
+  const [currentPage, setCurrentPage] = React.useState(
+    Number(locationPage) || 1
+  );
   const [productCnt, setProductCnt] = React.useState(0);
 
   React.useEffect(() => {
     loading.current = true;
     const _condition = {};
 
-    _condition.page = currentPage;
+    _condition.currentPage = currentPage;
     _condition.brand = brand
       .filter((item) => item.selected)
       .map((item) => {
@@ -191,7 +194,7 @@ const Container = () => {
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
     navigate(`?${querystring}`, { replace: true });
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     const option = {
       method: 'GET',
       headers: {
@@ -200,6 +203,30 @@ const Container = () => {
     };
     if (token) {
       option.headers.authorization = `${token}`;
+    }
+
+    if (isInit) {
+      _condition.pageSize = currentPage;
+      _condition.currentPage = 1;
+      setIsInit(false);
+      fetch(
+        `http://133.186.208.125:3000/products/category?${getQueryString(
+          _condition
+        )}`,
+        option
+      )
+        .then((res) => res.json())
+        .then(({ list, currentPage, productCnt }) => {
+          currentPage = Number(currentPage);
+          setProducts(list);
+          setCurrentPage(currentPage);
+          setProductCnt(productCnt);
+          loading.current = false;
+
+          const scrollY = localStorage.getItem('categoryScroll');
+          window.scrollTo(0, scrollY);
+        });
+      return;
     }
 
     fetch(
@@ -215,7 +242,6 @@ const Container = () => {
           if (currentPage == 1) return list;
           return [...prodtucts, ...list];
         });
-        setCurrentPage(currentPage);
         setProductCnt(productCnt);
         loading.current = false;
       });
@@ -253,8 +279,20 @@ const Container = () => {
     };
   }, [productCnt, currentPage]);
 
+  const saveScroll = () => {
+    const scrollY = window.scrollY;
+    localStorage.setItem('categoryScroll', scrollY);
+  };
+  React.useEffect(() => {
+    window.addEventListener('scroll', saveScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', saveScroll, true);
+    };
+  }, []);
+
   const changeLike = ({ id, isLike }) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     if (!token) {
       navigate({
@@ -300,9 +338,7 @@ const Container = () => {
   };
 
   const gotoDetail = (id) => {
-    navigate({
-      pathname: `/detail/${id}`,
-    });
+    return (window.location.href = `/detail/${id}`);
   };
 
   return (
