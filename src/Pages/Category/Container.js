@@ -22,7 +22,7 @@ const Container = () => {
     brand: locationBrand,
     order: locationOrder,
     event: locationEvent,
-    page: locationPage,
+    currentPage: locationPage,
   } = qs.parse(location.search.slice(1), { arrayFormat: 'comma' });
 
   if (locationBrand && !Array.isArray(locationBrand))
@@ -156,14 +156,16 @@ const Container = () => {
   }, []);
 
   const [products, setProducts] = React.useState([]);
-  const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
+  const [currentPage, setCurrentPage] = React.useState(
+    Number(locationPage) || 1
+  );
   const [productCnt, setProductCnt] = React.useState(0);
 
   React.useEffect(() => {
     loading.current = true;
     const _condition = {};
 
-    _condition.page = currentPage;
+    _condition.currentPage = currentPage;
     _condition.brand = brand
       .filter((item) => item.selected)
       .map((item) => {
