@@ -25,7 +25,7 @@ const Product = ({
           }}
         />
         <S.Plus plus={plus}>
-          {plus == 'oneone' ? `1+1` : plus == 'twoone' ? `2+1` : null}
+          {(plus === 'oneone') || (plus === '1+1') ? `1+1` : (plus === 'twoone') || (plus === '2+1') ? `2+1` : null}
         </S.Plus>
         <S.Like
           on={like}

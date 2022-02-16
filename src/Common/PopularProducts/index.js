@@ -80,8 +80,9 @@ const Index = ({
                 img={item.imageUrl}
                 title={item.name}
                 store={item.brand}
-                plus={`oneone`}
+                plus={item.eventType}
                 price={item.price}
+                like={item.isLike}
               />
             </Item>
           )) : 
