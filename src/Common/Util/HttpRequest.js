@@ -2,17 +2,22 @@ import axios from 'axios';
 import { URL } from 'Common/Util/Constant';
 
 const axiosRequest = (method, url, param) => {
+  const loginToken = localStorage.getItem("access_token");
+  let axiosOption = {
+    method: method,
+    url: `${URL.API_SERVER}${url}`,
+  }
+  if (loginToken) {
+    axiosOption.headers = {
+      "authorization": localStorage.getItem("access_token")
+    }
+  }
   if (param) {
-    return axios({
-      method: method,
-      url: `${URL.API_SERVER}${url}`,
-      data: param
-    })
+    console.log(123, {...axiosOption, data: param})
+    return axios({...axiosOption, data: param})
   } else {
-    return axios({
-      method: method,
-      url: `${URL.API_SERVER}${url}`
-    })
+    console.log(1234, axiosOption)
+    return axios(axiosOption)
   }
 }
 
