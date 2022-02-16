@@ -12,6 +12,7 @@ const View = ({ id, product, getPerPrice, changeLike }) => {
   return (
     <Layout header='sub' title={product.name} share={true} search={false}>
       <ProductInfo
+        id={id}
         img={product.imageUrl}
         title={product.name}
         price={product.price}
