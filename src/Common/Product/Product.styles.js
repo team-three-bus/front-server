@@ -6,7 +6,6 @@ import IconPlusTwoOne from './img/iconPlusTwoOne.png';
 import IconLike from './img/iconLike.svg';
 import IconLikeOn from './img/iconLikeOn.svg';
 import ImgSaleEnd from './img/sale-end.svg';
-import NoImg from './img/no-img.svg';
 
 export const Product = styled.div`
   display: inline-block;
@@ -36,8 +35,6 @@ export const ImgBox = styled.div`
   box-sizing: border-box;
   border: 1px solid #f6f6f6;
   border-radius: 8px;
-
-  background: url(${NoImg}) center center no-repeat;
 
   ${({ size }) => {
     switch (size) {
@@ -69,7 +66,7 @@ export const Img = styled.img`
   bottom: 0;
   right: 0;
   margin: auto auto;
-  max-width: 50%;
+  max-width: 100%;
 `;
 export const Plus = styled.div`
   width: 45px;
