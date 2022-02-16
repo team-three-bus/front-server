@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  height: 100%;
+  margin: 0 auto;
+  max-width: 768px;
   background: #fff;
 
   ${({ bottomnav }) => {
@@ -15,6 +16,6 @@ export const Layout = styled.div`
 `;
 
 export const Wrap = styled.div`
-  height: 100%;
+  min-height: 100vh;
   box-sizing: border-box;
 `;

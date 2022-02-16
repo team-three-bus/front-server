@@ -8,6 +8,8 @@ import BottomNav from 'Common/BottomNav';
 
 const Home = styled.div`
   background: #f8f9fa;
+  max-width: 768px;
+  margin: 0 auto;
 `;
 
 function View({
