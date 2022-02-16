@@ -45,7 +45,7 @@ const Layout = ({
         />
       )}
 
-      <S.Wrap>{children}</S.Wrap>
+      {children && <S.Wrap>{children}</S.Wrap>}
       {bottomnav && <BottomNav />}
     </S.Layout>
   );
