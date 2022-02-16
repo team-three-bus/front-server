@@ -81,23 +81,21 @@ const View = ({
                 if (!isEvent) return true;
                 return products.isEvent === true;
               })
-              .map((product, i) => {
-                return (
-                  <Item key={i}>
-                    <Product
-                      id={product.id}
-                      img={product.imageUrl}
-                      title={product.name}
-                      store={DATA_REVERSE.brand[product.brand]}
-                      plus={DATA_REVERSE.event[product.eventType]}
-                      price={product.price}
-                      like={product.isLike}
-                      changeLike={changeLike}
-                      gotoDetail={gotoDetail}
-                    />
-                  </Item>
-                );
-              })}
+              .map((product, i) => (
+                <Item key={i}>
+                  <Product
+                    id={product.id}
+                    img={product.imageUrl}
+                    title={product.name}
+                    store={DATA_REVERSE.brand[product.brand]}
+                    plus={product.lastEventType}
+                    price={product.price}
+                    like={product.isLike}
+                    changeLike={changeLike}
+                    gotoDetail={gotoDetail}
+                  />
+                </Item>
+              ))}
           </ItemList>
 
           {!products.length > 0 && (
