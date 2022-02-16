@@ -16,6 +16,7 @@ const Container = () => {
   const location = useLocation();
 
   const token = React.useRef(localStorage.getItem('access_token'));
+  const [isInit, setIsInit] = React.useState(true);
   const loading = React.useRef(false);
 
   const mylikeList = React.useRef([]);
@@ -171,7 +172,9 @@ const Container = () => {
   }, []);
 
   const [products, setProducts] = React.useState([]);
-  const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
+  const [currentPage, setCurrentPage] = React.useState(
+    Number(locationPage) || 1
+  );
   const [productCnt, setProductCnt] = React.useState(0);
 
   const changeLike = React.useCallback(({ id, isLike }) => {
@@ -249,6 +252,40 @@ const Container = () => {
 
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
     navigate(`?${querystring}`, { replace: true });
+
+    if (isInit) {
+      _condition.pageSize = currentPage;
+      _condition.currentPage = 1;
+      setIsInit(false);
+      fetch(
+        `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`
+      )
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          } else {
+            throw res;
+          }
+        })
+        .catch((data) => {
+          setProducts([]);
+          setProductCnt(0);
+        })
+        .then(({ list, currentPage, productCnt }) => {
+          currentPage = Number(currentPage);
+          const _list = list.map((item) => {
+            return {
+              ...item,
+              isLike: mylikeList.current[item.id] ? true : false,
+            };
+          });
+
+          setProducts(_list);
+          setProductCnt(productCnt);
+          loading.current = false;
+        });
+      return;
+    }
 
     fetch(`http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`)
       .then((res) => {
