@@ -283,6 +283,9 @@ const Container = () => {
           setProducts(_list);
           setProductCnt(productCnt);
           loading.current = false;
+
+          const scrollY = localStorage.getItem('searchresultScroll');
+          window.scrollTo(0, scrollY);
         });
       return;
     }
@@ -345,6 +348,18 @@ const Container = () => {
       window.removeEventListener('scroll', infiniteScroll, true);
     };
   }, [currentPage, productCnt]);
+
+  const saveScroll = () => {
+    const scrollY = window.scrollY;
+    localStorage.setItem('searchresultScroll', scrollY);
+  };
+  React.useEffect(() => {
+    window.addEventListener('scroll', saveScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', saveScroll, true);
+    };
+  }, []);
 
   return (
     <View
