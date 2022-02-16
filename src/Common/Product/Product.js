@@ -55,7 +55,7 @@ const Product = ({
         </S.StoreType>
         <S.Title size={size}>{title}</S.Title>
         <S.Price size={size}>
-          {price}원{' '}
+          {price.toLocaleString('ko-KR')}원{' '}
           {perprice && (
             <S.PerPrice>(1개당 {perprice.toLocaleString()}원)</S.PerPrice>
           )}
