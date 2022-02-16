@@ -1,4 +1,5 @@
 import * as S from './Product.styles';
+import NoImg from './img/no-img.svg';
 
 const Product = ({
   id,
@@ -23,6 +24,7 @@ const Product = ({
           onClick={() => {
             gotoDetail(id);
           }}
+          onError={(e) => e.target.src = NoImg}
         />
         <S.Plus plus={plus}>
           {(plus === 'oneone') || (plus === '1+1') ? `1+1` : (plus === 'twoone') || (plus === '2+1') ? `2+1` : null}
