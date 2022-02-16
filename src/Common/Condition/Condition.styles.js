@@ -19,6 +19,15 @@ export const Container = styled.div`
   }
 `;
 export const Contents = styled.div`
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
   flex: 1;
 `;
 
