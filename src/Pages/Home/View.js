@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Layout } from 'Common/Layout';
 import Category from 'Common/Category';
-import RecommendProducts from 'Common/RecommendProducts';
+// import RecommendProducts from 'Common/RecommendProducts';
 import PopularProducts from 'Common/PopularProducts';
 import BottomNav from 'Common/BottomNav';
 
@@ -23,7 +23,7 @@ function View({
     <Home>
       <Layout header='main' onSearchClick={onSearchClick} />
       <Category />
-      <RecommendProducts />
+      {/* <RecommendProducts /> */}
       <PopularProducts
         maxPopularItemsPageNum={maxPopularItemsPageNum}
         popularItems={popularItems}
