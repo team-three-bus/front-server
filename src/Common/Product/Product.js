@@ -1,4 +1,5 @@
 import * as S from './Product.styles';
+import NoImg from './img/no-img.svg';
 
 const Product = ({
   id,
@@ -23,9 +24,10 @@ const Product = ({
           onClick={() => {
             gotoDetail(id);
           }}
+          onError={(e) => e.target.src = NoImg}
         />
         <S.Plus plus={plus}>
-          {plus == 'oneone' ? `1+1` : plus == 'twoone' ? `2+1` : null}
+          {(plus === 'oneone') || (plus === '1+1') ? `1+1` : (plus === 'twoone') || (plus === '2+1') ? `2+1` : null}
         </S.Plus>
         <S.Like
           on={like}
@@ -55,7 +57,7 @@ const Product = ({
         </S.StoreType>
         <S.Title size={size}>{title}</S.Title>
         <S.Price size={size}>
-          {price}원{' '}
+          {price.toLocaleString('ko-KR')}원{' '}
           {perprice && (
             <S.PerPrice>(1개당 {perprice.toLocaleString()}원)</S.PerPrice>
           )}

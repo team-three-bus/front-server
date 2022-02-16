@@ -4,6 +4,7 @@ import { Product } from 'Common/Product';
 import * as S from './ProductInfo.styles';
 
 const ProductInfo = ({
+  id,
   img,
   title,
   price,
@@ -16,6 +17,7 @@ const ProductInfo = ({
   return (
     <S.Container>
       <Product
+        id={id}
         size={'lg'}
         img={img}
         title={title}

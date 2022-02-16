@@ -157,7 +157,6 @@ const Container = () => {
 
   const [products, setProducts] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(locationPage || 1);
-  const [pageSize, setPageSize] = React.useState(1);
   const [productCnt, setProductCnt] = React.useState(0);
 
   React.useEffect(() => {
@@ -210,7 +209,7 @@ const Container = () => {
       option
     )
       .then((res) => res.json())
-      .then(({ list, currentPage, pageSize, productCnt }) => {
+      .then(({ list, currentPage, productCnt }) => {
         currentPage = Number(currentPage);
         setProducts((prodtucts) => {
           if (currentPage == 1) return list;
@@ -218,7 +217,6 @@ const Container = () => {
         });
         setCurrentPage(currentPage);
         setProductCnt(productCnt);
-        setPageSize(pageSize);
         loading.current = false;
       });
   }, [brand, condition, filter, currentPage]);
@@ -235,7 +233,11 @@ const Container = () => {
       Math.ceil($scrollingElement.scrollHeight) <=
       Math.ceil($scrollingElement.scrollTop + windowHeight);
 
-    if (isBottom && !loading.current && pageSize > currentPage) {
+    if (
+      isBottom &&
+      !loading.current &&
+      Math.ceil(productCnt / 10) > currentPage
+    ) {
       loading.current = true;
       setCurrentPage((currentPage) => {
         return currentPage + 1;
@@ -249,12 +251,12 @@ const Container = () => {
     return () => {
       window.removeEventListener('scroll', infiniteScroll, true);
     };
-  }, [pageSize, currentPage]);
+  }, [productCnt, currentPage]);
 
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('token');
 
-    if (isLike === undefined) {
+    if (!token) {
       navigate({
         pathname: '/login',
       });
@@ -317,7 +319,6 @@ const Container = () => {
       orderClick={orderClick}
       filterClick={filterClick}
       products={products}
-      pageSize={pageSize}
       productCnt={productCnt}
       currentPage={currentPage}
       getMoreProducts={getMoreProducts}

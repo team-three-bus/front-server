@@ -26,7 +26,8 @@ export const LogoBtn = styled.a`
   margin-right: 20px;
   background: url(${LogoImg}) center center no-repeat;
 `;
-export const LoginBtn = styled.button`
+
+export const LoginBtn = styled(Link)`
   display: inline-block;
   width: 40px;
   height: 40px;
