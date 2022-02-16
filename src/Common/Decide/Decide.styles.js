@@ -33,6 +33,16 @@ export const DecideList = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
   ${Decide} {
     margin-left: 12px;
   }
