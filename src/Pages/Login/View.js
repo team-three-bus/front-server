@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import infoImg from './img/logo.svg';
 import kakaoIcon from './img/kakao-icon.svg';
+import IconBack from './img/icon-back.svg';
 
 const LoginBox = styled.div`
   display: flex;
@@ -12,6 +13,16 @@ const LoginBox = styled.div`
   margin: 0 auto;
   background: #fff;
 `;
+
+const BackBtn = styled.button`
+  position: absolute;
+  top: -2px;
+  left: 10px;
+  width: 68px;
+  height: 68px;
+  border: none;
+  background: url(${IconBack}) center center no-repeat;
+`
 
 const LoginCenter = styled.div`
   display: flex;
@@ -73,9 +84,10 @@ const LoginTerm = styled.p`
   }
 `;
 
-const View = ({ loginurl }) => {
+const View = ({ loginurl, onClickBack }) => {
   return (
     <LoginBox>
+      <BackBtn onClick={onClickBack} />
       <LoginCenter>
         <LoginInfoImg src={infoImg} alt='' />
         <LoginInfoText>{`가입/로그인 하시면 상품을 찜할 수 있어요!\n로그인하러 가시겠어요?`}</LoginInfoText>

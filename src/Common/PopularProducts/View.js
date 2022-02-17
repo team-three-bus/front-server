@@ -11,7 +11,7 @@ const PopularProductBox = styled.div`
   box-sizing: border-box;
   width: 100%;
   margin-top: 8px;
-  padding: 7px 0 121px;
+  padding: 7px 0 41px;
   background: #ffffff;
 `
 
@@ -44,7 +44,8 @@ const View = ({
   popularItemsPageNum,
   popularCategory,
   onClickMoreBtn,
-  onClickCategory
+  onClickCategory,
+  changeLike
 }) => {
   const isShowMoreBtn = popularItems.length > 0 && popularItemsPageNum < maxPopularItemsPageNum;
   return (
@@ -83,6 +84,7 @@ const View = ({
                 plus={item.eventType}
                 price={item.price}
                 like={item.isLike}
+                changeLike={changeLike}
               />
             </Item>
           )) : 

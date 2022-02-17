@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { URL } from 'Common/Util/Constant';
 
-const axiosRequest = (method, url, param) => {
+const axiosRequest = (method, url, param, body) => {
   const loginToken = localStorage.getItem("access_token");
   let axiosOption = {
     method: method,
@@ -11,6 +11,9 @@ const axiosRequest = (method, url, param) => {
     axiosOption.headers = {
       "authorization": localStorage.getItem("access_token")
     }
+  }
+  if (body) {
+    axiosOption.data = body
   }
   if (param) {
     return axios({...axiosOption, data: param})
@@ -24,4 +27,12 @@ export const getPopularItems = param => {
   return  axiosRequest(
     'get', `products/main/popular?page=${num}${category ? `&category=${category}` : ""}`
   );
+}
+
+export const postLikeItem = param => {
+  return axiosRequest('post', `products/like`, null, { "productId" : param.id })
+}
+
+export const deleteLikeItem = param => {
+  return axiosRequest('delete', `products/like`, null, { "productId" : param.id })
 }

@@ -16,16 +16,13 @@ export const Btn = styled.button`
   color: #fff;
   cursor: pointer;
 
-  ${({ option }) => {
-    switch (option) {
-      case 'add':
-        return `
-          width: calc(100% - 40px);
-          margin: 24px 0 0 20px;
-        `;
-    }
-  }}
-
+  ${(props) => props.option === 'add' && `
+    position:relative;
+    top: -80px;
+    width: calc(100% - 40px);
+    margin: 24px 0 0 20px;
+  `}
+  
   ${({ disabled }) => {
     switch (disabled) {
       case true:
