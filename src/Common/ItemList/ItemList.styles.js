@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Layout } from 'Common/Layout/Layout.styles';
+
 export const ItemList = styled.ul`
   display: flex;
   gap: 24px;
@@ -8,6 +10,10 @@ export const ItemList = styled.ul`
   padding-left: 21px;
   padding-right: 21px;
   list-style: none;
+
+  ${Layout} & {
+    padding-bottom: 20px;
+  }
 `;
 
 export const Item = styled.li`
