@@ -84,27 +84,25 @@ const View = ({
           </>
         }
       />
-      {
-        <ItemList>
-          {products.map((product, i) => {
-            return (
-              <Item key={i}>
-                <Product
-                  id={product.id}
-                  img={product.imageUrl}
-                  title={product.name}
-                  store={DATA_REVERSE.brand[product.brand]}
-                  plus={DATA_REVERSE.event[product.eventType]}
-                  price={product.price}
-                  like={product.isLike}
-                  gotoDetail={gotoDetail}
-                  changeLike={changeLike}
-                />
-              </Item>
-            );
-          })}
-        </ItemList>
-      }
+      <ItemList>
+        {products.map((product, i) => {
+          return (
+            <Item key={i}>
+              <Product
+                id={product.id}
+                img={product.imageUrl}
+                title={product.name}
+                store={DATA_REVERSE.brand[product.brand]}
+                plus={DATA_REVERSE.event[product.eventType]}
+                price={product.price}
+                like={product.isLike}
+                gotoDetail={gotoDetail}
+                changeLike={changeLike}
+              />
+            </Item>
+          );
+        })}
+      </ItemList>
       {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
       <FilterPopup
         open={filterOpen}

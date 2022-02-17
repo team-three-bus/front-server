@@ -219,7 +219,6 @@ const Container = () => {
         .then(({ list, currentPage, productCnt }) => {
           currentPage = Number(currentPage);
           setProducts(list);
-          setCurrentPage(currentPage);
           setProductCnt(productCnt);
           loading.current = false;
 
