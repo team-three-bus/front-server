@@ -256,7 +256,9 @@ const Container = () => {
       _condition.currentPage = 1;
       setIsInit(false);
       fetch(
-        `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`
+        `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}${
+          !filterEvent.length ? '&eventtype=' : ''
+        }`
       )
         .then((res) => {
           if (res.status === 200) {
@@ -288,7 +290,11 @@ const Container = () => {
       return;
     }
 
-    fetch(`http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}`)
+    fetch(
+      `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}${
+        !filterEvent.length ? '&eventtype=' : ''
+      }`
+    )
       .then((res) => {
         if (res.status === 200) {
           return res.json();
