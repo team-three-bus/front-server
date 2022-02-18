@@ -19,6 +19,7 @@ import { Empty } from 'Common/Empty';
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
+  isInit,
   condition,
   changeCategory,
   brand,
@@ -103,7 +104,9 @@ const View = ({
           );
         })}
       </ItemList>
-      {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
+      {!isInit && !products.length > 0 && (
+        <Empty text={`조건에 맞는 상품이 없습니다.`} />
+      )}
       <FilterPopup
         open={filterOpen}
         setOpen={setFilterOpen}

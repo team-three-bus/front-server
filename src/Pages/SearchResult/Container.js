@@ -254,7 +254,7 @@ const Container = () => {
     if (isInit) {
       _condition.pageSize = currentPage;
       _condition.currentPage = 1;
-      setIsInit(false);
+
       fetch(
         `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}${
           !filterEvent.length ? '&eventtype=' : ''
@@ -283,6 +283,8 @@ const Container = () => {
           setProducts(_list);
           setProductCnt(productCnt);
           loading.current = false;
+
+          setIsInit(false);
 
           const scrollY = localStorage.getItem('searchresultScroll');
           window.scrollTo(0, scrollY);
@@ -367,6 +369,7 @@ const Container = () => {
 
   return (
     <View
+      isInit={isInit}
       searchValue={searchValue}
       onSearchChange={setSearchValue}
       onSearch={onSearch}

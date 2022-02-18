@@ -16,6 +16,7 @@ import { Btn, BtnArea } from 'Common/Btn';
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
+  isInit,
   isEvent,
   setIsEvent,
   filterOpen,
@@ -100,7 +101,7 @@ const View = ({
               })}
           </ItemList>
 
-          {!products.length > 0 && (
+          {!isInit && !products.length > 0 && (
             <Empty text={`마음에 드는 상품을 찜해보세요!`} />
           )}
           <FilterPopup

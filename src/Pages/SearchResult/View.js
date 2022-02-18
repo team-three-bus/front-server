@@ -15,6 +15,7 @@ import { FilterPopup } from './FilterPopup';
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const View = ({
+  isInit,
   searchValue,
   onSearchChange,
   onSearch,
@@ -136,7 +137,9 @@ const View = ({
         filter={filter}
       />
 
-      {!products.length > 0 && <Empty text={`조건에 맞는 상품이 없습니다.`} />}
+      {!isInit && !products.length > 0 && (
+        <Empty text={`조건에 맞는 상품이 없습니다.`} />
+      )}
     </Layout>
   );
 };
