@@ -56,6 +56,10 @@ function Container() {
     getPopularItems();
   };
   
+  const gotoDetail = (id) => {
+    return (window.location.href = `/detail/${id}`);
+  };
+  
   return (
     <View
       maxPopularItemsPageNum={maxPopularItemsPageNum}
@@ -65,6 +69,7 @@ function Container() {
       onClickMoreBtn={onClickMoreBtn}
       onClickCategory={onClickCategory}
       changeLike={changeLike}
+      gotoDetail={gotoDetail}
     />
   );
 }
