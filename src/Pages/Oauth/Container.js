@@ -12,7 +12,7 @@ const Oauth = () => {
       code: code,
       client_id: REST_API_KEY,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000/oauth',
+      redirect_uri: 'http://pyunha.com/oauth',
       client_secret: '82g8ZwhdZphpEE41gbnqjZtilv0jtnMS',
     };
 
@@ -45,7 +45,7 @@ const Oauth = () => {
             localStorage.setItem('access_token', data.jwt);
             navigate('/');
           });
-      })
+      });
   }, []);
 
   return null;
