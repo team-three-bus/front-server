@@ -79,6 +79,7 @@ const View = ({
           popularItems.map(({ imageUrl, name, brand, eventType, price, isLike, id}, i) => (
             <Item key={i}>
               <Product
+                id={id}
                 img={imageUrl}
                 title={name}
                 store={brand}
