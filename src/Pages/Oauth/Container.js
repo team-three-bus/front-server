@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { OAUTH } from 'Common/Util/Oauth';
+
 const Oauth = () => {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
     const REST_API_KEY = '23c0a0c03900fcb72185e2dd8ecc9df3';
@@ -12,8 +14,8 @@ const Oauth = () => {
       code: code,
       client_id: REST_API_KEY,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://pyunha.com/oauth',
-      client_secret: '82g8ZwhdZphpEE41gbnqjZtilv0jtnMS',
+      redirect_uri: OAUTH.REDIRECT_URI,
+      client_secret: OAUTH.CLIENT_SECRET,
     };
 
     let formBody = [];
