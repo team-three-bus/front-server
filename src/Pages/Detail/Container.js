@@ -24,7 +24,7 @@ const Container = () => {
 
   const changeLike = ({ id, isLike }) => {
     const token = localStorage.getItem('access_token');
-    console.log(id);
+
     if (!token) {
       navigate({
         pathname: '/login',
