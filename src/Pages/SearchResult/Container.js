@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import qs from 'query-string';
 
+import { URL } from 'Common/Util/Constant';
 import View from './View';
 
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
@@ -23,7 +24,7 @@ const Container = () => {
 
   React.useEffect(() => {
     if (!token.current) return;
-    fetch(`http://133.186.208.125:3000/like`, {
+    fetch(`${URL.API_SERVER}like`, {
       method: 'GET',
       headers: {
         authorization: token.current,
@@ -186,7 +187,7 @@ const Container = () => {
     }
 
     if (!isLike) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'POST',
         headers: {
           authorization: token.current,
@@ -204,7 +205,7 @@ const Container = () => {
         });
       });
     } else {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'DELETE',
         headers: {
           authorization: token.current,
@@ -256,7 +257,7 @@ const Container = () => {
       _condition.currentPage = 1;
 
       fetch(
-        `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}${
+        `${URL.API_SERVER}elastic/?${getQueryString(_condition)}${
           !filterEvent.length ? '&eventtype=' : ''
         }`
       )
@@ -293,7 +294,7 @@ const Container = () => {
     }
 
     fetch(
-      `http://133.186.208.125:3000/elastic/?${getQueryString(_condition)}${
+      `${URL.API_SERVER}elastic/?${getQueryString(_condition)}${
         !filterEvent.length ? '&eventtype=' : ''
       }`
     )
