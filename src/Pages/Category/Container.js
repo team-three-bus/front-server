@@ -208,7 +208,7 @@ const Container = () => {
     if (isInit) {
       _condition.pageSize = currentPage;
       _condition.currentPage = 1;
-      setIsInit(false);
+
       fetch(
         `http://133.186.208.125:3000/products/category?${getQueryString(
           _condition
@@ -221,6 +221,8 @@ const Container = () => {
           setProducts(list);
           setProductCnt(productCnt);
           loading.current = false;
+
+          setIsInit(false);
 
           const scrollY = localStorage.getItem('categoryScroll');
           window.scrollTo(0, scrollY);
@@ -342,6 +344,7 @@ const Container = () => {
 
   return (
     <View
+      isInit={isInit}
       condition={condition}
       changeCategory={changeCategory}
       brand={brand}

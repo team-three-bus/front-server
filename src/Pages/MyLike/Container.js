@@ -96,7 +96,6 @@ const Container = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status == 200) {
           return res.json();
         }
@@ -106,6 +105,10 @@ const Container = () => {
         setProducts((prodtucts) => {
           return [..._list];
         });
+
+        if (!isInit) {
+          setIsInit(false);
+        }
       });
   }, [filter, isEvent]);
 
@@ -185,6 +188,7 @@ const Container = () => {
 
   return (
     <View
+      isInit={isInit}
       isEvent={isEvent}
       setIsEvent={setIsEvent}
       filterOpen={filterOpen}
