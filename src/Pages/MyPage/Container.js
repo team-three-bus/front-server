@@ -8,6 +8,11 @@ const Container = () => {
   
   useEffect(() => {
     const access_token = localStorage.getItem('access_token');
+    
+    if ( !access_token ) {
+      navigate('/');
+    } 
+    
     fetch('http://133.186.208.125:3000/users/mypage', {
       method: 'GET',
       headers: {
