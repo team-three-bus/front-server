@@ -45,7 +45,8 @@ const View = ({
   popularCategory,
   onClickMoreBtn,
   onClickCategory,
-  changeLike
+  changeLike,
+  gotoDetail
 }) => {
   const isShowMoreBtn = popularItems.length > 0 && popularItemsPageNum < maxPopularItemsPageNum;
   return (
@@ -75,16 +76,17 @@ const View = ({
       </PickList>
       <ItemList>
         {popularItems.length > 0 ?
-          popularItems.map((item, i) => (
+          popularItems.map(({ imageUrl, name, brand, eventType, price, isLike, id}, i) => (
             <Item key={i}>
               <Product
-                img={item.imageUrl}
-                title={item.name}
-                store={item.brand}
-                plus={item.eventType}
-                price={item.price}
-                like={item.isLike}
+                img={imageUrl}
+                title={name}
+                store={brand}
+                plus={eventType}
+                price={price}
+                like={isLike}
                 changeLike={changeLike}
+                gotoDetail={() => gotoDetail(id)}
               />
             </Item>
           )) : 
