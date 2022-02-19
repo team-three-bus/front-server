@@ -29,7 +29,10 @@ const Container = () => {
       navigate({
         pathname: '/login',
       });
-    } else if (isLike === false || isLike === undefined) {
+    }
+    return;
+
+    if (isLike === false || isLike === undefined) {
       fetch('http://133.186.208.125:3000/products/like', {
         method: 'POST',
         headers: {
