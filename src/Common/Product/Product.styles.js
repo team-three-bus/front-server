@@ -34,7 +34,7 @@ export const ImgBox = styled.div`
 
   box-sizing: border-box;
   border: 1px solid #f6f6f6;
-  border-radius: 8px;
+  border-radius: 32px;
 
   ${({ size }) => {
     switch (size) {
@@ -43,13 +43,13 @@ export const ImgBox = styled.div`
           width: 135px;
           height: 135px;
           padding-bottom: 0;
+          border-radius: 14px;
         `;
       case 'lg':
         return `
           width: 170px;
           height: 170px;
           padding-bottom: 0;
-          border-radius: 32px;
         `;
     }
     return `
