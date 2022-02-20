@@ -24,7 +24,7 @@ export const Input = styled.input`
   flex: 1;
 
   height: 48px;
-  border: 1px solid rgba(249, 249, 249, 1);
+  border: 2px solid #f1f3f5;
   box-sizing: border-box;
   border-radius: 24px;
   font-size: 14px;
