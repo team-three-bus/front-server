@@ -122,6 +122,7 @@ export const Info = styled.div`
     switch (size) {
       case 'lg':
         return `
+          margin-top: 16px;
           flex: 1; 
           padding-left: 16px;
         `;
@@ -182,8 +183,8 @@ export const StoreType = styled.span`
 export const Title = styled.p`
   overflow: hidden;
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 4px;
+  margin-top: 6px;
+  margin-bottom: 8px;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
