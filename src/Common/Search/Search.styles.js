@@ -24,7 +24,7 @@ export const Input = styled.input`
   flex: 1;
 
   height: 48px;
-  border: 1px solid rgba(249, 249, 249, 1);
+  border: 2px solid #f1f3f5;
   box-sizing: border-box;
   border-radius: 24px;
   font-size: 14px;
@@ -33,6 +33,15 @@ export const Input = styled.input`
   text-align: left;
   color: #868e96;
   width: 100%;
+
+  -webkit-appearance: none;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
 
   ${({ sort }) => {
     switch (sort) {
@@ -66,9 +75,11 @@ export const BtnDelete = styled.button`
   right: 12px;
   width: 18px;
   height: 18px;
+  margin: 0;
+  padding: 0;
   margin-top: -9px;
   border: none;
-  border-radius: 50%;
+  border-radius: 9px;
   background: #c4c4c4 url(${IconDelete}) center center no-repeat;
   cursor: pointer;
 `;

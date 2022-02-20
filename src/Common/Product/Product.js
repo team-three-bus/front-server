@@ -1,5 +1,8 @@
+import React from 'react';
+
 import * as S from './Product.styles';
-import NoImg from './img/no-img.svg';
+import NoImg from './img/noImg.png';
+import { set } from 'lodash';
 
 const Product = ({
   id,
@@ -15,19 +18,28 @@ const Product = ({
   changeLike = () => {},
   gotoDetail = () => {},
 }) => {
+  const [isNoImg, setISNoImg] = React.useState(false);
+
   return (
     <S.Product size={size} saleend={saleend}>
-      <S.ImgBox size={size}>
+      <S.ImgBox size={size} isNoImg={isNoImg}>
         <S.Img
           src={img}
           alt={title}
           onClick={() => {
             gotoDetail(id);
           }}
-          onError={(e) => e.target.src = NoImg}
+          onError={(e) => {
+            setISNoImg(true);
+            return (e.target.src = NoImg);
+          }}
         />
         <S.Plus plus={plus}>
-          {(plus === 'oneone') || (plus === '1+1') ? `1+1` : (plus === 'twoone') || (plus === '2+1') ? `2+1` : null}
+          {plus === 'oneone' || plus === '1+1'
+            ? `1+1`
+            : plus === 'twoone' || plus === '2+1'
+            ? `2+1`
+            : null}
         </S.Plus>
         <S.Like
           on={like}

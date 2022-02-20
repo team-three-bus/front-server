@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import IconPlus from './img/iconPlus.svg';
 import IconPlusOneOne from './img/iconPlusOneOne.png';
 import IconPlusTwoOne from './img/iconPlusTwoOne.png';
-import IconLike from './img/iconLike.svg';
-import IconLikeOn from './img/iconLikeOn.svg';
-import ImgSaleEnd from './img/sale-end.svg';
+import IconLike from './img/iconLike.png';
+import IconLikeOn from './img/iconLikeOn.png';
+import ImgSaleEnd from './img/saleEnd.png';
 
 export const Product = styled.div`
   display: inline-block;
@@ -34,7 +34,16 @@ export const ImgBox = styled.div`
 
   box-sizing: border-box;
   border: 1px solid #f6f6f6;
-  border-radius: 8px;
+  border-radius: 32px;
+
+  ${({ isNoImg }) => {
+    switch (isNoImg) {
+      case true:
+        return `
+          background: #F8F9FA;
+        `;
+    }
+  }}
 
   ${({ size }) => {
     switch (size) {
@@ -43,13 +52,13 @@ export const ImgBox = styled.div`
           width: 135px;
           height: 135px;
           padding-bottom: 0;
+          border-radius: 14px;
         `;
       case 'lg':
         return `
           width: 170px;
           height: 170px;
           padding-bottom: 0;
-          border-radius: 32px;
         `;
     }
     return `
@@ -109,10 +118,14 @@ export const Like = styled.div`
   bottom: 0;
   right: 0;
   background: url(${IconLike}) center no-repeat;
+  background-size: 100%;
 
   ${({ on }) => {
     if (on) {
-      return `background: url(${IconLikeOn}) center no-repeat;`;
+      return `
+        background: url(${IconLikeOn}) center no-repeat;
+        background-size: 100%;
+      `;
     }
   }}
 `;
@@ -122,6 +135,8 @@ export const Info = styled.div`
     switch (size) {
       case 'lg':
         return `
+          width: -webkit-calc(100% - 210px);
+          margin-top: 16px;
           flex: 1; 
           padding-left: 16px;
         `;
@@ -182,8 +197,8 @@ export const StoreType = styled.span`
 export const Title = styled.p`
   overflow: hidden;
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 4px;
+  margin-top: 6px;
+  margin-bottom: 8px;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -225,4 +240,5 @@ export const SaleEnd = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.18) url(${ImgSaleEnd}) center center no-repeat;
+  background-size: 100%;
 `;

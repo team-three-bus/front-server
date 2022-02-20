@@ -16,6 +16,10 @@ export const Empty = styled.div`
         `;
     }
   }}
+
+  img {
+    width: 114px;
+  }
 `;
 
 export const Text = styled.p`

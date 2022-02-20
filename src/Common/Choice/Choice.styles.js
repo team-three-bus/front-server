@@ -19,6 +19,8 @@ export const Choice = styled.span`
   font-weight: 700;
   line-height: 14px;
   vertical-align: middle;
+  height: 24px;
+  box-sizing: border-box;
 
   ${({ size }) => {
     switch (size) {

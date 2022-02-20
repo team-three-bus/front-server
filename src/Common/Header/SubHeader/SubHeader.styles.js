@@ -22,6 +22,10 @@ export const Title = styled.h1`
   margin: 0;
   color: #000000;
   text-align: center;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 export const BtnBack = styled.button`
   position: absolute;

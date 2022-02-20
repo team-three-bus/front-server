@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 import IconLike from './img/icon-like.svg';
-import IconRecommend from "./img/icon-recommend.svg";
-import IconPopular from "./img/icon-popular.svg";
+import IconRecommend from './img/icon-recommend.svg';
+import IconPopular from './img/icon-popular.svg';
+
+import { Choice } from 'Common/Choice/Choice.styles';
 
 export const Wrap = styled.div`
   display: flex;
@@ -91,4 +93,10 @@ export const SubTitle = styled.h2`
   color: #9f9f9f;
   margin: 0;
 `;
-export const Right = styled.div``;
+export const Right = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+`;
