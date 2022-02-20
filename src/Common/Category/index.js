@@ -8,7 +8,6 @@ const CategoryBox = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 20%);
   gap: 7%;
-  /* height: calc(229 / 384 * 100vw); */
   margin: 8px auto 0;
   padding: 22px 20px 44px 20px;
   background: #ffffff;
@@ -26,7 +25,7 @@ const CategoryItemImg = styled.img`
   background: url(${(props) => props.img}) no-repeat center/cover;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 1px solid #eeeeee;
-  border-radius: calc(24 / 384 * 100vw);
+  border-radius: 24px;
 `;
 
 const CategoryItemName = styled.p`
