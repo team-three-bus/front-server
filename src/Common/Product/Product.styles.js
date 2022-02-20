@@ -36,6 +36,15 @@ export const ImgBox = styled.div`
   border: 1px solid #f6f6f6;
   border-radius: 32px;
 
+  ${({ isNoImg }) => {
+    switch (isNoImg) {
+      case true:
+        return `
+          background: #F8F9FA;
+        `;
+    }
+  }}
+
   ${({ size }) => {
     switch (size) {
       case 'sm':
