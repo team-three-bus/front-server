@@ -12,6 +12,7 @@ const Container = () => {
     JSON.parse(localStorage.getItem('searchList')) || []
   );
   const onSearch = (value) => {
+    if (!value) return;
     setSearchList((prevSearchList) => {
       let searchList = prevSearchList;
 
