@@ -34,6 +34,15 @@ export const Input = styled.input`
   color: #868e96;
   width: 100%;
 
+  -webkit-appearance: none;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+
   ${({ sort }) => {
     switch (sort) {
       case 'default':
