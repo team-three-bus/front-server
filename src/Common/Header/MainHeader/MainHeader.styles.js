@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import LogoImg from './img/logo.svg';
-import LoginImg from './img/icon-login.svg';
+import LogoImg from './img/logo.png';
+import LoginImg from './img/icon-login.png';
 
 import { Search } from 'Common/Search/Search.styles';
 
@@ -25,13 +25,15 @@ export const LogoBtn = styled.a`
   height: 48px;
   margin-right: 20px;
   background: url(${LogoImg}) center center no-repeat;
+  background-size: 100%;
 `;
 
 export const LoginBtn = styled(Link)`
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   margin-left: 8px;
   border: none;
   background: url(${LoginImg}) center center no-repeat;
+  background-size: 100%;
 `;

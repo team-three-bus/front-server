@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './Product.styles';
-import NoImg from './img/no-img.svg';
+import NoImg from './img/noImg.png';
 import { set } from 'lodash';
 
 const Product = ({

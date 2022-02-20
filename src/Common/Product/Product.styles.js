@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import IconPlus from './img/iconPlus.svg';
 import IconPlusOneOne from './img/iconPlusOneOne.png';
 import IconPlusTwoOne from './img/iconPlusTwoOne.png';
-import IconLike from './img/iconLike.svg';
-import IconLikeOn from './img/iconLikeOn.svg';
-import ImgSaleEnd from './img/sale-end.svg';
+import IconLike from './img/iconLike.png';
+import IconLikeOn from './img/iconLikeOn.png';
+import ImgSaleEnd from './img/saleEnd.png';
 
 export const Product = styled.div`
   display: inline-block;
@@ -118,10 +118,14 @@ export const Like = styled.div`
   bottom: 0;
   right: 0;
   background: url(${IconLike}) center no-repeat;
+  background-size: 100%;
 
   ${({ on }) => {
     if (on) {
-      return `background: url(${IconLikeOn}) center no-repeat;`;
+      return `
+        background: url(${IconLikeOn}) center no-repeat;
+        background-size: 100%;
+      `;
     }
   }}
 `;
@@ -236,4 +240,5 @@ export const SaleEnd = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.18) url(${ImgSaleEnd}) center center no-repeat;
+  background-size: 100%;
 `;

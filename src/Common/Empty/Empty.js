@@ -2,8 +2,8 @@ import React from 'react';
 
 import * as S from './Empty.styles';
 
-import Img from './img/icon-empty.svg';
-import ImgQuestion from './img/icon-empty-question.svg';
+import Img from './img/icon-empty.png';
+import ImgQuestion from './img/icon-empty-question.png';
 
 const Empty = ({ text = '최근 검색어가 없습니다', iconType }) => {
   return (
