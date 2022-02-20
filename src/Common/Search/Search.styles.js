@@ -75,9 +75,11 @@ export const BtnDelete = styled.button`
   right: 12px;
   width: 18px;
   height: 18px;
+  margin: 0;
+  padding: 0;
   margin-top: -9px;
   border: none;
-  border-radius: 50%;
+  border-radius: 9px;
   background: #c4c4c4 url(${IconDelete}) center center no-repeat;
   cursor: pointer;
 `;
