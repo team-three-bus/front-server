@@ -122,6 +122,7 @@ export const Info = styled.div`
     switch (size) {
       case 'lg':
         return `
+          width: -webkit-calc(100% - 210px);
           margin-top: 16px;
           flex: 1; 
           padding-left: 16px;
