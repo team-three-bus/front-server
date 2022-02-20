@@ -80,7 +80,11 @@ export const Icon = styled.span`
       case 'recommend':
         return `background: url(${IconRecommend}) center center no-repeat;`;
       case 'popular':
-        return `background: url(${IconPopular}) center center no-repeat;`;
+        return `
+          position: relative;
+          top: 6px;
+          background: url(${IconPopular}) center center no-repeat;
+        `;
     }
   }}
 `;
