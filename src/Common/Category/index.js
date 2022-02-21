@@ -17,19 +17,25 @@ const CategoryItem = styled(Link)`
   text-decoration: none;
 `;
 
+const CategoryItemImgWrap = styled.div`
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+`;
+
 const CategoryItemImg = styled.img`
   box-sizing: border-box;
+  display: block;
   width: 100%;
   height: 0;
   padding-bottom: 100%;
   background: url(${(props) => props.img}) no-repeat center/cover;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border: 1px solid #eeeeee;
   border-radius: 24px;
 `;
 
 const CategoryItemName = styled.p`
-  margin: 0;
+  margin: 1px 0 0;
   font-size: 12px;
   text-align: center;
   font-weight: bold;
@@ -47,7 +53,9 @@ const Category = () => {
     <CategoryBox>
       {CATEGORY_LIST.map((item, i) => (
         <CategoryItem key={i} to={item.link}>
-          <CategoryItemImg img={item.img} />
+          <CategoryItemImgWrap>
+            <CategoryItemImg img={item.img} />
+          </CategoryItemImgWrap>
           <CategoryItemName>{renameCategory(item.name)}</CategoryItemName>
         </CategoryItem>
       ))}
