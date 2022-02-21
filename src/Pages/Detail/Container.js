@@ -76,7 +76,6 @@ const Container = () => {
     fetch(`http://133.186.208.125:3000/products?id=${id}`, options)
       .then((res) => res.json())
       .then(({ product }) => {
-        console.log(product);
         if (!product) return;
         setProduct({
           ...product,

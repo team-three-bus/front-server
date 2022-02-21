@@ -6,7 +6,6 @@ function Container() {
   const navigate = useNavigate();
 
   const onSearchClick = () => {
-    console.log('onSearchClick');
     navigate({
       pathname: '/search',
     });
