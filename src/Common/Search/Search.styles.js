@@ -80,7 +80,7 @@ export const BtnDelete = styled.button`
   margin-top: -9px;
   border: none;
   border-radius: 9px;
-  background: #c4c4c4 url(${IconDelete}) center center no-repeat;
+  background: #868e96 url(${IconDelete}) center center no-repeat;
   cursor: pointer;
 `;
 
