@@ -76,7 +76,7 @@ const View = ({
       </PickList>
       <ItemList>
         {popularItems.length > 0 ?
-          popularItems.map(({ imageUrl, name, brand, eventType, price, isLike, id}, i) => (
+          popularItems.map(({ imageUrl, name, brand, eventType, price, isLike, id, isEvent }, i) => (
             <Item key={i}>
               <Product
                 id={id}
@@ -86,6 +86,7 @@ const View = ({
                 plus={eventType}
                 price={price}
                 like={isLike}
+                saleend={!isEvent}
                 changeLike={changeLike}
                 gotoDetail={() => gotoDetail(id)}
               />
