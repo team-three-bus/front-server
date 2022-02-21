@@ -1,11 +1,11 @@
-import item01 from "./img/item01.svg";
-import item02 from "./img/item02.svg";
-import item03 from "./img/item03.svg";
-import item04 from "./img/item04.svg";
-import item05 from "./img/item05.svg";
-import item06 from "./img/item06.svg";
-import item07 from "./img/item07.svg";
-import item08 from "./img/item08.svg";
+import item01 from "./img/item01.png";
+import item02 from "./img/item02.png";
+import item03 from "./img/item03.png";
+import item04 from "./img/item04.png";
+import item05 from "./img/item05.png";
+import item06 from "./img/item06.png";
+import item07 from "./img/item07.png";
+import item08 from "./img/item08.png";
 
 export const CATEGORY_LIST = [
   {
