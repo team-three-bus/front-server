@@ -53,7 +53,13 @@ function Container() {
     } else {
       await request.postLikeItem({id});
     }
-    getPopularItems();
+    
+    const changeItem = popularItems.filter((item) => {
+      if (item.id === id) item.isLike = !isLike;
+      return item;
+    })
+    
+    setPopularItems(changeItem);
   };
   
   const gotoDetail = (id) => {
