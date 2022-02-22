@@ -15,6 +15,7 @@ export const Pick = styled.button`
   text-align: center;
   color: #212529;
   cursor: pointer;
+  outline: none;
 
   ${({ on }) => {
     switch (on) {
