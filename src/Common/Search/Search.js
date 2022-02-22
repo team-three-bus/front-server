@@ -3,7 +3,7 @@ import React from 'react';
 import * as S from './Search.styles';
 
 const Search = ({
-  placeholder = `상품을 검색보세요`,
+  placeholder = `상품을 검색해보세요`,
   value = '',
   sort = 'default',
   type = 'search',
