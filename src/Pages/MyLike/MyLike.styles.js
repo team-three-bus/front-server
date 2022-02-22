@@ -20,9 +20,21 @@ export const EmptyBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 300px;
-  height: -webkit-calc(100vh - 295px);
   padding-bottom: 88px;
+
+  ${({ cta }) => {
+    switch (cta) {
+      case true:
+        return `
+          min-height: 300px;
+          height: -webkit-calc(100vh - 295px);
+        `;
+      default:
+        return `
+          min-height: 240px;
+        `;
+    }
+  }}
 
   ${Empty} {
     height: auto;
