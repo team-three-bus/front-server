@@ -112,9 +112,10 @@ const View = ({
           />
         </>
       ) : (
-        <>
+        <S.EmptyBox>
           <Empty
             iconType={'question'}
+            height={'100%'}
             text={
               <>
                 가입/로그인 하시면 상품을 찜할 수 있어요! <br />
@@ -125,7 +126,7 @@ const View = ({
           <BtnArea sidespacing={true}>
             <Btn onClick={gotoLogin}>가입/로그인하기</Btn>
           </BtnArea>
-        </>
+        </S.EmptyBox>
       )}
     </Layout>
   );
