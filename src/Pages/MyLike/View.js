@@ -43,20 +43,20 @@ const View = ({
       />
       <S.FilterBox>
         <Choice
-          isChoosed={filter.brand.length > 0}
-          onClick={brandClick}
-          deleteChoice={brandDeleteChoice}
-          disabled={!isLogin}
-        >
-          편의점 {filter.brand.length > 0 && filter.brand.length}
-        </Choice>
-        <Choice
           isChoosed={filter.category.length > 0}
           onClick={categoryClick}
           deleteChoice={categoryDeleteChoice}
           disabled={!isLogin}
         >
           카테고리 {filter.category.length > 0 && filter.category.length}
+        </Choice>
+        <Choice
+          isChoosed={filter.brand.length > 0}
+          onClick={brandClick}
+          deleteChoice={brandDeleteChoice}
+          disabled={!isLogin}
+        >
+          편의점 {filter.brand.length > 0 && filter.brand.length}
         </Choice>
       </S.FilterBox>
 
