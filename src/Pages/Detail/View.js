@@ -21,6 +21,7 @@ const View = ({ id, product, getPerPrice, changeLike }) => {
         plus={product.event}
         store={product.brand}
         changeLike={changeLike}
+        saleend={!product.isEvent}
       />
     </Layout>
   );
