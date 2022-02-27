@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import qs from 'query-string';
 
+import { URL } from 'Common/Util/Constant';
 import View from './View';
 
 const Container = () => {
@@ -30,7 +31,7 @@ const Container = () => {
         pathname: '/login',
       });
     } else if (isLike === false || isLike === undefined) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'POST',
         headers: {
           authorization: token,
@@ -45,7 +46,7 @@ const Container = () => {
         });
       });
     } else if (isLike === true) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'DELETE',
         headers: {
           authorization: token,
@@ -73,7 +74,7 @@ const Container = () => {
       options.headers.authorization = token;
     }
 
-    fetch(`http://133.186.208.125:3000/products?id=${id}`, options)
+    fetch(`${URL.API_SERVER}products?id=${id}`, options)
       .then((res) => res.json())
       .then(({ product }) => {
         if (!product) return;

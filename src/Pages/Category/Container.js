@@ -4,6 +4,7 @@ import qs from 'query-string';
 
 import View from './View';
 
+import { URL } from 'Common/Util/Constant';
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
 const getQueryString = (condition) => {
@@ -210,9 +211,7 @@ const Container = () => {
       _condition.currentPage = 1;
 
       fetch(
-        `http://133.186.208.125:3000/products/category?${getQueryString(
-          _condition
-        )}`,
+        `${URL.API_SERVER}products/category?${getQueryString(_condition)}`,
         option
       )
         .then((res) => res.json())
@@ -231,9 +230,7 @@ const Container = () => {
     }
 
     fetch(
-      `http://133.186.208.125:3000/products/category?${getQueryString(
-        _condition
-      )}`,
+      `${URL.API_SERVER}products/category?${getQueryString(_condition)}`,
       option
     )
       .then((res) => res.json())
@@ -300,7 +297,7 @@ const Container = () => {
         pathname: '/login',
       });
     } else if (isLike === false || isLike === undefined) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'POST',
         headers: {
           authorization: token,
@@ -318,7 +315,7 @@ const Container = () => {
         });
       });
     } else if (isLike === true) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'DELETE',
         headers: {
           authorization: token,

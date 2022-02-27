@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import qs from 'query-string';
 
+import { URL } from 'Common/Util/Constant';
 import View from './View';
 
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
@@ -89,7 +90,7 @@ const Container = () => {
     const querystring = qs.stringify(_condition, { arrayFormat: 'comma' });
     navigate(`?${querystring}`, { replace: true });
 
-    fetch(`http://133.186.208.125:3000/like?${getQueryString(_condition)}`, {
+    fetch(`${URL.API_SERVER}like?${getQueryString(_condition)}`, {
       method: 'GET',
       headers: {
         authorization: token.current,
@@ -126,7 +127,7 @@ const Container = () => {
         pathname: '/login',
       });
     } else if (isLike === false) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'POST',
         headers: {
           authorization: token,
@@ -144,7 +145,7 @@ const Container = () => {
         });
       });
     } else if (isLike === true) {
-      fetch('http://133.186.208.125:3000/products/like', {
+      fetch(`${URL.API_SERVER}products/like`, {
         method: 'DELETE',
         headers: {
           authorization: token,
