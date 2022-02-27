@@ -96,6 +96,7 @@ const View = ({
                         like={product.isLike}
                         changeLike={changeLike}
                         gotoDetail={gotoDetail}
+                        saleend={!product.isEvent}
                       />
                     </Item>
                   );

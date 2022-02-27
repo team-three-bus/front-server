@@ -240,5 +240,5 @@ export const SaleEnd = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.18) url(${ImgSaleEnd}) center center no-repeat;
-  background-size: 100%;
+  background-size: 90%;
 `;
