@@ -12,14 +12,20 @@ const MainHeader = ({
   onSearchClick = () => {},
 }) => {
   const [isLogin, setIsLogin] = useState(false);
-  
+
   useEffect(() => {
-    setIsLogin(localStorage.getItem("access_token"));
-  }, [])
-  
+    setIsLogin(localStorage.getItem('access_token'));
+  }, []);
+
   return (
     <S.MainHeader>
-      <S.LogoBtn />
+      <S.LogoBtn
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo(0, 0);
+          window.location.reload();
+        }}
+      />
       {search && (
         <Search
           value={searchValue}
@@ -28,7 +34,7 @@ const MainHeader = ({
           onClick={onSearchClick}
         />
       )}
-      <S.LoginBtn to={isLogin ? "/myPage" : "/login"} />
+      <S.LoginBtn to={isLogin ? '/myPage' : '/login'} />
     </S.MainHeader>
   );
 };

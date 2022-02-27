@@ -66,8 +66,8 @@ const View = ({
                 ? '높은 가격순'
                 : filter.order[0] === 'popularity'
                 ? '인기순'
-                : filter.order[0] === 'view'
-                ? '조회순'
+                : filter.order[0] === 'like'
+                ? '찜순'
                 : null}
             </Choice>
             <Choice onClick={filterClick} isChoosed='filter'>

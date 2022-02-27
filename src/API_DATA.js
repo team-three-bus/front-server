@@ -5,7 +5,7 @@ export const DATA_FORWARD = {
     bread: '빵/과자류',
     icecream: '아이스크림',
     supplies: '생활용품',
-    milkcoffe: '유제품/커피 음료',
+    milkcoffee: '유제품/커피 음료',
     soda: '탄산음료',
     drink: '생수/과채/기타음료',
     etc: '기타',
@@ -24,13 +24,13 @@ export const DATA_FORWARD = {
     lowPrice: '낮은 가격',
     highPrice: '높은 가격순',
     popularity: '인기순',
-    view: '조회순',
+    like: '찜순',
   },
   sort: {
     firstattr: '연관순',
     priceAsc: '낮은 가격순',
     priceDesc: '높은 가격순',
-    likecnt: '인기순',
+    viewcnt: '인기순',
   },
 };
 
@@ -41,7 +41,7 @@ export const DATA_REVERSE = {
     '빵/과자류': 'bread',
     아이스크림: 'icecream',
     생활용품: 'supplies',
-    '유제품/커피 음료': 'milkcoffe',
+    '유제품/커피 음료': 'milkcoffee',
     탄산음료: 'soda',
     '생수/과채/기타음료': 'drink',
     기타: 'etc',
@@ -60,12 +60,12 @@ export const DATA_REVERSE = {
     '낮은 가격': 'lowPrice',
     '높은 가격순': 'highPrice',
     인기순: 'popularity',
-    조회순: 'view',
+    찜순: 'like',
   },
   sort: {
     연관순: 'firstattr',
     '낮은 가격순': 'priceAsc',
     '높은 가격순': 'priceDesc',
-    인기순: 'likecnt',
+    인기순: 'viewcnt',
   },
 };

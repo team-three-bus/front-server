@@ -51,8 +51,8 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     },
     {
       name: '인기순',
-      selected: getFilterBool({ type: 'sort', id: 'likecnt' }),
-      id: 'likecnt',
+      selected: getFilterBool({ type: 'sort', id: 'viewcnt' }),
+      id: 'viewcnt',
     },
   ]);
 
@@ -176,22 +176,6 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     <BottomSheet open={open} onDismiss={onDismiss}>
       <S.Container>
         <S.Content>
-          {filter.sort && (
-            <PickList title='정렬'>
-              {sort.map((item, i) => (
-                <Pick
-                  key={i}
-                  on={item.selected}
-                  onClick={() => {
-                    handlePick({ type: 'sort', id: item.id });
-                  }}
-                >
-                  {item.name}
-                </Pick>
-              ))}
-            </PickList>
-          )}
-
           {filter.category && (
             <PickList title='카테고리'>
               {category.map((item, i) => (
@@ -200,6 +184,22 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
                   on={item.selected}
                   onClick={() => {
                     handlePick({ type: 'category', id: item.id });
+                  }}
+                >
+                  {item.name}
+                </Pick>
+              ))}
+            </PickList>
+          )}
+
+          {filter.sort && (
+            <PickList title='정렬'>
+              {sort.map((item, i) => (
+                <Pick
+                  key={i}
+                  on={item.selected}
+                  onClick={() => {
+                    handlePick({ type: 'sort', id: item.id });
                   }}
                 >
                   {item.name}

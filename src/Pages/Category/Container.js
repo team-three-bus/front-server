@@ -82,7 +82,7 @@ const Container = () => {
         locationCategory.indexOf(DATA_FORWARD.category['icecream']) > -1,
     },
     {
-      id: 'milkcoffe',
+      id: 'milkcoffee',
       name: '유제품/커피 음료',
       selected:
         locationCategory.indexOf(DATA_FORWARD.category['milkcoffee']) > -1,
@@ -107,7 +107,7 @@ const Container = () => {
   const [brand, setBrand] = React.useState([
     {
       id: 'gs',
-      name: 'GS',
+      name: 'GS25',
       selected: locationBrand.indexOf(DATA_FORWARD.brand['gs']) > -1,
     },
     {

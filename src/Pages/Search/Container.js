@@ -45,6 +45,71 @@ const Container = () => {
     });
   };
 
+  const [feature, setFeature] = React.useState([]);
+  const getRandomFeature = () => {
+    const attr = [
+      '매운맛',
+      '단맛',
+      '짠맛',
+      '다이어트용',
+      '숙취해소용',
+      '건강기능식품/의약외품',
+      '야식/안주용',
+      '여성용품',
+      '방향제',
+      '에너지용',
+      '애견용',
+      '죽/국',
+      '밥류',
+      '면류',
+      '즉석조리식품',
+      '젤리/캔디류',
+      '햄/소세지',
+      '케익/초콜릿류',
+      '요거트류',
+      '김치/조림 등 반찬류',
+      '차량용품',
+      '세면용품',
+      '헤어용품',
+    ];
+    const board = [
+      '아이스크림',
+      '탄산',
+      '우유',
+      '커피',
+      '컵밥',
+      '라면',
+      '닭가슴살',
+      '주스',
+      '에이드',
+      '스파클링',
+      '라떼',
+    ];
+
+    const candidateFeature = attr.concat(board);
+    const selectIndex = (totalIndex, selectingNumber) => {
+      let randomIndexArray = [];
+      for (let i = 0; i < selectingNumber; i++) {
+        //check if there is any duplicate index
+        const randomNum = Math.floor(Math.random() * totalIndex);
+        if (randomIndexArray.indexOf(randomNum) === -1) {
+          randomIndexArray.push(randomNum);
+        } else {
+          //if the randomNum is already in the array retry
+          i--;
+        }
+      }
+      return randomIndexArray;
+    };
+    const randomIndex = selectIndex(candidateFeature.length, 6);
+    const selectedFeature = randomIndex.map((item) => candidateFeature[item]);
+    setFeature(selectedFeature);
+  };
+
+  React.useEffect(() => {
+    getRandomFeature();
+  }, []);
+
   return (
     <View
       searchValue={searchValue}
@@ -53,6 +118,7 @@ const Container = () => {
       setSearchList={customSetSearchList}
       onSearch={onSearch}
       gotoSearchResult={gotoSearchResult}
+      feature={feature}
     />
   );
 };

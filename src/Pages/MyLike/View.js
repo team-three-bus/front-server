@@ -43,20 +43,20 @@ const View = ({
       />
       <S.FilterBox>
         <Choice
-          isChoosed={filter.brand.length > 0}
-          onClick={brandClick}
-          deleteChoice={brandDeleteChoice}
-          disabled={!isLogin}
-        >
-          편의점 {filter.brand.length > 0 && filter.brand.length}
-        </Choice>
-        <Choice
           isChoosed={filter.category.length > 0}
           onClick={categoryClick}
           deleteChoice={categoryDeleteChoice}
           disabled={!isLogin}
         >
           카테고리 {filter.category.length > 0 && filter.category.length}
+        </Choice>
+        <Choice
+          isChoosed={filter.brand.length > 0}
+          onClick={brandClick}
+          deleteChoice={brandDeleteChoice}
+          disabled={!isLogin}
+        >
+          편의점 {filter.brand.length > 0 && filter.brand.length}
         </Choice>
       </S.FilterBox>
 
@@ -76,33 +76,38 @@ const View = ({
               />
             }
           />
-          <ItemList>
-            {products
-              .filter((products) => {
-                if (!isEvent) return true;
-                return products.isEvent === true;
-              })
-              .map((product, i) => {
-                return (
-                  <Item key={i}>
-                    <Product
-                      id={product.id}
-                      img={product.imageUrl}
-                      title={product.name}
-                      store={DATA_REVERSE.brand[product.brand]}
-                      plus={DATA_REVERSE.event[product.lastEventType]}
-                      price={product.price}
-                      like={product.isLike}
-                      changeLike={changeLike}
-                      gotoDetail={gotoDetail}
-                    />
-                  </Item>
-                );
-              })}
-          </ItemList>
+          {products.length > 0 && (
+            <ItemList>
+              {products
+                .filter((products) => {
+                  if (!isEvent) return true;
+                  return products.isEvent === true;
+                })
+                .map((product, i) => {
+                  return (
+                    <Item key={i}>
+                      <Product
+                        id={product.id}
+                        img={product.imageUrl}
+                        title={product.name}
+                        store={DATA_REVERSE.brand[product.brand]}
+                        plus={DATA_REVERSE.event[product.lastEventType]}
+                        price={product.price}
+                        like={product.isLike}
+                        changeLike={changeLike}
+                        gotoDetail={gotoDetail}
+                        saleend={!product.isEvent}
+                      />
+                    </Item>
+                  );
+                })}
+            </ItemList>
+          )}
 
-          {!isInit && !products.length > 0 && (
-            <Empty text={`마음에 드는 상품을 찜해보세요!`} />
+          {isInit && !products.length > 0 && (
+            <S.EmptyBox>
+              <Empty text={`마음에 드는 상품을 찜해보세요!`} full={false} />
+            </S.EmptyBox>
           )}
           <FilterPopup
             open={filterOpen}
@@ -112,9 +117,10 @@ const View = ({
           />
         </>
       ) : (
-        <>
+        <S.EmptyBox cta={true}>
           <Empty
             iconType={'question'}
+            height={'100%'}
             text={
               <>
                 가입/로그인 하시면 상품을 찜할 수 있어요! <br />
@@ -125,7 +131,7 @@ const View = ({
           <BtnArea sidespacing={true}>
             <Btn onClick={gotoLogin}>가입/로그인하기</Btn>
           </BtnArea>
-        </>
+        </S.EmptyBox>
       )}
     </Layout>
   );
