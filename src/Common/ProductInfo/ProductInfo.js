@@ -13,6 +13,7 @@ const ProductInfo = ({
   plus,
   like,
   changeLike,
+  saleend,
 }) => {
   return (
     <S.Container>
@@ -27,6 +28,7 @@ const ProductInfo = ({
         plus={plus}
         like={like}
         changeLike={changeLike}
+        saleend={saleend}
       />
     </S.Container>
   );
