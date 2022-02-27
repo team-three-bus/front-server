@@ -38,7 +38,7 @@ export const PickList = styled.div`
 
 export const Title = styled.h2`
   margin: 0;
-  font-family: NanumSquare;
+  font-family: NanumSquareRound;
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;

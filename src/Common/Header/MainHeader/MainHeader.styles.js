@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import LogoImg from './img/logo.png';
+import LogoImg from './img/logo.svg';
 import LoginImg from './img/icon-login.png';
 
 import { Search } from 'Common/Search/Search.styles';
@@ -21,9 +21,9 @@ export const MainHeader = styled.header`
 
 export const LogoBtn = styled.a`
   display: inline-block;
-  width: 48px;
-  height: 48px;
-  margin-right: 20px;
+  width: 60px;
+  height: 40px;
+  margin-right: 8px;
   background: url(${LogoImg}) center center no-repeat;
   background-size: 100%;
 `;

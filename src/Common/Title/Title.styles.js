@@ -28,6 +28,11 @@ export const Wrap = styled.div`
         return `padding-top: 24px;`;
     }
   }}
+
+  @media only screen and (max-width: 330px) {
+    flex-direction: column;
+    gap: 8px 0;
+  }
 `;
 export const TitleBox = styled.div``;
 
@@ -105,4 +110,8 @@ export const Right = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 10px 8px;
+
+  @media only screen and (max-width: 330px) {
+    justify-content: flex-start;
+  }
 `;
