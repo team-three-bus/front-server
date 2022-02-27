@@ -82,7 +82,7 @@ const Container = () => {
         locationCategory.indexOf(DATA_FORWARD.category['icecream']) > -1,
     },
     {
-      id: 'milkcoffe',
+      id: 'milkcoffee',
       name: '유제품/커피 음료',
       selected:
         locationCategory.indexOf(DATA_FORWARD.category['milkcoffee']) > -1,
