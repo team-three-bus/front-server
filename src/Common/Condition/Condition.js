@@ -15,14 +15,36 @@ const Condition = ({ title = '', condition = {}, setCondition }) => {
     centerMode: false,
     variableWidth: true,
   };
+  const $contents = React.useRef();
+  const [$content, set$Content] = React.useState([]);
+
+  React.useEffect(() => {
+    set$Content(($content) =>
+      Array(condition.length)
+        .fill()
+        .map((_, i) => $content[i] || React.createRef())
+    );
+  }, []);
+
+  React.useEffect(() => {
+    const selectedIndex = condition.findIndex((item) => item.selected);
+    const $selected = $content[selectedIndex];
+    if (!$selected) return;
+    const { x: scrollX } = $selected.current.getBoundingClientRect();
+
+    if ($contents && selectedIndex > -1)
+      $contents.current.scrollTo(scrollX - 20, 0);
+  }, [$content]);
 
   return (
     <S.Container>
-      <S.Contents title={title}>
-        {condition.map((item) => {
+      <S.Contents title={title} ref={$contents}>
+        {condition.map((item, index) => {
           return (
             <S.Content
               key={item.id}
+              id={item.id}
+              ref={$content[index]}
               on={item.selected}
               onClick={() => {
                 const newCondition = JSON.parse(JSON.stringify(condition));
