@@ -107,7 +107,7 @@ const Container = () => {
   const [brand, setBrand] = React.useState([
     {
       id: 'gs',
-      name: 'GS',
+      name: 'GS25',
       selected: locationBrand.indexOf(DATA_FORWARD.brand['gs']) > -1,
     },
     {

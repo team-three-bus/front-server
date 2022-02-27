@@ -78,7 +78,7 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
   ]);
   const [brand, setBrand] = React.useState([
     {
-      name: 'GS',
+      name: 'GS25',
       selected: getFilterBool({ type: 'brand', id: 'gs' }),
       id: 'gs',
     },
