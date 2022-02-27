@@ -51,8 +51,8 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     },
     {
       name: '인기순',
-      selected: getFilterBool({ type: 'sort', id: 'likecnt' }),
-      id: 'likecnt',
+      selected: getFilterBool({ type: 'sort', id: 'viewcnt' }),
+      id: 'viewcnt',
     },
   ]);
 

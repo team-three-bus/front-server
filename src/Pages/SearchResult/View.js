@@ -95,7 +95,7 @@ const View = ({
               ? '낮은 가격순'
               : filter.sort[0] === 'priceDesc'
               ? '높은 가격순'
-              : filter.sort[0] === 'likecnt'
+              : filter.sort[0] === 'viewcnt'
               ? '인기순'
               : null}
           </Choice>

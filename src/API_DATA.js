@@ -30,7 +30,7 @@ export const DATA_FORWARD = {
     firstattr: '연관순',
     priceAsc: '낮은 가격순',
     priceDesc: '높은 가격순',
-    likecnt: '인기순',
+    viewcnt: '인기순',
   },
 };
 
@@ -66,6 +66,6 @@ export const DATA_REVERSE = {
     연관순: 'firstattr',
     '낮은 가격순': 'priceAsc',
     '높은 가격순': 'priceDesc',
-    인기순: 'likecnt',
+    인기순: 'viewcnt',
   },
 };
