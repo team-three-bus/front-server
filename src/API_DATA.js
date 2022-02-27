@@ -24,7 +24,7 @@ export const DATA_FORWARD = {
     lowPrice: '낮은 가격',
     highPrice: '높은 가격순',
     popularity: '인기순',
-    view: '조회순',
+    like: '찜순',
   },
   sort: {
     firstattr: '연관순',
@@ -60,7 +60,7 @@ export const DATA_REVERSE = {
     '낮은 가격': 'lowPrice',
     '높은 가격순': 'highPrice',
     인기순: 'popularity',
-    조회순: 'view',
+    찜순: 'like',
   },
   sort: {
     연관순: 'firstattr',

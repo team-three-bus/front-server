@@ -50,9 +50,9 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
       id: 'popularity',
     },
     {
-      name: '조회순',
-      selected: getFilterBool({ type: 'order', id: 'view' }),
-      id: 'view',
+      name: '찜순',
+      selected: getFilterBool({ type: 'order', id: 'like' }),
+      id: 'like',
     },
   ]);
   const [event, setEvent] = React.useState([
