@@ -19,7 +19,7 @@ export const MainHeader = styled.header`
   }
 `;
 
-export const LogoBtn = styled(Link)`
+export const LogoBtn = styled.a`
   display: inline-block;
   width: 48px;
   height: 48px;

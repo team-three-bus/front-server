@@ -19,7 +19,13 @@ const MainHeader = ({
 
   return (
     <S.MainHeader>
-      <S.LogoBtn to='/' />
+      <S.LogoBtn
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo(0, 0);
+          window.location.reload();
+        }}
+      />
       {search && (
         <Search
           value={searchValue}
