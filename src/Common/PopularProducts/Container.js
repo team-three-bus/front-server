@@ -5,7 +5,7 @@ import View from './View';
 
 function Container() {
   const navigate = useNavigate();
-  const maxPopularItemsPageNum = 5;
+  const maxPopularItemsPageNum = 3;
   const [popularItems, setPopularItems] = useState([]);
   const [popularItemsPageNum, setPopularItemsPageNum] = useState(1);
   const [popularCategory, setPopularCategory] = useState(null);
