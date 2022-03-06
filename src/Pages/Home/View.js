@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Layout } from 'Common/Layout';
 import Category from 'Common/Category';
-// import RecommendProducts from 'Common/RecommendProducts';
+import RecommendProducts from 'Common/RecommendProducts';
 import PopularProducts from 'Common/PopularProducts';
 
 const Home = styled.div`
@@ -22,7 +22,7 @@ function View({
         bottomnav={true} 
       />
       <Category />
-      {/* <RecommendProducts /> */}
+      <RecommendProducts />
       <PopularProducts />
     </Home>
   );

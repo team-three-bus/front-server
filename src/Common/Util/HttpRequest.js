@@ -36,3 +36,8 @@ export const postLikeItem = param => {
 export const deleteLikeItem = param => {
   return axiosRequest('delete', `products/like`, null, { "productId" : param.id })
 }
+
+export const getRecommendItems = param => {
+  const { userId, size } = param;
+  return axiosRequest('get', `recommend?userId=${userId}&size=${size}`)
+}
