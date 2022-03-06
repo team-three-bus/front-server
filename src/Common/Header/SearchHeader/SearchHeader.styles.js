@@ -9,7 +9,7 @@ export const SearchHeader = styled.header`
   display: flex;
   height: 64px;
   box-sizing: border-box;
-  padding-left: 68px;
+  padding-left: 54px;
   padding-right: 13px;
   background: #fff;
   justify-content: space-between;
@@ -31,10 +31,10 @@ export const SearchHeader = styled.header`
 export const BtnBack = styled.button`
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 6px;
   transform: translateY(-50%);
-  height: 48px;
-  width: 48px;
+  height: 40px;
+  width: 40px;
   border: none;
   vertical-align: middle;
   background: url(${IconBack}) center center no-repeat;

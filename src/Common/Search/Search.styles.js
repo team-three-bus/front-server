@@ -86,8 +86,8 @@ export const BtnDelete = styled.button`
 
 export const BtnSearch = styled.button`
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: none;
   background: url(${IconSearch}) center center no-repeat;
   vertical-align: middle;
