@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { OAUTH } from 'Common/Util/Oauth';
+import { URL as API_URL } from 'Common/Util/Constant';
 
 const Oauth = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Oauth = () => {
     })
       .then((res) => res.json())
       .then(({ access_token }) => {
-        fetch('http://133.186.208.125:3000/users', {
+        fetch(`${API_URL.API_SERVER}users`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
