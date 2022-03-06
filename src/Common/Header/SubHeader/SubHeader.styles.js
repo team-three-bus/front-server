@@ -8,8 +8,8 @@ export const SubHeader = styled.div`
   position: relative;
   height: 64px;
   box-sizing: border-box;
-  padding-left: 68px;
-  padding-right: 68px;
+  padding-left: 52px;
+  padding-right: 52px;
   background: #fff;
 `;
 export const Title = styled.h1`
@@ -30,10 +30,10 @@ export const Title = styled.h1`
 export const BtnBack = styled.button`
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 6px;
   transform: translateY(-50%);
-  height: 68px;
-  width: 68px;
+  height: 40px;
+  width: 40px;
   border: none;
   background: url(${IconBack}) center center no-repeat;
 `;
