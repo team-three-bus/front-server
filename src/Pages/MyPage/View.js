@@ -84,7 +84,10 @@ const View = ({ nickname, onClickLogout }) => {
         </MyPageTop>
         <MyPageBottom>
           {/* TODO : 맞는 링크로 이동 처리 */}
-          {/* {<MyPageButton to="/"><img src={settingIcon}/>정보 설정</MyPageButton>} */}
+          <MyPageButton to='/mysetting'>
+            <img src={settingIcon} />
+            정보 설정
+          </MyPageButton>
           <MyPageButton to='/mylike'>
             <img src={heartIcon} />
             완.내.스!
