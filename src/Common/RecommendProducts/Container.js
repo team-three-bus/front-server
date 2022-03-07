@@ -4,9 +4,8 @@ import View from "./View";
 
 function Container() {
   const maxRecommendItem = 10;
+  const nickname = localStorage.getItem('nickname');
   const [recommendItems, setRecommendItems] = useState([]);
-  // TODO : 닉네임 처리
-  const [username, setUsername] = useState();
 
   useEffect(() => {
     const items = request.getRecommendItems({ 
@@ -18,7 +17,7 @@ function Container() {
 
   return (
     <View 
-      username={username}
+      nickname={nickname}
       recommendItems={recommendItems}
     />
   )

@@ -32,7 +32,7 @@ const RecommendItemList = styled.div`
 
 const View = ({
   recommendItems,
-  username
+  nickname
 }) => {
   return (
     <RecommendProductBox>
@@ -40,8 +40,8 @@ const View = ({
         sort="main"
         icon="recommend"
         subTitle={
-          username ? 
-            `${username}님을 위해 편하가 준비한 추천 상품!` : 
+          nickname ? 
+            `${nickname}님을 위해 편하가 준비한 추천 상품!` : 
             "가입/로그인 하시면 더 정확한 추천을 받으실 수 있어요!"
         }
         title="추천상품"
