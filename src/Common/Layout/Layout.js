@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { MainHeader, SubHeader, SearchHeader } from 'Common/Header';
 import BottomNav from 'Common/BottomNav';
+import Footer from 'Common/Footer';
 import * as S from './Layout.styles';
 
 const Layout = ({
@@ -78,6 +79,7 @@ const Layout = ({
       )}
 
       {children && <S.Wrap>{children}</S.Wrap>}
+      <Footer />
       {bottomnav && <BottomNav isFixed={isFixedBottom} goTo={goTo} />}
     </S.Layout>
   );
