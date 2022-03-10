@@ -8,6 +8,7 @@ import Search from 'Pages/Search';
 import SearchResult from 'Pages/SearchResult';
 
 import Login from 'Pages/Login';
+import { RegisterTerm } from 'Pages/Register';
 import Oauth from 'Pages/Oauth';
 import MyPage from 'Pages/MyPage';
 import Detail from 'Pages/Detail';
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/search' element={<Search />} />
           <Route path='/searchresult' element={<SearchResult />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<RegisterTerm />} />
           <Route path='/oauth' element={<Oauth />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/detail/:id' element={<Detail />} />
