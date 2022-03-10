@@ -2,7 +2,15 @@ import React from 'react';
 
 import * as S from './Input.styles';
 
-const Input = ({ type = `text`, name, id, value, placeholder, onChange }) => {
+const Input = ({
+  type = `text`,
+  name,
+  id,
+  value,
+  maxLength,
+  placeholder,
+  onChange,
+}) => {
   const deleteValue = React.useCallback(() => {
     onChange('');
   }, [value]);
@@ -15,6 +23,7 @@ const Input = ({ type = `text`, name, id, value, placeholder, onChange }) => {
         id={id}
         value={value}
         placeholder={placeholder}
+        {...(maxLength && { maxLength })}
         onChange={(e) => {
           onChange(e.target.value);
         }}
