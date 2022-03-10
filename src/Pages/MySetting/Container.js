@@ -1,9 +1,62 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import View from './View';
 
+import { URL } from 'Common/Util/Constant';
+
 const Container = () => {
-  return <View />;
+  const navigate = useNavigate();
+  const [nickname, setNickname] = React.useState('');
+  const [originNickname, setOriginNickname] = React.useState('');
+
+  React.useEffect(() => {
+    const access_token = localStorage.getItem('access_token');
+
+    if (!access_token) {
+      navigate('/');
+    }
+
+    fetch(`${URL.API_SERVER}users/mypage`, {
+      method: 'GET',
+      headers: {
+        authorization: access_token,
+      },
+    })
+      .then((res) => res.json())
+      .then(({ nickname }) => {
+        setOriginNickname(nickname);
+      });
+  }, []);
+
+  const changeNickname = (nickname) => {
+    const token = localStorage.getItem('access_token');
+
+    fetch(`${URL.API_SERVER}users/myname`, {
+      method: 'PUT',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nickname: nickname,
+      }),
+    }).then((res) => {
+      if (res.status !== 200) {
+        return alert('error');
+      }
+      navigate('/');
+    });
+  };
+
+  return (
+    <View
+      nickname={nickname}
+      setNickname={setNickname}
+      originNickname={originNickname}
+      changeNickname={changeNickname}
+    />
+  );
 };
 
 export default Container;
