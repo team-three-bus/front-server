@@ -49,12 +49,44 @@ const Container = () => {
     });
   };
 
+  const [popOn, setPopOn] = React.useState(false);
+
+  const openPopDeleteAcount = () => {
+    setPopOn(true);
+  };
+  const closePopDeleteAcount = () => {
+    setPopOn(false);
+  };
+
+  const deleteAcount = () => {
+    const token = localStorage.getItem('access_token');
+
+    fetch(`${URL.API_SERVER}users`, {
+      method: 'DELETE',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+      if (res.status !== 200) {
+        return alert('error');
+      }
+      localStorage.removeItem('access_token');
+      navigate('/');
+    });
+  };
+
   return (
     <View
       nickname={nickname}
       setNickname={setNickname}
       originNickname={originNickname}
       changeNickname={changeNickname}
+      popOn={popOn}
+      setPopOn={setPopOn}
+      openPopDeleteAcount={openPopDeleteAcount}
+      closePopDeleteAcount={closePopDeleteAcount}
+      deleteAcount={deleteAcount}
     />
   );
 };

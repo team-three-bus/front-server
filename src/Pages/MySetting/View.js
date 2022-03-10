@@ -8,8 +8,19 @@ import { NormalTitle } from 'Common/NormalTitle';
 import { Input, FormText } from 'Common/Form';
 import { Btn, BtnArea, BtnAlign } from 'Common/Btn';
 import { TextBtn } from 'Common/TextBtn';
+import { Alert } from 'Common/Alert';
 
-const View = ({ nickname, setNickname, originNickname, changeNickname }) => {
+const View = ({
+  nickname,
+  setNickname,
+  originNickname,
+  changeNickname,
+  popOn,
+  setPopOn,
+  openPopDeleteAcount,
+  closePopDeleteAcount,
+  deleteAcount,
+}) => {
   return (
     <Layout header='sub' title='정보설정' bottomnav={false}>
       <ContentArea>
@@ -27,7 +38,13 @@ const View = ({ nickname, setNickname, originNickname, changeNickname }) => {
       </ContentArea>
       <BtnArea position='bottom'>
         <BtnAlign direction='right'>
-          <TextBtn variant='line' size='lg'>
+          <TextBtn
+            variant='line'
+            size='lg'
+            onClick={() => {
+              openPopDeleteAcount();
+            }}
+          >
             탈퇴하기
           </TextBtn>
         </BtnAlign>
@@ -41,6 +58,28 @@ const View = ({ nickname, setNickname, originNickname, changeNickname }) => {
           완료
         </Btn>
       </BtnArea>
+      <Alert
+        on={popOn}
+        title={'회원탈퇴'}
+        content={
+          <>
+            {originNickname}님 편하를 이용하는데 <br />
+            불편함이 있으셨나요?
+            <br /> 가입/로그인하여 편하를 이용하시면 <br />
+            상품 추천 정확도가 높아집니다.
+            <br /> 그래도 탈퇴하시겠어요?
+          </>
+        }
+        sort={'confirm'}
+        footerBtnLeft={'그냥닫기'}
+        footerBtnLeftCallback={() => {
+          closePopDeleteAcount();
+        }}
+        footerBtnRight={'탈퇴하기'}
+        footerBtnRightCallback={() => {
+          deleteAcount();
+        }}
+      />
     </Layout>
   );
 };
