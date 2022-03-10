@@ -7,9 +7,8 @@ import { ContentArea } from 'Common/ContentArea';
 import { NormalTitle } from 'Common/NormalTitle';
 import { Terms } from 'Common/Terms';
 import { Btn, BtnArea } from 'Common/Btn';
-import * as H from 'Common/Helper';
 
-const View = () => {
+const View = ({ termList, setTermList, confirmRegister }) => {
   return (
     <Layout header='sub' title='회원가입' bottomnav={false}>
       <ContentArea>
@@ -22,36 +21,17 @@ const View = () => {
           }
         />
         <Terms
-          all={{
-            label: '모든 약관에 동의합니다.',
-            checked: false,
-          }}
-          terms={[
-            {
-              label: (
-                <>
-                  <H.PrimaryColor>(필수)</H.PrimaryColor> 서비스 이용약관 동의
-                </>
-              ),
-              id: 'serviceTerm',
-              checked: false,
-              link: '/',
-            },
-            {
-              label: (
-                <>
-                  <H.PrimaryColor>(필수)</H.PrimaryColor> 개인정보처리방침 동의
-                </>
-              ),
-              id: 'peronsalTerm',
-              checked: false,
-              link: '/',
-            },
-          ]}
+          all={termList.all}
+          terms={termList.terms}
+          onChange={setTermList}
         />
       </ContentArea>
       <BtnArea position='bottom'>
-        <Btn sort='default' disabled={true}>
+        <Btn
+          sort='default'
+          disabled={!termList.all.checked}
+          onClick={confirmRegister}
+        >
           확인
         </Btn>
       </BtnArea>
