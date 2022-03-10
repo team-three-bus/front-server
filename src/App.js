@@ -11,6 +11,7 @@ import Login from 'Pages/Login';
 import Oauth from 'Pages/Oauth';
 import MyPage from 'Pages/MyPage';
 import Detail from 'Pages/Detail';
+import MySetting from 'Pages/MySetting';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/oauth' element={<Oauth />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/detail/:id' element={<Detail />} />
+          <Route path='/mysetting' element={<MySetting />} />
         </Routes>
       </Router>
     </div>

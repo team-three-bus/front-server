@@ -30,3 +30,12 @@ True.args = {
   checked: true,
   label: 'checkbox2',
 };
+
+export const SizeLG = Template.bind({});
+SizeLG.args = {
+  id: 'checkbox3',
+  name: 'checkbox',
+  checked: false,
+  label: 'checkbox3',
+  size: 'lg',
+};

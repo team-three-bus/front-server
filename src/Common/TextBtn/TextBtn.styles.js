@@ -14,4 +14,30 @@ export const TextBtn = styled.button`
 
   border: none;
   background: none;
+
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          font-size: 12px;
+        `;
+      case 'lg':
+        return `
+          font-size: 14px;
+        `;
+    }
+  }}
+
+  ${({ variant }) => {
+    switch (variant) {
+      case 'line':
+        return `
+          color: #212529;
+          padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 2px; 
+          border-bottom: 1px solid rgba(33, 37, 41, .5);
+        `;
+    }
+  }}
 `;

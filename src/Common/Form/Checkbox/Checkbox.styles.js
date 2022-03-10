@@ -40,4 +40,13 @@ export const Label = styled.label`
   color: #000000;
   margin-left: 9px;
   vertical-align: middle;
+
+  ${({ size }) => {
+    switch (size) {
+      case 'lg':
+        return `
+          font-size: 14px;
+        `;
+    }
+  }}
 `;
