@@ -29,6 +29,12 @@ const Container = () => {
       });
   }, []);
 
+  const updateNickname = (nickname) => {
+    const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
+    const isValidation = regex.test(nickname);
+    if (isValidation) setNickname(nickname);
+  };
+
   const changeNickname = (nickname) => {
     const token = localStorage.getItem('access_token');
 
@@ -79,7 +85,7 @@ const Container = () => {
   return (
     <View
       nickname={nickname}
-      setNickname={setNickname}
+      setNickname={updateNickname}
       originNickname={originNickname}
       changeNickname={changeNickname}
       popOn={popOn}
