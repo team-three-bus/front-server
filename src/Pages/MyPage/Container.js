@@ -5,6 +5,7 @@ import View from './View';
 import { URL } from 'Common/Util/Constant';
 
 const Container = () => {
+  const mailto = React.useRef(`mailto:pyunha.contact@gmail.com`);
   const [nickname, setNickname] = useState('');
   const navigate = useNavigate();
 
@@ -32,7 +33,9 @@ const Container = () => {
     navigate('/login');
   };
 
-  return <View nickname={nickname} onClickLogout={onClickLogout} />;
+  return (
+    <View nickname={nickname} onClickLogout={onClickLogout} mailto={mailto} />
+  );
 };
 
 export default Container;
