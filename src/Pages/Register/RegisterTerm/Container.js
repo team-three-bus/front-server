@@ -30,7 +30,7 @@ const Container = () => {
         ),
         id: 'serviceTerm',
         checked: false,
-        link: '/',
+        link: 'https://www.notion.so/bside/f05db24fae77406d8fe51a79318f0a1f',
       },
       {
         label: (
@@ -40,7 +40,7 @@ const Container = () => {
         ),
         id: 'peronsalTerm',
         checked: false,
-        link: '/',
+        link: 'https://www.notion.so/bside/020e3286a1b945799bf37de3b4598eab',
       },
     ],
   });
