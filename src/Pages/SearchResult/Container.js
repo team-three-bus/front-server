@@ -256,6 +256,8 @@ const Container = () => {
       _condition.pageSize = currentPage;
       _condition.currentPage = 1;
 
+      setIsInit(false);
+
       fetch(
         `${URL.API_SERVER}elastic/?${getQueryString(_condition)}${
           !filterEvent.length ? '&eventtype=' : ''
@@ -284,8 +286,6 @@ const Container = () => {
           setProducts(_list);
           setProductCnt(productCnt);
           loading.current = false;
-
-          setIsInit(false);
 
           const scrollY = localStorage.getItem('searchresultScroll');
           window.scrollTo(0, scrollY);
