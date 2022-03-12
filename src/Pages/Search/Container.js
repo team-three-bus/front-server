@@ -72,21 +72,8 @@ const Container = () => {
       '세면용품',
       '헤어용품',
     ];
-    const board = [
-      '아이스크림',
-      '탄산',
-      '우유',
-      '커피',
-      '컵밥',
-      '라면',
-      '닭가슴살',
-      '주스',
-      '에이드',
-      '스파클링',
-      '라떼',
-    ];
 
-    const candidateFeature = attr.concat(board);
+    const candidateFeature = attr;
     const selectIndex = (totalIndex, selectingNumber) => {
       let randomIndexArray = [];
       for (let i = 0; i < selectingNumber; i++) {
