@@ -40,9 +40,7 @@ const Container = () => {
   };
 
   const gotoSearchResult = (search) => {
-    navigate({
-      pathname: `/searchresult?search=${search}`,
-    });
+    onSearch(search);
   };
 
   const [feature, setFeature] = React.useState([]);
