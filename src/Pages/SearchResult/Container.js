@@ -7,6 +7,32 @@ import View from './View';
 
 import { DATA_FORWARD, DATA_REVERSE } from 'API_DATA';
 
+const keyword = {
+  매운맛: '매운맛',
+  단맛: '단맛',
+  짠맛: '짠맛',
+  다이어트: '다이어트용',
+  숙취해소: '숙취해소용',
+  '건강기능식품/의약외품': '건강기능식품/의약외품',
+  '야식/안주': '야식/안주용',
+  여성용품: '여성용품',
+  방향제: '방향제',
+  에너지: '에너지용 (에너지음료, 에너지바 등)',
+  반려동물: '애견용',
+  '죽/국': '죽/국(탕, 죽)',
+  밥: '밥류 (덮밥, 볶음밥 등)',
+  면: '면류 (각종 라면, 국수 등)',
+  즉석조리식품: '즉석조리식품(조리 필요한 제품들)',
+  '젤리/캔디': '젤리/캔디류',
+  '햄/소세지': '햄/소세지',
+  '케익/초콜릿': '케익/초콜릿류',
+  요거트: '요거트류',
+  반찬: '김치/조림 등 반찬류',
+  차량용품: '차량용품',
+  세면용품: '세면용품(칫솔,치약,샴푸 등)',
+  헤어용품: '헤어용품',
+};
+
 const getQueryString = (condition) => {
   const querystring = qs.stringify(condition, { arrayFormat: 'comma' });
   return querystring;
@@ -234,7 +260,16 @@ const Container = () => {
     const _condition = {};
 
     _condition.currentPage = currentPage;
-    _condition.search = searchValue;
+
+    let filteredSearchValue = searchValue;
+    const isAttrKeyword = Object.keys(keyword).includes(filteredSearchValue);
+    let apiurl = `${URL.API_SERVER}${
+      !isAttrKeyword ? 'elastic' : 'elastic/about'
+    }`;
+    if (isAttrKeyword) {
+      filteredSearchValue = keyword[filteredSearchValue];
+    }
+    _condition.search = filteredSearchValue;
     _condition.brand = filterBrand.map((item) => {
       return DATA_FORWARD.brand[item];
     });
@@ -259,7 +294,7 @@ const Container = () => {
       setIsInit(false);
 
       fetch(
-        `${URL.API_SERVER}elastic/?${getQueryString(_condition)}${
+        `${apiurl}/?${getQueryString(_condition)}${
           !filterEvent.length ? '&eventtype=' : ''
         }`
       )
@@ -294,7 +329,7 @@ const Container = () => {
     }
 
     fetch(
-      `${URL.API_SERVER}elastic/?${getQueryString(_condition)}${
+      `${apiurl}/?${getQueryString(_condition)}${
         !filterEvent.length ? '&eventtype=' : ''
       }`
     )
