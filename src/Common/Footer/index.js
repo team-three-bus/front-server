@@ -44,7 +44,7 @@ const CopyRight = styled.div`
   opacity: 0.5;
 `
 
-const Contact = styled.div`
+const Contact = styled.a`
   display: flex;
   align-items:center;
   justify-content:center;
@@ -52,6 +52,8 @@ const Contact = styled.div`
   line-height: 14px;
   opacity: 1;
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
 `
 
 const MailIcon = styled.img`
@@ -69,7 +71,7 @@ function Footer() {
         <FooterItem to="/">개인정보처리방침</FooterItem>
       </FooterList>
       <CopyRight>&copy; Copyright 2022 쓰리버스 All right reserved. </CopyRight>
-      <Contact>
+      <Contact href="mailto:pyunha.contact@gmail.com">
         <MailIcon src={mailIcon} alt="" />Contact us
       </Contact>
     </FooterWrap>
