@@ -20,10 +20,11 @@ function View({
         header='main' 
         onSearchClick={onSearchClick} 
         bottomnav={true} 
-      />
-      <Category />
-      {/* <RecommendProducts /> */}
-      <PopularProducts />
+      >
+        <Category />
+        {/* <RecommendProducts /> */}
+        <PopularProducts />
+      </Layout>
     </Home>
   );
 }

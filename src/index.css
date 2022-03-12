@@ -1,5 +1,6 @@
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 @import url(https://cdn.jsdelivr.net/npm/typeface-nanum-square-round@1.0.2/nanumsquareround.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 body {
   font-family: 'NanumSquare', san-serif;

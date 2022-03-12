@@ -49,7 +49,6 @@ export const Btn = styled.button`
     props.option === 'add' &&
     `
       position:relative;
-      top: -80px;
       width: calc(100% - 40px);
       margin: 24px 0 0 20px;
   `}
