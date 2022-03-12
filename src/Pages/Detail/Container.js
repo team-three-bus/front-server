@@ -9,7 +9,9 @@ const Container = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [product, setProduct] = React.useState(null);
+  const [isInit, setIsInit] = React.useState(true);
+
+  const [product, setProduct] = React.useState(undefined);
   const getPerPrice = React.useCallback((price, event) => {
     switch (event) {
       case 'oneone':
@@ -73,6 +75,7 @@ const Container = () => {
     if (token) {
       options.headers.authorization = token;
     }
+    setIsInit(false);
 
     fetch(`${URL.API_SERVER}products?id=${id}`, options)
       .then((res) => res.json())
@@ -88,6 +91,7 @@ const Container = () => {
   return (
     <View
       id={id}
+      isInit={isInit}
       product={product}
       getPerPrice={getPerPrice}
       changeLike={changeLike}
