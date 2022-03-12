@@ -40,9 +40,7 @@ const Container = () => {
   };
 
   const gotoSearchResult = (search) => {
-    navigate({
-      pathname: `/searchresult?search=${search}`,
-    });
+    onSearch(search);
   };
 
   const [feature, setFeature] = React.useState([]);
@@ -51,42 +49,29 @@ const Container = () => {
       '매운맛',
       '단맛',
       '짠맛',
-      '다이어트용',
-      '숙취해소용',
+      '다이어트',
+      '숙취해소',
       '건강기능식품/의약외품',
-      '야식/안주용',
+      '야식/안주',
       '여성용품',
       '방향제',
-      '에너지용',
-      '애견용',
+      '에너지',
+      '반려동물',
       '죽/국',
-      '밥류',
-      '면류',
+      '밥',
+      '면',
       '즉석조리식품',
-      '젤리/캔디류',
+      '젤리/캔디',
       '햄/소세지',
-      '케익/초콜릿류',
-      '요거트류',
-      '김치/조림 등 반찬류',
+      '케익/초콜릿',
+      '요거트',
+      '반찬',
       '차량용품',
       '세면용품',
       '헤어용품',
     ];
-    const board = [
-      '아이스크림',
-      '탄산',
-      '우유',
-      '커피',
-      '컵밥',
-      '라면',
-      '닭가슴살',
-      '주스',
-      '에이드',
-      '스파클링',
-      '라떼',
-    ];
 
-    const candidateFeature = attr.concat(board);
+    const candidateFeature = attr;
     const selectIndex = (totalIndex, selectingNumber) => {
       let randomIndexArray = [];
       for (let i = 0; i < selectingNumber; i++) {
