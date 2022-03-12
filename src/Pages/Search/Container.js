@@ -110,6 +110,10 @@ const Container = () => {
     getRandomFeature();
   }, []);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <View
       searchValue={searchValue}
