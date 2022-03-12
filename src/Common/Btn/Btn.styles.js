@@ -16,12 +16,43 @@ export const Btn = styled.button`
   color: #fff;
   cursor: pointer;
 
-  ${(props) => props.option === 'add' && `
-    position:relative;
-    width: calc(100% - 40px);
-    margin: 24px 0 0 20px;
+  ${({ sort }) => {
+    switch (sort) {
+      case 'default':
+        return `
+          height: 56px;
+          font-size: 18px;
+          border-radius: 0; 
+        `;
+    }
+  }}
+
+  ${({ variant }) => {
+    switch (variant) {
+      case 'secondary':
+        return `
+          border: 1px solid #c4c4c4;
+          background: #c4c4c4;
+        `;
+    }
+  }}
+  ${({ size }) => {
+    switch (size) {
+      case 'textsm':
+        return `
+          font-size: 14px;
+        `;
+    }
+  }}
+
+  ${(props) =>
+    props.option === 'add' &&
+    `
+      position:relative;
+      width: calc(100% - 40px);
+      margin: 24px 0 0 20px;
   `}
-  
+
   ${({ disabled }) => {
     switch (disabled) {
       case true:
@@ -45,6 +76,31 @@ export const BtnArea = styled.div`
         padding-left: 20px;
         padding-right: 20px;
       `;
+    }
+  }}
+  ${({ position }) => {
+    switch (position) {
+      case 'bottom':
+        return `
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 0;
+          width: 100%;
+        `;
+    }
+  }}
+`;
+
+export const BtnAlign = styled.div`
+  padding: 16px 20px;
+
+  ${({ direction }) => {
+    switch (direction) {
+      case 'right':
+        return `
+          text-align: right;
+        `;
     }
   }}
 `;

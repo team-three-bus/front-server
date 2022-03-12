@@ -71,7 +71,7 @@ const Logout = styled.p`
   cursor: pointer;
 `;
 
-const View = ({ nickname, onClickLogout }) => {
+const View = ({ nickname, onClickLogout, mailto }) => {
   return (
     <>
       <Layout header='sub' title='마이페이지' />
@@ -84,7 +84,10 @@ const View = ({ nickname, onClickLogout }) => {
         </MyPageTop>
         <MyPageBottom>
           {/* TODO : 맞는 링크로 이동 처리 */}
-          {/* {<MyPageButton to="/"><img src={settingIcon}/>정보 설정</MyPageButton>} */}
+          <MyPageButton to='/mysetting'>
+            <img src={settingIcon} />
+            정보 설정
+          </MyPageButton>
           <MyPageButton to='/mylike'>
             <img src={heartIcon} />
             완.내.스!
@@ -93,10 +96,15 @@ const View = ({ nickname, onClickLogout }) => {
             <img src={listIcon} />
             서비스 소개
           </MyPageButton>} */}
-          {/* {<MyPageButton to='/'>
+          <MyPageButton
+            to='#'
+            onClick={() => {
+              window.location.href = mailto;
+            }}
+          >
             <img src={mailIcon} />
             문의하기
-          </MyPageButton>} */}
+          </MyPageButton>
         </MyPageBottom>
       </MyPage>
     </>

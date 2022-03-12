@@ -79,8 +79,8 @@ const FilterPopup = ({ open, setOpen, setFilter, filter = {} }) => {
     },
     {
       name: '유제품/커피 음료',
-      selected: getFilterBool({ type: 'category', id: 'milkcoffe' }),
-      id: 'milkcoffe',
+      selected: getFilterBool({ type: 'category', id: 'milkcoffee' }),
+      id: 'milkcoffee',
     },
     {
       name: '탄산음료',
