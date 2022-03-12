@@ -34,7 +34,11 @@ const Container = () => {
   };
 
   return (
-    <View nickname={nickname} onClickLogout={onClickLogout} mailto={mailto} />
+    <View
+      nickname={nickname}
+      onClickLogout={onClickLogout}
+      mailto={mailto.current}
+    />
   );
 };
 
