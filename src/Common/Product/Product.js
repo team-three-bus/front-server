@@ -12,7 +12,7 @@ const Product = ({
   plus,
   title,
   price,
-  perprice,
+  perPrice,
   like,
   saleend,
   changeLike = () => {},
@@ -70,8 +70,8 @@ const Product = ({
         <S.Title size={size}>{title}</S.Title>
         <S.Price size={size}>
           {price.toLocaleString('ko-KR')}원{' '}
-          {perprice && (
-            <S.PerPrice>(1개당 {perprice.toLocaleString()}원)</S.PerPrice>
+          {perPrice && (
+            <S.PerPrice>(1개당 {perPrice.toLocaleString()}원)</S.PerPrice>
           )}
         </S.Price>
       </S.Info>
