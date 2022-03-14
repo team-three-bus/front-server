@@ -51,7 +51,7 @@ const Container = () => {
       if (res.status !== 200) {
         return alert('error');
       }
-      navigate('/');
+      navigate('/mypage');
     });
   };
 
