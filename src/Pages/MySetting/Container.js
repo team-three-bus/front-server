@@ -32,6 +32,11 @@ const Container = () => {
   const updateNickname = (nickname) => {
     const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
     const isValidation = regex.test(nickname);
+    if (nickname === '') {
+      setNickname(nickname);
+      return;
+    }
+
     if (isValidation) setNickname(nickname);
   };
 
