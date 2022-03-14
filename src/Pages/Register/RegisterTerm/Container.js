@@ -30,7 +30,7 @@ const Container = () => {
         ),
         id: 'serviceTerm',
         checked: false,
-        link: 'https://www.notion.so/bside/f05db24fae77406d8fe51a79318f0a1f',
+        link: 'https://zenith-axolotl-f4f.notion.site/d2c3a932cc4849fcb171025674ae5219',
       },
       {
         label: (
@@ -40,7 +40,7 @@ const Container = () => {
         ),
         id: 'peronsalTerm',
         checked: false,
-        link: 'https://www.notion.so/bside/020e3286a1b945799bf37de3b4598eab',
+        link: 'https://zenith-axolotl-f4f.notion.site/e8bb9fdd3c434bd9b6803385b9d47dca',
       },
     ],
   });
