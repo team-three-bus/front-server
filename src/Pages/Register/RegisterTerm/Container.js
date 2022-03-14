@@ -48,7 +48,7 @@ const Container = () => {
   const confirmRegister = () => {
     if (termList.all.checked) {
       const access_token = localStorage.getItem('kakao_access_token');
-      fetch(`${API_URL.API_SERVER}users`, {
+      fetch(`${API_URL.API_SERVER}users/join`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

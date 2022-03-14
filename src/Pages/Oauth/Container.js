@@ -37,7 +37,23 @@ const Oauth = () => {
       .then((res) => res.json())
       .then(({ access_token }) => {
         localStorage.setItem('kakao_access_token', access_token);
-        navigate('/register');
+        fetch(`${API_URL.API_SERVER}users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: access_token,
+          },
+        })
+          .then((data) => data.json())
+          .then((data) => {
+            if (data.jwt) {
+              localStorage.setItem('access_token', data.jwt);
+              localStorage.removeItem('kakao_access_token');
+              navigate('/');
+            } else {
+              navigate('/register');
+            }
+          });
       });
   }, []);
 
