@@ -10,7 +10,7 @@ import { Btn, BtnArea } from 'Common/Btn';
 
 const View = ({ termList, setTermList, confirmRegister }) => {
   return (
-    <Layout header='sub' title='회원가입' bottomnav={false}>
+    <Layout header='sub' title='회원가입' bottomnav={false} hiddenFooter={true}>
       <ContentArea>
         <NormalTitle
           title={

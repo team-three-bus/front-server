@@ -20,4 +20,9 @@ export const Layout = styled.div`
 export const Wrap = styled.div`
   min-height: calc(100vh - 64px - 108px);
   box-sizing: border-box;
+
+  ${props => props.hiddenFooter && `
+      height: calc(100vh - 64px);
+    `
+  }
 `;

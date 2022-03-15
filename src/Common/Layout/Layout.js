@@ -15,6 +15,7 @@ const Layout = ({
   share,
   shareLink,
   searchValue,
+  hiddenFooter,
   onSearchChange,
   onSearch,
   onSearchClick,
@@ -22,8 +23,6 @@ const Layout = ({
   let prevScrollY = 0;
   const [isFixedHeader, setIsFixedHeader] = useState(false);
   const [isFixedBottom, setIsFixedBottom] = useState(true);
-
-  const [isBottom, setIsBottom] = useState(false);
 
   const scrollEvent = () => {
     if (prevScrollY < 64) {
@@ -53,7 +52,7 @@ const Layout = ({
   }, []);
 
   return (
-    <S.Layout bottomnav={bottomnav} isFixed={isFixedHeader}>
+    <S.Layout bottomnav={bottomnav} isFixed={isFixedHeader}> 
       {header === 'sub' ? (
         <SubHeader
           title={title}
@@ -78,8 +77,8 @@ const Layout = ({
         />
       )}
 
-      {children && <S.Wrap>{children}</S.Wrap>}
-      <Footer />
+      {children && <S.Wrap hiddenFooter={hiddenFooter}>{children}</S.Wrap>}
+      {!hiddenFooter && <Footer />}
       {bottomnav && <BottomNav isFixed={isFixedBottom} goTo={goTo} />}
     </S.Layout>
   );
