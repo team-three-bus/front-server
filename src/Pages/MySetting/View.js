@@ -22,7 +22,7 @@ const View = ({
   deleteAcount,
 }) => {
   return (
-    <Layout header='sub' title='정보설정' bottomnav={false}>
+    <Layout header='sub' title='정보설정' bottomnav={false} hiddenFooter={true}>
       <ContentArea>
         <NormalTitle title='닉네임 설정' />
         <Input

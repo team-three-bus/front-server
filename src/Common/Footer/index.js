@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import mailIcon from "./img/icon_mail.svg";
 
@@ -26,7 +25,7 @@ const FooterList = styled.div`
   }
 `
 
-const FooterItem = styled(Link)`
+const FooterItem = styled.a`
   text-decoration: none;
   color: inherit;
   opacity: 0.5;
@@ -64,11 +63,26 @@ function Footer() {
   return (
     <FooterWrap>
       <FooterList>
-        <FooterItem to="/">서비스 소개</FooterItem>
+        <FooterItem 
+          href="https://zenith-axolotl-f4f.notion.site/c1bdc7836ed645b69f40f4c204574420"
+          target="_blank"
+        >
+          서비스 소개
+        </FooterItem>
         <FooterBar/>
-        <FooterItem to="/">서비스 이용약관</FooterItem>
+        <FooterItem 
+          href="https://zenith-axolotl-f4f.notion.site/d2c3a932cc4849fcb171025674ae5219"
+          target="_blank"
+        >
+          서비스 이용약관
+        </FooterItem>
         <FooterBar/>
-        <FooterItem to="/">개인정보처리방침</FooterItem>
+        <FooterItem 
+          href="https://zenith-axolotl-f4f.notion.site/e8bb9fdd3c434bd9b6803385b9d47dca"
+          target="_blank"
+        >
+          개인정보처리방침
+        </FooterItem>
       </FooterList>
       <CopyRight>&copy; Copyright 2022 쓰리버스 All right reserved. </CopyRight>
       <Contact href="mailto:pyunha.contact@gmail.com">

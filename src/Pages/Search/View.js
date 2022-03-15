@@ -25,6 +25,7 @@ const View = ({
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       onSearch={onSearch}
+      hiddenFooter={true}
     >
       <Title
         title={`최근 검색어`}
