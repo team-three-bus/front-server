@@ -207,6 +207,11 @@ export const Title = styled.p`
   color: #121212;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  ${(props) =>
+    props.size === 'sm' &&
+    ` width: 135px;`
+  }
 `;
 
 export const Price = styled.div`
@@ -231,7 +236,11 @@ export const Price = styled.div`
   }};
 `;
 
-export const PerPrice = styled.div``;
+export const PerPrice = styled.div`
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 10px
+`;
 
 export const SaleEnd = styled.div`
   position: absolute;

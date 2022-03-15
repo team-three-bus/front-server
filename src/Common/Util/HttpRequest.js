@@ -36,3 +36,8 @@ export const postLikeItem = param => {
 export const deleteLikeItem = param => {
   return axiosRequest('delete', `products/like`, null, { "productId" : param.id })
 }
+
+export const getItemDetail = param => {
+  const { id } = param;
+  return axiosRequest('get', `products/v2?id=${id}`)
+}
