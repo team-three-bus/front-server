@@ -85,7 +85,7 @@ const View = ({
             like={product.isLike}
             plus={product.lastEventType}
             store={product.brand}
-            changeLike={changeLike}
+            changeLike={() => changeLike(product, 'product')}
             saleend={!product.isEvent}
           />
 
@@ -95,7 +95,7 @@ const View = ({
             <ProductGraph>
               <ResponsiveLine
                 data={graphData}
-                margin={{ top: 30, right: 20, bottom: 24, left: 0 }}
+                margin={{ top: 30, right: 20, bottom: 24, left: 20 }}
                 xScale={{ type: 'point' }}
                 yScale={{
                   type: 'linear',
@@ -103,6 +103,11 @@ const View = ({
                   max: 'auto',
                   stacked: true,
                   reverse: false
+                }}
+                axisLeft={null}
+                axisBottom={{
+                  tickSize: 0,
+                  tickPadding: 10
                 }}
                 enablePointLabel={true}
                 enableGridX={false}
@@ -112,29 +117,28 @@ const View = ({
                 pointColor={{ from: 'color', modifiers: [] }}
                 pointBorderWidth={4}
                 pointBorderColor="inherit"
-                // pointLabel={(t) => `${(t.y).toLocaleString()}원`}
-                // pointBorderColor="#ced4da"
+                pointLabel={(t) => `${(t.y).toLocaleString()}원`}
                 pointLabelYOffset={-12}
               />
             </ProductGraph>
           </ProductGraphWrap>
-
+                
           <SameProductListWrap>
             <SameProductListTitle>비슷한 상품이 궁금하신가요?</SameProductListTitle>
             <SameProductList>
-              {sameProducts.map((product, i) => (
+              {sameProducts.map((sameProduct, i) => (
                 <Product
                   key={i}
                   size='sm'
-                  id={product.id}
-                  img={product.imageUrl}
-                  title={product.name}
-                  price={product.price || ''}
-                  like={product.isLike}
-                  plus={product.lastEventType}
-                  store={product.brand}
-                  changeLike={changeLike}
-                  saleend={!product.isEvent}
+                  id={sameProduct.id}
+                  img={sameProduct.imageUrl}
+                  title={sameProduct.name}
+                  price={sameProduct.price || ''}
+                  like={sameProduct.isLike}
+                  plus={sameProduct.lastEventType}
+                  store={sameProduct.brand}
+                  changeLike={() => changeLike(sameProduct, 'sameProduct')}
+                  saleend={!sameProduct.isEvent}
                   gotoDetail={gotoDetail}
                 />
               ))}

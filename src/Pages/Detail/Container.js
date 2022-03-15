@@ -8,7 +8,7 @@ const Container = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [sameProducts, setSameProducts] = useState([]);
-  const [graphData, setGraphData] = useState();
+  const [graphData, setGraphData] = useState(null);
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
@@ -28,7 +28,8 @@ const Container = () => {
     }
   };
 
-  const changeLike = async ({ id, isLike }) => {
+  const changeLike = async ( product, type ) => {
+    const { id, isLike } = product;
     const token = localStorage.getItem('access_token');
     if (!token) return navigate('/login');
     if (isLike) {
@@ -36,7 +37,17 @@ const Container = () => {
     } else {
       await request.postLikeItem({id});
     }
-    setProduct({ ...product, isLike: !product.isLike });
+    if ( type === 'product' ) {
+      setProduct({ ...product, isLike: !product.isLike });
+    } else {
+      const newSameProduct = sameProducts.map((product) => {
+        if ( product.id === id ) {
+          product.isLike = !product.isLike;
+        }
+        return product;
+      })
+      setSameProducts(newSameProduct);
+    }
   };
 
   const getItemDetail = async () => {
@@ -45,34 +56,32 @@ const Container = () => {
       .then(({ product, sameProductList }) => {
         setProduct(product);
         setSameProducts(sameProductList);
-        makeGraphData(product.events);
+        makeGraphData(product.events, product.price);
       })
   }
 
-  const makeGraphData = (events) => {
-    const test = Object.entries(events);
+  const makeGraphData = (events, price) => {
+    const _event = Object.entries(events);
     const _graphData = [];
     const typeData = [];
-    const price = product.price; // temp
-    const maxLength = events.length;
-    test.map((event, i) => {
+    _event.map((event, i) => {
+      if (i === 0) {
+        _graphData.push({ "x": "", "y": null})
+      }
       const { eventMonth, eventYear, eventType } = event[1];
       typeData.push(eventType);
-      if (i === 0) {
-        _graphData.push({ "x": "", "y": null })  
-      }
       _graphData.push({
         "x" : `${eventYear}-${eventMonth}`,
         "y" : getPerPrice(price, eventType)
       })
-      if (i === (maxLength - 1)) {
-        _graphData.push({ "x": " ", "y": null })  
+      if (i === _event.length - 1) {
+        _graphData.push({ "x": " ", "y": null })
       }
     })
     setGraphData([
-      { "id": "priceGraph", "data" : _graphData }
-    ]);
-    
+      { "id": "priceGraph", "data" : _graphData.reverse()}
+    ]); 
+  
     getMsgText(typeData);
   }
   
@@ -82,7 +91,7 @@ const Container = () => {
     }
 
     if (typeData.length === 2) {
-      const [first, last] = typeData;
+      const [first, last] = typeData.reverse();
       if (first === last) {
         return setMsg(`"항상 고마운 ${last} 상품!"`);
       } else if (
@@ -97,7 +106,7 @@ const Container = () => {
     }
 
     if (typeData.length === 3) {
-      const [first, second, last] = typeData;
+      const [first, second, last] = typeData.reverse();
       if (first === second && second === last) {
         return setMsg(`"항상 고마운 ${last} 상품!"`);
       } else if (
