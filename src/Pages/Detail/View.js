@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 import { ResponsiveLine } from '@nivo/line';
 import { Layout } from 'Common/Layout';
 import { ProductInfo } from 'Common/ProductInfo';
@@ -71,7 +72,7 @@ const View = ({
       title='상품 상세'
       share={true}
       search={false}
-      shareLink={() => shareLink(product)}
+      shareLink={shareLink}
     >
       {Object.keys(product).length === 0 ?
         <Empty text='상품 데이터가 없습니다' /> :
@@ -144,6 +145,11 @@ const View = ({
               ))}
             </SameProductList>
           </SameProductListWrap>
+          <ToastContainer 
+            position="top-right"
+            autoClose={1000}
+            pauseOnHover={false}
+          />
         </>
       }
     </Layout>

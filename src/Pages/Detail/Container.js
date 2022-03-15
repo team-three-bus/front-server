@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as request from 'Common/Util/HttpRequest';
 import View from './View';
 
@@ -128,23 +130,9 @@ const Container = () => {
     }
   }
 
-  const shareLink = (product) => {
-    const {id, title, imageUrl, brand, lastEventType} = product;
-    window.Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: `${title}`,
-        description: `지금 ${brand}에서 ${lastEventType}! 편하에서 확인하세요!`,
-        imageUrl: imageUrl,
-        link: { webUrl: `https://pyunha.com/detail/${id}` },
-      },
-      buttons: [
-        {
-          title: '편하에서 보기',
-          link: { webUrl: `https://pyunha.com/detail/${id}` }
-        }
-      ],
-    })
+  const shareLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast("URL 복사 완료! 공유해보세요.");
   }
 
   const gotoDetail = (id) => {
