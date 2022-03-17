@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import settingIcon from './img/ic-setting.svg';
 import heartIcon from './img/ic-heart.svg';
-// import listIcon from './img/ic-list.svg';
+import listIcon from './img/ic-list.svg';
 import mailIcon from './img/ic-mail.svg';
 
 const MyPage = styled.div`
@@ -91,10 +91,14 @@ const View = ({ nickname, onClickLogout, mailto }) => {
               <img src={heartIcon} />
               완.내.스!
             </MyPageButton>
-            {/* {<MyPageButton to='/'>
+            <MyPageButton
+              as='a'
+              target='_blank'
+              href='https://zenith-axolotl-f4f.notion.site/c1bdc7836ed645b69f40f4c204574420'
+            >
               <img src={listIcon} />
               서비스 소개
-            </MyPageButton>} */}
+            </MyPageButton>
             <MyPageButton
               to='#'
               onClick={() => {
