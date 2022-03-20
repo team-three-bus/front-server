@@ -34,7 +34,7 @@ export const ImgBox = styled.div`
 
   box-sizing: border-box;
   border: 1px solid #f6f6f6;
-  border-radius: 32px;
+  border-radius: 14px;
 
   ${({ isNoImg }) => {
     switch (isNoImg) {
@@ -52,7 +52,7 @@ export const ImgBox = styled.div`
           width: 135px;
           height: 135px;
           padding-bottom: 0;
-          border-radius: 14px;
+          
         `;
       case 'lg':
         return `
@@ -207,6 +207,11 @@ export const Title = styled.p`
   color: #121212;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  ${(props) =>
+    props.size === 'sm' &&
+    ` width: 135px;`
+  }
 `;
 
 export const Price = styled.div`
@@ -231,7 +236,11 @@ export const Price = styled.div`
   }};
 `;
 
-export const PerPrice = styled.div``;
+export const PerPrice = styled.div`
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 10px
+`;
 
 export const SaleEnd = styled.div`
   position: absolute;

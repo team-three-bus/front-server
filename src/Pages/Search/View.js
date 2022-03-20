@@ -25,6 +25,7 @@ const View = ({
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       onSearch={onSearch}
+      hiddenFooter={true}
     >
       <Title
         title={`최근 검색어`}
@@ -52,7 +53,7 @@ const View = ({
         <Empty />
       )}
 
-      <Title title={`이런 검색어는 어떠세요?`} />
+      <Title title={`이런 특성을 가진 상품은 어떠세요?`} />
       <FeatureBox>
         {feature.map((item, index) => {
           return (

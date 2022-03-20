@@ -1,16 +1,23 @@
-import React from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import qs from 'query-string';
-
-import { URL } from 'Common/Util/Constant';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import * as request from 'Common/Util/HttpRequest';
 import View from './View';
 
 const Container = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const [sameProducts, setSameProducts] = useState([]);
+  const [graphData, setGraphData] = useState(null);
+  const [msg, setMsg] = useState('');
 
-  const [product, setProduct] = React.useState(null);
-  const getPerPrice = React.useCallback((price, event) => {
+  useEffect(() => {
+    getItemDetail();
+  }, []);
+
+  const getPerPrice = (price, event) => {
     switch (event) {
       case 'oneone':
       case '1+1':
@@ -21,76 +28,127 @@ const Container = () => {
       default:
         return 0;
     }
-  });
+  };
 
-  const changeLike = ({ id, isLike }) => {
+  const changeLike = async ( product, type ) => {
+    const { id, isLike } = product;
     const token = localStorage.getItem('access_token');
-
-    if (!token) {
-      navigate({
-        pathname: '/login',
-      });
-    } else if (isLike === false || isLike === undefined) {
-      fetch(`${URL.API_SERVER}products/like`, {
-        method: 'POST',
-        headers: {
-          authorization: token,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          productId: id,
-        }),
-      }).then((res) => {
-        setProduct((product) => {
-          return { ...product, isLike: true };
-        });
-      });
-    } else if (isLike === true) {
-      fetch(`${URL.API_SERVER}products/like`, {
-        method: 'DELETE',
-        headers: {
-          authorization: token,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          productId: id,
-        }),
-      }).then((res) => {
-        setProduct((prevProducts) => {
-          return { ...product, isLike: false };
-        });
-      });
+    if (!token) return navigate('/login');
+    if (isLike) {
+      await request.deleteLikeItem({id});
+    } else {
+      await request.postLikeItem({id});
+    }
+    if ( type === 'product' ) {
+      setProduct({ ...product, isLike: !product.isLike });
+    } else {
+      const newSameProduct = sameProducts.map((product) => {
+        if ( product.id === id ) {
+          product.isLike = !product.isLike;
+        }
+        return product;
+      })
+      setSameProducts(newSameProduct);
     }
   };
 
-  React.useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    const options = {
-      method: 'GET',
-      headers: {},
-    };
+  const getItemDetail = async () => {
+    await request.getItemDetail({ id })
+      .then(res => res.data)
+      .then(({ product, sameProductList }) => {
+        setProduct(product);
+        setSameProducts(sameProductList);
+        makeGraphData(product.events, product.price);
+      })
+  }
 
-    if (token) {
-      options.headers.authorization = token;
+  const makeGraphData = (events, price) => {
+    const _event = Object.entries(events);
+    const _graphData = [];
+    const typeData = [];
+    _event.map((event, i) => {
+      if (i === 0) {
+        _graphData.push({ "x": "", "y": null})
+      }
+      const { eventMonth, eventYear, eventType } = event[1];
+      typeData.push(eventType);
+      _graphData.push({
+        "x" : `${eventYear}-${eventMonth}`,
+        "y" : getPerPrice(price, eventType)
+      })
+      if (i === _event.length - 1) {
+        _graphData.push({ "x": " ", "y": null })
+      }
+    })
+    setGraphData([
+      { "id": "priceGraph", "data" : _graphData.reverse()}
+    ]); 
+  
+    getMsgText(typeData);
+  }
+  
+  const getMsgText = (typeData) => {
+    if (typeData.length === 1) {
+      return setMsg(`"새로운 ${typeData[0]} 등장! 놓칠 수 없지!"`);
     }
 
-    fetch(`${URL.API_SERVER}products?id=${id}`, options)
-      .then((res) => res.json())
-      .then(({ product }) => {
-        if (!product) return;
-        setProduct({
-          ...product,
-          event: product.events[product.events.length - 1].eventType,
-        });
-      });
-  }, []);
+    if (typeData.length === 2) {
+      const [first, last] = typeData.reverse();
+      if (first === last) {
+        return setMsg(`"항상 고마운 ${last} 상품!"`);
+      } else if (
+        (first === '2+1' && last === '1+1')
+      ) {
+        return setMsg(`"2+1이 1+1으로?! 무조건이지!"`);
+      } else if (
+        (first === '1+1' && last === '2+1')
+      ) {
+        return setMsg(`"2+1이지만 그래도 좋아!"`);
+      }
+    }
+
+    if (typeData.length === 3) {
+      const [first, second, last] = typeData.reverse();
+      if (first === second && second === last) {
+        return setMsg(`"항상 고마운 ${last} 상품!"`);
+      } else if (
+        (first === last && second !== last) || 
+        (second === last && first !== last)
+      ) {
+        return setMsg(`"또 한번 찾아온 ${last} 이득!"`);
+      } else if (
+        (first === '2+1' && last === '1+1') ||
+        (second === '2+1' && last === '1+1') 
+      ) {
+        return setMsg(`"2+1이 1+1으로?! 무조건이지!"`);
+      } else if (
+        (first === '1+1' && last === '2+1') ||
+        (second === '1+1' && last === '2+1') 
+      ) {
+        return setMsg(`"2+1이지만 그래도 좋아!"`);
+      }
+    }
+  }
+
+  const shareLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast("URL 복사 완료! 공유해보세요.");
+  }
+
+  const gotoDetail = (id) => {
+    return (window.location.href = `/detail/${id}`);
+  };
 
   return (
     <View
-      id={id}
+      msg={msg}
       product={product}
+      sameProducts={sameProducts}
+      graphData={graphData}
       getPerPrice={getPerPrice}
       changeLike={changeLike}
+      shareLink={shareLink}
+      gotoDetail={gotoDetail}
     />
   );
 };

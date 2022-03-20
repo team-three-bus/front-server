@@ -40,3 +40,8 @@ export const deleteLikeItem = param => {
 export const getRecommendItems = () => {
   return axiosRequest('get', `recommend`)
 }
+
+export const getItemDetail = param => {
+  const { id } = param;
+  return axiosRequest('get', `products/v2?id=${id}`)
+}
