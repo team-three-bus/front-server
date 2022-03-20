@@ -3,22 +3,33 @@ import * as request from 'Common/Util/HttpRequest';
 import View from "./View";
 
 function Container() {
-  const maxRecommendItem = 10;
-  const nickname = localStorage.getItem('nickname');
+  const [nickname, setNickname] = useState(localStorage.getItem('nickname') !== 'undefined' && localStorage.getItem('nickname'));
   const [recommendItems, setRecommendItems] = useState([]);
 
   useEffect(() => {
-    const items = request.getRecommendItems({ 
-      userId: 7, // TODO : user 정보 받아와 실제 id값 넘겨서 처리
-      size: maxRecommendItem 
-    })
-      .then(res => setRecommendItems(res.data.list))
+    getData();
+    getNickName();
   }, [])
+
+  const getData = async () => {
+    await request.getRecommendItems()
+      .then(res => setRecommendItems(res.data.list))
+  }
+
+  const getNickName = async () => {
+   await request.getNickname()
+    .then(res => setNickname(res.data.nickname))
+  }
+
+  const gotoDetail = (id) => {
+    return (window.location.href = `/detail/${id}`);
+  };
 
   return (
     <View 
       nickname={nickname}
       recommendItems={recommendItems}
+      gotoDetail={gotoDetail}
     />
   )
 }

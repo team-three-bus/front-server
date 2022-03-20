@@ -32,7 +32,8 @@ const RecommendItemList = styled.div`
 
 const View = ({
   recommendItems,
-  nickname
+  nickname,
+  gotoDetail
 }) => {
   return (
     <RecommendProductBox>
@@ -47,6 +48,7 @@ const View = ({
         title="추천상품"
       />
       <RecommendItemList>
+        {recommendItems.length === 0 && "Loading..."}
         {recommendItems.map((item, i) => (
           <Product
             key={i}
@@ -57,6 +59,7 @@ const View = ({
             title={item.name}
             store={item.brand}
             saleend={!item.isevent}
+            gotoDetail={() => gotoDetail(item.id)}
             // like={}
           />
         ))}

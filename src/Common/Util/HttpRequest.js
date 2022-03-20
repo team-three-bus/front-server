@@ -45,3 +45,7 @@ export const getItemDetail = param => {
   const { id } = param;
   return axiosRequest('get', `products/v2?id=${id}`)
 }
+
+export const getNickname = () => {
+  return axiosRequest('get', 'users/mypage')
+}
