@@ -25,11 +25,13 @@ const Container = () => {
       .then((res) => res.json())
       .then(({ nickname }) => {
         setNickname(nickname);
+        localStorage.setItem('nickname', nickname);
       });
   }, []);
 
   const onClickLogout = () => {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('nickname',);
     navigate('/login');
   };
 

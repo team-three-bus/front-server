@@ -84,7 +84,9 @@ export const Icon = styled.span`
         return `background: url(${IconLike}) center center no-repeat;`;
       case 'recommend':
         return `
-          background: url(${IconRecommend}) center center no-repeat;
+          position: relative;
+          top: 6px;
+          background: url(${IconRecommend}) center/48px 48px no-repeat;
         `;
       case 'popular':
         return `
