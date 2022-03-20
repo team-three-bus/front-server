@@ -1,5 +1,5 @@
 export const URL = {
-  API_SERVER: `http://125.6.37.184:3000/`,
+  API_SERVER: `http://34.64.48.130:3000/`,
 };
 
 export const CATEGORY_LIST = [
