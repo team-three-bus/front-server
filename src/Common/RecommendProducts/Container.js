@@ -9,17 +9,39 @@ function Container() {
     localStorage.getItem('nickname') !== 'undefined' &&
       localStorage.getItem('nickname')
   );
+  const mylikeList = React.useRef([]);
   const [recommendItems, setRecommendItems] = useState([]);
 
-  useEffect(() => {
-    getData();
+  useEffect(async () => {
     getNickName();
+    await getMyLike();
+    await getData();
   }, []);
 
+  const getMyLike = async () => {
+    await request.getMyLike().then((res) => {
+      const list = res.data.list;
+      const _mylikeList = {};
+      list.forEach((item) => {
+        _mylikeList[item.id] = item;
+      });
+      mylikeList.current = _mylikeList;
+
+      mylikeList.current = _mylikeList;
+    });
+  };
+
   const getData = async () => {
-    await request
-      .getRecommendItems()
-      .then((res) => setRecommendItems(res.data.list));
+    await request.getRecommendItems().then((res) => {
+      const _list = res.data.list.map((item) => {
+        return {
+          ...item,
+          isLike: mylikeList.current[item.id] ? true : false,
+        };
+      });
+
+      setRecommendItems(_list);
+    });
   };
 
   const getNickName = async () => {
