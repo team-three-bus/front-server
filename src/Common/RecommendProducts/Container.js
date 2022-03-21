@@ -14,7 +14,9 @@ function Container() {
 
   useEffect(async () => {
     getNickName();
-    await getMyLike();
+    if (localStorage.getItem('access_token')) {
+      await getMyLike();
+    }
     await getData();
   }, []);
 
@@ -33,14 +35,17 @@ function Container() {
 
   const getData = async () => {
     await request.getRecommendItems().then((res) => {
-      const _list = res.data.list.map((item) => {
-        return {
-          ...item,
-          isLike: mylikeList.current[item.id] ? true : false,
-        };
-      });
-
-      setRecommendItems(_list);
+      if (localStorage.getItem('access_token')) {
+        const _list = res.data.list.map((item) => {
+          return {
+            ...item,
+            isLike: mylikeList.current[item.id] ? true : false,
+          };
+        });
+        setRecommendItems(_list);
+      } else {
+        setRecommendItems(res.data.list);
+      }
     });
   };
 
