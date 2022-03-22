@@ -11,33 +11,33 @@ const ProductGraphWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding: 32px 20px 24px;
-`
+`;
 
 const ProductGraph = styled.div`
   height: 200px;
   font-size: 15px;
-`
+`;
 
 const ProductGraphTitle = styled.div`
   font-weight: 800;
   font-size: 20px;
   line-height: 23px;
-`
+`;
 
 const ProductGraphSubTitle = styled.div`
   margin: 7px 0 12px;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  color: #868E96;
-`
+  color: #868e96;
+`;
 
 const SameProductListWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 19px;
   margin-bottom: 44px;
-`
+`;
 
 const SameProductList = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const SameProductList = styled.div`
   > div {
     margin-right: 19px;
   }
-`
+`;
 
 const SameProductListTitle = styled.p`
   font-family: 'NanumSquareRoundOTF';
@@ -54,17 +54,17 @@ const SameProductListTitle = styled.p`
   font-size: 14px;
   line-height: 36px;
   margin: 0 0 14px;
-`
+`;
 
-const View = ({ 
+const View = ({
   msg,
-  product, 
-  sameProducts, 
-  graphData, 
-  shareLink, 
-  getPerPrice, 
+  product,
+  sameProducts,
+  graphData,
+  shareLink,
+  getPerPrice,
   changeLike,
-  gotoDetail
+  gotoDetail,
 }) => {
   return (
     <Layout
@@ -73,9 +73,11 @@ const View = ({
       share={true}
       search={false}
       shareLink={shareLink}
+      bottomnav={true}
     >
-      {Object.keys(product).length === 0 ?
-        <Empty text='상품 데이터가 없습니다' /> :
+      {Object.keys(product).length === 0 ? (
+        <Empty text='상품 데이터가 없습니다' />
+      ) : (
         <>
           <ProductInfo
             id={product.id}
@@ -103,29 +105,31 @@ const View = ({
                   min: 'auto',
                   max: 'auto',
                   stacked: true,
-                  reverse: false
+                  reverse: false,
                 }}
                 axisLeft={null}
                 axisBottom={{
                   tickSize: 0,
-                  tickPadding: 10
+                  tickPadding: 10,
                 }}
                 enablePointLabel={true}
                 enableGridX={false}
                 lineWidth={6}
                 pointSize={14}
-                colors={[ '#EF586A' ]}
+                colors={['#EF586A']}
                 pointColor={{ from: 'color', modifiers: [] }}
                 pointBorderWidth={4}
-                pointBorderColor="inherit"
-                pointLabel={(t) => `${(t.y).toLocaleString()}원`}
+                pointBorderColor='inherit'
+                pointLabel={(t) => `${t.y.toLocaleString()}원`}
                 pointLabelYOffset={-12}
               />
             </ProductGraph>
           </ProductGraphWrap>
-                
+
           <SameProductListWrap>
-            <SameProductListTitle>비슷한 상품이 궁금하신가요?</SameProductListTitle>
+            <SameProductListTitle>
+              비슷한 상품이 궁금하신가요?
+            </SameProductListTitle>
             <SameProductList>
               {sameProducts.map((sameProduct, i) => (
                 <Product
@@ -145,13 +149,13 @@ const View = ({
               ))}
             </SameProductList>
           </SameProductListWrap>
-          <ToastContainer 
-            position="top-right"
+          <ToastContainer
+            position='top-right'
             autoClose={1000}
             pauseOnHover={false}
           />
         </>
-      }
+      )}
     </Layout>
   );
 };
