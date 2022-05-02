@@ -6,37 +6,42 @@ import { CATEGORY_LIST } from './Constant';
 const CategoryBox = styled.div`
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(4, 20%);
-  gap: 7%;
-  margin: 8px auto 0;
-  padding: 22px 20px 44px 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 17px 30px;
+  padding: 22px 20px 24px 20px;
   background: #ffffff;
 `;
 
 const CategoryItem = styled(Link)`
+  position: relative;
+  display: inline-block;
+  text-align: center;
   text-decoration: none;
 `;
 
 const CategoryItemImgWrap = styled.div`
+  position: relative;
   width: 100%;
+  padding-bottom: 100%;
   background: #ffffff;
+  border: 1px solid #eeeeee;
   border-radius: 24px;
 `;
 
 const CategoryItemImg = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   box-sizing: border-box;
   display: block;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-  background: url(${(props) => props.img}) no-repeat center/cover;
-  border: 1px solid #eeeeee;
-  border-radius: 24px;
+  max-width: 80px;
+  transform: translate(-50%, -50%) scale(50%);
 `;
 
 const CategoryItemName = styled.p`
   margin: 1px 0 0;
   font-size: 12px;
+  line-height: 1.34;
   text-align: center;
   font-weight: bold;
   color: #212529;
@@ -54,7 +59,7 @@ const Category = () => {
       {CATEGORY_LIST.map((item, i) => (
         <CategoryItem key={i} to={item.link}>
           <CategoryItemImgWrap>
-            <CategoryItemImg img={item.img} />
+            <CategoryItemImg src={item.img} alt={item.alt} />
           </CategoryItemImgWrap>
           <CategoryItemName>{renameCategory(item.name)}</CategoryItemName>
         </CategoryItem>
