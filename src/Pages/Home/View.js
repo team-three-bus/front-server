@@ -11,21 +11,15 @@ const Home = styled.div`
   margin: 0 auto;
 `;
 
-function View({
-  onSearchClick,
-}) {
+function View({ onSearchClick }) {
   return (
-    <Home>
-      <Layout 
-        header='main' 
-        onSearchClick={onSearchClick} 
-        bottomnav={true} 
-      >
+    <Layout header='main' onSearchClick={onSearchClick} bottomnav={true}>
+      <Home>
         <Category />
         <RecommendProducts />
         <PopularProducts />
-      </Layout>
-    </Home>
+      </Home>
+    </Layout>
   );
 }
 
