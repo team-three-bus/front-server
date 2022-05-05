@@ -26,16 +26,20 @@ const CategoryItemImgWrap = styled.div`
   background: #ffffff;
   border: 1px solid #eeeeee;
   border-radius: 24px;
+  overflow: hidden;
 `;
 
-const CategoryItemImg = styled.img`
+const CategoryItemImg = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   box-sizing: border-box;
   display: block;
-  max-width: 80px;
-  transform: translate(-50%, -50%) scale(50%);
+  min-width: 64px;
+  min-height: 64px;
+  transform: translate(-50%, -50%);
+  background: url(${(props) => props.img}) center center no-repeat;
+  background-size: 100%;
 `;
 
 const CategoryItemName = styled.p`
@@ -59,7 +63,7 @@ const Category = () => {
       {CATEGORY_LIST.map((item, i) => (
         <CategoryItem key={i} to={item.link}>
           <CategoryItemImgWrap>
-            <CategoryItemImg src={item.img} alt={item.alt} />
+            <CategoryItemImg img={item.img} />
           </CategoryItemImgWrap>
           <CategoryItemName>{renameCategory(item.name)}</CategoryItemName>
         </CategoryItem>
