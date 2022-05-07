@@ -7,8 +7,8 @@ const CategoryBox = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 17px 30px;
-  padding: 22px 20px 24px 20px;
+  gap: 17px 10px;
+  padding: 22px 5% 24px;
   background: #ffffff;
 `;
 
@@ -21,23 +21,19 @@ const CategoryItem = styled(Link)`
 
 const CategoryItemImgWrap = styled.div`
   position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  background: #ffffff;
-  border: 1px solid #eeeeee;
-  border-radius: 24px;
+  width: 64px;
   overflow: hidden;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const CategoryItemImg = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
   box-sizing: border-box;
-  display: block;
-  min-width: 64px;
-  min-height: 64px;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  border: 1px solid #eeeeee;
+  border-radius: 24px;
+  height: 0;
+  padding-bottom: 100%;
   background: url(${(props) => props.img}) center center no-repeat;
   background-size: 100%;
 `;
