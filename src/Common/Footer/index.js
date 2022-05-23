@@ -64,21 +64,21 @@ function Footer() {
     <FooterWrap>
       <FooterList>
         <FooterItem 
-          href="https://zenith-axolotl-f4f.notion.site/c1bdc7836ed645b69f40f4c204574420"
+          href="https://dealicious.notion.site/c1bdc7836ed645b69f40f4c204574420"
           target="_blank"
         >
           서비스 소개
         </FooterItem>
         <FooterBar/>
         <FooterItem 
-          href="https://zenith-axolotl-f4f.notion.site/d2c3a932cc4849fcb171025674ae5219"
+          href="https://dealicious.notion.site/dealicious/d2c3a932cc4849fcb171025674ae5219"
           target="_blank"
         >
           서비스 이용약관
         </FooterItem>
         <FooterBar/>
         <FooterItem 
-          href="https://zenith-axolotl-f4f.notion.site/e8bb9fdd3c434bd9b6803385b9d47dca"
+          href="https://dealicious.notion.site/e8bb9fdd3c434bd9b6803385b9d47dca"
           target="_blank"
         >
           개인정보처리방침

@@ -94,7 +94,7 @@ const View = ({ nickname, onClickLogout, mailto }) => {
             <MyPageButton
               as='a'
               target='_blank'
-              href='https://zenith-axolotl-f4f.notion.site/c1bdc7836ed645b69f40f4c204574420'
+              href='https://dealicious.notion.site/c1bdc7836ed645b69f40f4c204574420'
             >
               <img src={listIcon} />
               서비스 소개
